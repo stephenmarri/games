@@ -82,14 +82,14 @@ function checkMatching(item, divId ){
             var successTimer = setTimeout(() => {
                 document.querySelector(`#${CSS.escape(clickedDivs[0])}`).firstChild.setAttribute('src',`images/solved.jpg`);
                 document.querySelector(`#${CSS.escape(clickedDivs[1])}`).firstChild.setAttribute('src',`images/solved.jpg`);
-                clickedImages=[];
-                clickedDivs=[];
+                clickedImages.shift();
+                clickedDivs.shift();
             },1000);
 
         }        
         if (!successTimer) {
-            clickedImages=[];
-            clickedDivs=[];
+            clickedImages.shift();
+            clickedDivs.shift();
         }        
         return result
     }    
