@@ -83,6 +83,31 @@ img{
     flex: 1;
 }
 
+/* controls */
+.controls{
+    margin-top: 1rem;
+    width: 50%;    
+    margin-left: auto;
+    margin-right: auto;
+    height: 4rem;
+    font-size: 2rem;
+    background-color: #27ae60;
+    border: 0.5px solid #1e8d4c;
+    color: #fff; 
+}
+
+#play__text{
+    margin-top: 0.25rem;
+    text-align: center;
+    letter-spacing: 0.125em;
+}
+
+.controls:hover{
+    background-color: #2ecc71;
+    font-weight: 600;
+    cursor: pointer;
+}
+
 /* media queries */
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
