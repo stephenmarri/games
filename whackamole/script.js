@@ -6,7 +6,7 @@ var pointGainedOnce=0;
 
 //timer
 var timer__html = document.querySelector('#timer');
-var timeLeft = 5;
+var timeLeft = document.querySelector('#durationFromUser').value;
 
 var timerID = setInterval(function(){
     if (timeLeft<1) {
@@ -64,7 +64,7 @@ var tomTimer = setInterval(() => {
 }
 
 
-var startButton = document.querySelector('.controls');
+var startButton = document.querySelector('#play');
 var gameStatus = "stale";
 
 startButton.addEventListener('click',()=>{
