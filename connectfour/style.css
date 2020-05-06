@@ -1,0 +1,173 @@
+/* variables */
+:root{
+    --main-bg-color: #a2bbff;
+    --all-outline: 0px solid #3e6e29;
+    --second-bg-color:#192a56;
+    
+}
+/* variables */
+
+html{
+    padding: 0;
+    margin: 0;
+    font-size: 10px;
+    font-family: 'Alegreya', serif;
+}
+
+body{
+    background-color: var(--main-bg-color);
+}
+
+.main-container{
+    width: 60%;
+    height: 60rem;
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto;    
+    border-color: var(--main-bg-colo);    
+    box-shadow: 0 0 0.5rem #234116;
+        
+}
+
+body *{
+    outline: var(--all-outline);
+    width: 100%;
+    height: 100%;
+}
+
+/* banner */
+.banner-container{
+    width: 100%;
+    height: 10%;
+    font-size: 3rem;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 0.1rem;                         
+    box-sizing: border-box;
+    background-color:var(--second-bg-color);
+    border-top: 1px solid ;
+    border-color: var(--second-bg-color);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.banner-container #banner__text{
+    display: block;
+    height: auto;
+    width: auto;
+    
+}
+/* banner */
+
+/* game */
+.game-container{
+    width: 100%;
+    height: 80%;
+    background-color: #F5E2C8;
+}
+
+/* game */
+
+/* results */
+.result-container{
+    width: 100%;
+    height: 10%;
+    font-size: 2.5rem;
+    color: #ecf0f1;
+    text-align: center;
+    background-color: var(--second-bg-color);
+
+    display: flex;
+    flex-direction: row;
+    
+}
+/* start buton */
+.result-container .startTrigger{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #44bd32;
+}
+
+.result-container .startTrigger #startTrigger_text{
+    display: block;
+    height: auto;
+}
+
+.result-container .startTrigger:hover{
+    font-weight: 600;
+    font-size: 2.75rem;
+    background-color: rgb(1, 212, 1);
+    cursor: pointer;
+}
+
+.result-container .startTrigger:hover{
+    font-weight: 600;
+    font-size: 2.75rem;
+    background-color: rgb(1, 212, 1);
+    cursor: pointer;
+}
+
+.result-container .startTrigger.clicked{
+    font-weight: 600;
+    font-size: 2.75rem;
+    background-color: rgb(46, 176, 236);
+    cursor: initial;
+}
+
+/* start buton */
+
+.result-container .player{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: var(--second-bg-color);
+    
+}
+
+.result-container .player__name{
+    display: block;
+    height: auto;
+    align-self: center;
+    flex: 2;
+
+}
+
+/* color picker */
+.result-container .player__colorPicker{
+    flex:1;
+    background-color: rgb(238, 215, 215);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dot {
+    height: 80%;
+    width: 80%;        
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .result-container .player__colorPicker #playerOne{
+    background-color: red;
+}
+
+.result-container .player__colorPicker #playerTwo{
+    background-color: blue;
+}
+
+
+
+/* color picker */
+
+/* results */
+
+/* media queries */
+
+/* media queries */
