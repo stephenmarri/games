@@ -7,41 +7,57 @@ var cssProperties = getComputedStyle(document.body);
 var pOneColor = cssProperties.getPropertyValue('--playerOne-color');
 var pTwoColor = cssProperties.getPropertyValue('--playerTwo-color');
 var hover__color = cssProperties.getPropertyValue('--playerTwo-color');
+var row__background = cssProperties.getPropertyValue('--row-bg-color');
 var playerColors =[pOneColor,pTwoColor];
 var rowIndex;
-var hasWon = [false,null,null]
+var hasWon;
 
-for(i=0;i<7;i++){
-    var arr = []
-    for(j=0;j<6;j++){        
-        arr.push(0);            
-    }
-    clickedItemArr.push(arr);
-};
+//fill cick array
+function initArray(){
+    for(i=0;i<7;i++){
+        var arr = []
+        for(j=0;j<6;j++){        
+            arr.push(0);            
+        }
+        clickedItemArr.push(arr);
+    };
+}
 
 // main
 
 var  startButton = document.querySelector('.startTrigger');
-startButton.addEventListener('click', async function (){
-    startButton.classList.add('clicked');
+startButton.addEventListener('click', ()=>{
+    if(startButton.textContent == 'Play Again'){
+        document.querySelectorAll('.row').forEach((item)=>item.style.background=row__background);
+        clickedItemArr = [];
+        currentPlayer=0;
+        startButton.classList.remove('play-again');
+    }
+    starter();
+});
+
+async function starter(){
+    startButton.classList.add('game-on');    
     startButton.textContent="Game is On!";
     gameRunning=true;
     document.documentElement.style.setProperty('--column-hover-color','wheat');
-    writeIndexes();
-});
+    hasWon = [false,null,null];
+    initArray();
+}
 // main
-
 
 
     
 //var clickedCol, clickedColRow;
 gameContainer.addEventListener('click',async (event)=>{
     if(!gameRunning) return;     
+    
     clickedCol = event.target.parentNode.getAttribute('id');
     clickedColRow = event.target.getAttribute('id');
     const clicked = await checkColEmptyAndClick(clickedCol,currentPlayer);    
     if(clicked){
         await colorBlock(clickedCol, rowIndex+1);
+        removePlayerActiveClass(currentPlayer);
         await chekcIfWon(currentPlayer+1, clickedCol-1, rowIndex);         
         currentPlayer=1- currentPlayer;        
     }    
@@ -49,10 +65,11 @@ gameContainer.addEventListener('click',async (event)=>{
 
     //if user has won finish the game
     if(hasWon[0]){
-        startButton.classList.remove('clicked');
+        startButton.classList.remove('game-on');
         startButton.textContent="Play Again";
-        startButton.style.background = orange;
-        window.location.reload()
+        startButton.classList.add('play-again')
+        document.documentElement.style.setProperty('--column-hover-color','inherit');
+        gameRunning=false;
     }
     
 });
@@ -164,3 +181,12 @@ function writeIndexes(){
     
 }
 
+//toggle active status on player list
+function removePlayerActiveClass(player){
+    let playersHighlight = document.querySelectorAll('.player');
+    playersHighlight.forEach(element => {
+        element.classList.remove('active');
+    });
+
+    playersHighlight[player].classList.add('active');
+}
