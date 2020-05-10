@@ -202,7 +202,7 @@ var btn = document.getElementById("myBtn");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
-var modal_text = document.querySelector('#modal-text');
+var modal_text = document.querySelector('.modal-body');
 
 // When the user clicks on the button, open the modal
 function openModal(player) {
@@ -221,3 +221,9 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
+//bootstrap modal call
+function callModal(){
+    $('#myModal').modal('show');
+  }
+

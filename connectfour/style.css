@@ -225,7 +225,7 @@ body *{
 /* results */
 
 /* media queries */
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 700px) {
     .main-container{
         width: 99%;
     }
@@ -237,63 +237,90 @@ body *{
     .result-container .startTrigger:hover{
         font-size: 1em;
     }
+
+    body #myModal{
+
+        width: 80%;        
+        top: 30vh;                
+        left: 10%;    
+
+    }
+    
   }
 
 /* media queries */
 
-
-
-/* Modal for Result styling */
-
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+#myModal{
+    display: none;
+    width: 30%;
+    height: auto;
+    position: fixed;
     top: 30vh;
-    left: 30vh;
-    width: 40%; /* Full width */
-    height: auto; /* Full height */
-    overflow: hidden; /* Enable scroll if needed */
-    
-  }
-  
-  /* Modal Content/Box */
-  .modal-content {
-    background-color: #fefefe;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-    display: grid;
-    vertical-align: middle;
-    grid-template-columns: 90% 5%;
-    grid-template-rows: auto;
-    border-radius: 5px;
-    vertical-align: middle;
-    background-color: rgb(0, 255, 170);        
-  }
+    background-color: #fff;
+    top: 30%;
+    left: 35%;    
+    z-index: 100;
+    background-color: #1abc9c;
+}
 
-  #modal-text{
-      padding-left: 2rem;
-      width: auto;
-      height: auto;
-      vertical-align: middle;
-  }
+#myModal .modal-content{
+    height: auto;
+}
 
-  
-  /* The Close Button */
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 2rem;
-    font-weight: bold;
+#myModal .modal-header{
+    height: auto;
+}
+
+#myModal .modal-body{
+    height: auto;
+    font-size: 1.5rem;
+    text-align: center;
+    padding-bottom: 2rem;
+}
+
+#myModal button{
     height: auto;
     width: auto;
+    float: right;
+}
+
+#myModal .modal-footer{
+    height: auto;
+    bottom: 0;
+    display: block;
+    width: 100%;
+}
+#myModal .modal-footer button{
+    float: center;
+    height: auto;
+    bottom: 0;
+    display: block;
+    width: 100%;
+}
+
+#myModal .modal-title{
     text-align: center;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
+    border-bottom: 0.1rem solid #10856d60;
+    color: #002850;
+
+}
+
+#myModal #bottom--close{
+    background-color: #16a085;
+    border: 0;
+    color: #fff;
+    padding: 0.7rem 0;
+    font-size: 2rem;
+    font-family: "Calibri", Courier, monospace;
+    
+}
+
+#myModal #bottom--close:hover,
+#myModal #bottom--close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: #0d6d5a;
+  color: white;
+  font-weight: 500;
+}
