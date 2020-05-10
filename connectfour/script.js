@@ -12,6 +12,10 @@ var playerColors =[pOneColor,pTwoColor];
 var rowIndex;
 var hasWon;
 
+//setting shadows
+document.documentElement.style.setProperty('--player-two-shadow', `0.4rem 0.1rem 0.6rem ${pTwoColor}`);
+document.documentElement.style.setProperty('--player-one-shadow', `0.4rem 0.1rem 0.6rem ${pOneColor}`);
+
 //fill cick array
 function initArray(){
     for(i=0;i<7;i++){
@@ -207,7 +211,7 @@ var modal_text = document.querySelector('#modal-text');
 // When the user clicks on the button, open the modal
 function openModal(player) {
   modal.style.display = "block";
-    modal_text.textContent = `Player ${player} won the game!!!`
+    modal_text.innerHTML = `<b>Player ${player}</b> won the game!!!`
 }
 
 // When the user clicks on <span> (x), close the modal

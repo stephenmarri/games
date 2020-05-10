@@ -8,6 +8,8 @@
     --grid-col-outline: 0.005rem solid #aa9bfd;
     --column-hover-color: inherit;
     --row-bg-color:#dcdde15b;
+    --player-one-shadow: -0.4rem 0.1rem 0.6rem rgb(255, 139, 7);
+    --player-two-shadow: 0.4rem 0.1rem 0.6rem rgb(255, 139, 7);
     
 }
 /* variables */
@@ -187,8 +189,11 @@ body *{
     
 }
 
-.result-container .player.active{
-    box-shadow: -0.4rem 0.1rem 0.6rem rgb(255, 139, 7);
+.result-container .player.playerOne.active{
+    box-shadow: var(--player-one-shadow);    
+}
+.result-container .player.playerTwo.active{
+    box-shadow: var(--player-two-shadow);
 }
 
 .result-container .player__name{
