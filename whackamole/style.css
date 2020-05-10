@@ -165,10 +165,12 @@ img{
       margin: 20;
     }
 
-    [class='modal-content'] {
+    
+    #myModal .modal-content {
         width: 80%; /* Could be more or less, depending on screen size */
-        font-size: 1em;
-        margin: 0;
+        font-size: 1.5rem;
+        margin: 30% auto;
+
         }
       
 }
@@ -192,11 +194,14 @@ img{
   /* Modal Content/Box */
 .modal-content {
 background-color: #1abc9c;
-margin: 15% auto; /* 15% from the top and centered */
-padding: 2rem;
+margin: 10% auto; /* 15% from the top and centered */
+padding: 1rem;
 border: 1px solid #888;
 width: 30%; /* Could be more or less, depending on screen size */
 font-size: 2rem;
+color: white;
+text-align: center;
+font-weight: 600;
 }
 
 /* The Close Button */
