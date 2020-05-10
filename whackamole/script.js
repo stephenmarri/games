@@ -3,10 +3,12 @@ function playGame(){
 var hitPosition;
 var score = 0; 
 var pointGainedOnce=0;
+var gameSpeed = 750;
 
 //timer
 var timer__html = document.querySelector('#timer');
-var timeLeft = document.querySelector('#durationFromUser').value;
+var timeLeft = document.querySelector('#dur__drop').value;
+gameSpeed = document.querySelector('#gameSpeed').value;
 
 var timerID = setInterval(function(){
     if (timeLeft<1) {
@@ -18,6 +20,12 @@ var timerID = setInterval(function(){
         //modal-- game over
         modal.style.display = "block";
         document.querySelector('#modal--score').textContent=score;
+        document.querySelector('#dur__drop').disabled=false;
+        document.querySelector('#gameSpeed').disabled=false;
+        document.querySelector('.box').style.cursor='pointer';
+        document.querySelector('#gameSpeed').style.cursor='pointer';
+        document.querySelector('.duration').style.cursor='pointer';
+        document.querySelector('#dur__drop').style.cursor='pointer';
     }
 
     timer__html.textContent=timeLeft;
@@ -59,7 +67,7 @@ var tomTimer = setInterval(() => {
     hitPosition = randomBLockNo;
     popTom(randomBLockNo);
     pointGainedOnce=1;
-}, 1000);
+}, gameSpeed);
 
 }
 
@@ -67,9 +75,16 @@ var tomTimer = setInterval(() => {
 var startButton = document.querySelector('#play');
 var gameStatus = "stale";
 
+
 startButton.addEventListener('click',()=>{
     if (gameStatus == "stale") {
         playGame();
+        document.querySelector('#dur__drop').disabled=true;
+        document.querySelector('#gameSpeed').disabled=true;
+        document.querySelector('.box').style.cursor='auto';
+        document.querySelector('#gameSpeed').style.cursor='auto';
+        document.querySelector('.duration').style.cursor='auto';
+        document.querySelector('#dur__drop').style.cursor='auto';
         gameStatus='Running';
         startButton.style.background='#2980b9';     
         document.querySelector('#play__text').textContent='Game is ON!!'; 

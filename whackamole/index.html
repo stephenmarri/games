@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
     <title>WhackAMole</title>
 </head>
 <body>
     <div class="container">
 
-        <div class="title"><span>Hit the image</span></div>
+        <div class="title"><span>Hit the Image</span></div>
 
         <div class="game-container">
             <div class="block" id="1"> <img src="tom.jpg" alt=""></div>
@@ -37,9 +39,26 @@
         </div>
 
         <div class="controls">
-            <div class="speed">Normal</div>
+            <!-- <div class="speed">Normal</div> -->
+           
+            <div class="speed__div box" >                
+                    <select id="gameSpeed">                      
+                      <option value="1000">Slow<i class='fas fa-chevron-circle-down'></i></option>
+                      <option value="750">Normal</option>
+                      <option value="500">Fast</option>                      
+                    </select>
+                    <i class='fas fa-chevron-circle-down'></i>                 
+            </div>
             <div id="play"><p id="play__text">Play Game</p></div>
-            <div class="duration"><input type="number" name="" id="durationFromUser" max="120" value="60"></div>
+            <!-- <div class="duration"><input type="number" name="" id="durationFromUser" max="120" value="60"></div> -->
+            <div class="duration">
+                <select id="dur__drop">                      
+                    <option value="10">10s</option>
+                    <option value="30">30s</option>
+                    <option value="60">60s</option>                      
+                  </select>
+                  <i class='fas fa-chevron-circle-down'></i>                 
+            </div>
         </div>
     </div>
 
