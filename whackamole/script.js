@@ -79,6 +79,7 @@ var gameStatus = "stale";
 startButton.addEventListener('click',()=>{
     if (gameStatus == "stale") {
         playGame();
+        document.querySelector('#score__text').textContent='0';
         document.querySelector('#dur__drop').disabled=true;
         document.querySelector('#gameSpeed').disabled=true;
         document.querySelector('.box').style.cursor='auto';
