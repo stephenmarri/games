@@ -202,12 +202,12 @@ var btn = document.getElementById("myBtn");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
-var modal_text = document.querySelector('.modal-body');
+var modal_text = document.querySelector('#modal-text');
 
 // When the user clicks on the button, open the modal
 function openModal(player) {
   modal.style.display = "block";
-    modal_text.textContent = `Player ${player} wins!!!`
+    modal_text.textContent = `Player ${player} won the game!!!`
 }
 
 // When the user clicks on <span> (x), close the modal
