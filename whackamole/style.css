@@ -236,13 +236,14 @@ cursor: pointer;
     background-color: #c0392b  ;        
     color: white;
     font-size: 2rem;
-    -webkit-appearance: button;
+    -webkit-appearance: none;
     appearance: button;
     outline: none;
     width: 70%;
     border: 0;
     cursor: pointer;
     height: 100%;
+    padding-left: 1rem;
     
   }
 
