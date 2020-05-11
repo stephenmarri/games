@@ -192,12 +192,116 @@ controls.addEventListener('click',(event)=>{
         if(gameStatus=='stale') return false;    
         let dir = event.target.getAttribute('id').toString();
         changeDirection(dir)
+        direction=dir;
     } catch (error) {
         console.log("error from controls function: " + error);
         return false;
     }
-})
+});
 
+//keystrokes
+document.addEventListener('keydown',event=>{
+    let map = {
+        37:'left',
+        38:'up',
+        39:'right',
+        40:'down'
+    }
+    if(map.hasOwnProperty(event.keyCode)){
+        try {
+            if(gameStatus=='stale') return false;                
+            changeDirection(map[event.keyCode]);
+            direction=map[event.keyCode];
+        } catch (error) {
+            console.log("error from controls function: " + error);
+            return false;
+        }
+    }
+    else{
+        return false;
+
+    }
+});
+
+//dirction change on mouse click
+gameGrid.addEventListener('click', async function(event) {
+    try {
+        if(gameStatus=='stale') return false;                
+        let currID = event.target.parentNode.getAttribute('id');
+        let isInLine =await onClick__isInLine(currID);
+        if(!isInLine){
+            await onClick__changeDir(currID);
+        }
+    } catch (error) {
+        console.log("error from on click change direction function: " + error);
+        return false;
+    }
+});
+
+async function onClick__isInLine(index){
+    let quot = Math.floor(tileIndex/gridSize);
+    //for left right
+    if (direction=='left' || direction=='right') {
+        let upperLimit = (quot+1) * (gridSize);
+        let lowerLimit = quot * gridSize;
+        if(index < upperLimit && index >= lowerLimit && index != null)
+        {
+            console.log(index,lowerLimit,upperLimit,"inline");
+            return true;
+        }
+        else{
+            console.log("not in line");
+            return false;
+    }
+    }
+    //for up down
+    if ((direction=='up' || direction=='down') && index!=null) {
+        try {
+            console.log("UD: ", index%gridSize==tileIndex%gridSize);
+            return index%gridSize==tileIndex%gridSize;
+        } catch (error) {
+            console.log("UD: not in line");
+            return false;
+        }        
+    }
+
+}
+
+async function onClick__changeDir(clickedIndex){
+    let mapOnClike ={
+        right:['up','down'],
+        left: ['up','down'],
+        up:['left','right'],
+        down:['left','right']        
+    }
+    console.log("map right",mapOnClike['right']);
+    if(direction == 'left' || direction=='right'){
+        console.log(clickedIndex,tileIndex,direction);
+        if(clickedIndex < tileIndex){
+            await changeDirection('up');
+            direction='up';
+        }
+        else if(clickedIndex > tileIndex){
+            await changeDirection('down');
+            console.log('from inside');
+            direction='down';
+        }
+        return true;
+    }
+    if(direction == 'up' || direction=='down'){
+        var mod = clickedIndex%gridSize;
+        var modTile = tileIndex%gridSize;
+        if(mod < modTile){
+            await changeDirection('left');
+            direction='left';
+        }
+        else if(mod > modTile){
+            await changeDirection('right');
+            direction='right';
+        }
+        return true;
+    }
+}
 
 
 //closing bracket for function
