@@ -24,6 +24,7 @@ startButton.addEventListener('click',(event)=>{
 
     }else{
         event.currentTarget.textContent='Stop';
+        document.querySelector('#score__text').textContent=1;
         clearTheGrid();
         callGame();
         gameStatus='running';
@@ -82,19 +83,27 @@ var trainArray = [startTile];
 var direction = 'right';
 
 //generate stations for the train
-generateStation();
+generateRandomStation();
 
 
 moveTrain = setInterval(async function() {  
     await ifCorner(tileIndex);
-
     tileIndex+=tileIncrement;
+    if(await collided(tileIndex)){
+        //game over
+        alert('game over');
+        clearInterval(moveTrain);
+        gameStatus='stale';
+        document.querySelector('#startGame').textContent='Start';
+        return;
+    };
     trainArray.push(tileIndex);    
     var isActive = await checkIfClassNameIsTitle(tileIndex);
     await addClassName(trainArray[trainArray.length-1]);
     await clearClassName(trainArray[0]);        
     if(isActive){
-        true;
+        await generateRandomStation();
+        increaseScore();
     }
     else{
         trainArray.shift();
@@ -104,16 +113,6 @@ moveTrain = setInterval(async function() {
     //if corner
     // await ifCorner(tileIndex);
 }, 500);
-
-
-function chekcIfFilled(index){
-    var chg=[[5,'down'],[55,'left'],[51,'up']];
-    chg.forEach(element => {
-        if (element[0]==index) {
-            changeDirection(element[1]);
-        }
-    });    
-}
 
 async function clearClassName(index){
     let remtile = gameGrid.querySelector(`#${CSS.escape(index)}`);
@@ -129,12 +128,21 @@ async function checkIfClassNameIsTitle(index){
     return remtile.classList.contains('active');
 }
 
-async function generateStation(){
-    var stations = [35,53];
-    stations.forEach(element => {
-    let station = gameGrid.querySelector(`#${CSS.escape(element)}`);
+async function generateRandomStation(){
+
+    var rNumber = Math.floor((Math.random())*(gridSize*gridSize));
+    if(trainArray.includes(rNumber)){
+        generateRandomStation();
+    }
+    else {
+        let station = gameGrid.querySelector(`#${CSS.escape(rNumber)}`);
         station.classList.add('active');
-    });
+    }
+}
+
+async function increaseScore(){
+    let presentScore=document.querySelector('#score__text');
+    presentScore.textContent=parseInt(presentScore.textContent)+1;
 }
 
 async function ifCorner(index){
@@ -151,6 +159,10 @@ async function ifCorner(index){
     if (direction=='up' && (index)<gridSize) {
         tileIndex=(gridSize*gridSize)+(index);        
     }
+}
+
+async function collided(index){
+    return trainArray.includes(index);
 }
 
 async function changeDirection(dir){
