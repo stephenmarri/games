@@ -1,5 +1,5 @@
 //root variables
-let gridSize=20;
+let gridSize=60;
 var gameGrid = document.querySelector('.game-container');
 let incDirRight=1;
 let incDirDown=gridSize;
