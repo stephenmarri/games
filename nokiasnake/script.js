@@ -48,9 +48,9 @@ startButton.addEventListener('click',(event)=>{
         document.querySelector('#score__text').textContent=0;
         document.querySelector('#speed__text').textContent=0;
         clearTheGrid();
+        gameSpeed = speedStart;
         callGame();
         gameStatus='running';
-        gameSpeed = speedStart;
     }
     
     
