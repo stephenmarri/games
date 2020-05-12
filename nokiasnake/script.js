@@ -41,6 +41,7 @@ startButton.addEventListener('click',(event)=>{
         event.currentTarget.textContent='Start';
         clearInterval(moveTrain);
         gameStatus='stale';
+        bringModal(document.querySelector('#score__text').textContent,"Game Stopped!!!");
 
     }else{
         event.currentTarget.textContent='Stop';
@@ -112,7 +113,8 @@ async function moveTrainFunc() {
     tileIndex+=tileIncrement;
     if(await collided(tileIndex)){
         //game over
-        alert('game over');
+        // alert('game over');
+        bringModal(document.querySelector('#score__text').textContent,'Collision!!!');
         clearInterval(moveTrain);
         gameStatus='stale';
         document.querySelector('#startGame').textContent='Start';
@@ -367,5 +369,25 @@ async function onClick__changeDir(clickedIndex){
 //closing bracket for function
 }
 
+//modal
+async function bringModal(score,reason){
+    let modaldiv = document.querySelector('.modal-div');
+    modaldiv.style.visibility='visible';
+    modaldiv.style.opacity='1';
+    if(score!=null){
+        document.querySelector('#modal__score').textContent = score;
+        document.querySelector('#modal--over__text').textContent = reason;
+    }else
+    {
+        document.querySelector('#modal__score').textContent = 0;
+    }
+    
+    modaldiv.addEventListener('click',()=>{
+        modaldiv.style.visibility='hidden';
+        modaldiv.style.opacity='0';        
+    })
+}
+
+//modal
 
 //------------------------Game---------------------------------------
