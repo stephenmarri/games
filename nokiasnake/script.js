@@ -1,5 +1,9 @@
 //root variables
 let gridSize=60;
+const speedChanger = 1;
+let speedStart = 500;
+var gameSpeed = speedStart;
+let speedLimit = 60;
 var gameGrid = document.querySelector('.game-container');
 let incDirRight=1;
 let incDirDown=gridSize;
@@ -14,7 +18,7 @@ var gameStatus = 'stale';
 
 document.addEventListener('DOMContentLoaded',()=>{
     let favs = document.getElementsByTagName('i');    
-    console.log(favs);
+    
     if (window.matchMedia("(max-width: 600px)").matches) {
         Array.from(favs).forEach(element => {
             element.classList.add('fa-lg');
@@ -39,7 +43,7 @@ startButton.addEventListener('click',(event)=>{
 
     }else{
         event.currentTarget.textContent='Stop';
-        document.querySelector('#score__text').textContent=1;
+        document.querySelector('#score__text').textContent=0;
         clearTheGrid();
         callGame();
         gameStatus='running';
@@ -127,7 +131,7 @@ moveTrain = setInterval(async function() {
     
     //if corner
     // await ifCorner(tileIndex);
-}, 500);
+}, gameSpeed);
 
 async function clearClassName(index){
     let remtile = gameGrid.querySelector(`#${CSS.escape(index)}`);
@@ -156,8 +160,35 @@ async function generateRandomStation(){
 }
 
 async function increaseScore(){
+    console.log(gameSpeed);
     let presentScore=document.querySelector('#score__text');
     presentScore.textContent=parseInt(presentScore.textContent)+1;
+
+    //increase speed
+    let fSfromHTML = await fetchSpeedLevelHTML();
+    if(fSfromHTML < 11){
+        if((presentScore.textContent)%speedChanger==0){
+            increaseSpeed();
+            increaseSpeedLevelHTML();
+            // clearInterval(moveTrain);
+            // moveTrain;
+        }
+    }
+}
+
+async function fetchSpeedLevelHTML(){
+    return (document.querySelector('#speed__text').textContent);
+}
+async function increaseSpeedLevelHTML(){
+    let cP=  document.querySelector('#speed__text');
+    cP.textContent = parseInt(cP.textContent) +1;
+}
+
+async function increaseSpeed(){
+    let addSpeed = (speedStart-speedLimit)/10;
+    if(gameSpeed>speedLimit){
+        gameSpeed=gameSpeed-addSpeed;
+    }
 }
 
 async function ifCorner(index){
