@@ -1,5 +1,6 @@
 //root variables
 let gridSize=60;
+const speedLevels=5;
 const speedChanger = 1;
 let speedStart = 500;
 var gameSpeed = speedStart;
@@ -44,9 +45,11 @@ startButton.addEventListener('click',(event)=>{
     }else{
         event.currentTarget.textContent='Stop';
         document.querySelector('#score__text').textContent=0;
+        document.querySelector('#speed__text').textContent=0;
         clearTheGrid();
         callGame();
         gameStatus='running';
+        gameSpeed = speedStart;
     }
     
     
@@ -104,8 +107,7 @@ var direction = 'right';
 //generate stations for the train
 generateRandomStation();
 
-
-moveTrain = setInterval(async function() {  
+async function moveTrainFunc() {  
     await ifCorner(tileIndex);
     tileIndex+=tileIncrement;
     if(await collided(tileIndex)){
@@ -131,7 +133,9 @@ moveTrain = setInterval(async function() {
     
     //if corner
     // await ifCorner(tileIndex);
-}, gameSpeed);
+}
+
+moveTrain = setInterval(moveTrainFunc, gameSpeed);
 
 async function clearClassName(index){
     let remtile = gameGrid.querySelector(`#${CSS.escape(index)}`);
@@ -166,12 +170,12 @@ async function increaseScore(){
 
     //increase speed
     let fSfromHTML = await fetchSpeedLevelHTML();
-    if(fSfromHTML < 11){
+    if(fSfromHTML < (speedLevels)){
         if((presentScore.textContent)%speedChanger==0){
             increaseSpeed();
             increaseSpeedLevelHTML();
-            // clearInterval(moveTrain);
-            // moveTrain;
+            clearInterval(moveTrain);
+            moveTrain = setInterval(moveTrainFunc, gameSpeed);
         }
     }
 }
@@ -185,7 +189,7 @@ async function increaseSpeedLevelHTML(){
 }
 
 async function increaseSpeed(){
-    let addSpeed = (speedStart-speedLimit)/10;
+    let addSpeed = (speedStart-speedLimit)/speedLevels;
     if(gameSpeed>speedLimit){
         gameSpeed=gameSpeed-addSpeed;
     }
@@ -200,7 +204,7 @@ async function ifCorner(index){
         tileIndex=index+gridSize;
     }else
     if (direction=='down' && (index)<(gridSize*gridSize) && (index)>=(gridSize*(gridSize-1))) {
-        tileIndex=(index-(gridSize*(gridSize-1)))+20*(-1);
+        tileIndex=(index-(gridSize*(gridSize-1)))+(gridSize)*(-1);
     }else
     if (direction=='up' && (index)<gridSize) {
         tileIndex=(gridSize*gridSize)+(index);        
