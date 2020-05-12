@@ -14,7 +14,7 @@ html{
 
 body{
     width: 80%;
-    height: 80%;
+    height: 90%;
     margin: 0;
     padding: 0;
     margin-left: auto;
@@ -23,11 +23,13 @@ body{
 
 .main-container{
     width: 60%;
-    height: 60%;
+    height: 60%; 
     margin-top: 10vh;
     margin-left: auto;
     margin-right: auto;
     outline: var(--testing-outline);
+    display: flex;
+    flex-direction: row;
 }
 
 /* game container */
@@ -35,7 +37,8 @@ body{
 .main-container .game-container{
     display: flex;
     flex-wrap: wrap;
-    height: 90%;
+    width: 100%;
+    height: 100%;
     outline: var(--testing-outline);
 }
 
@@ -72,78 +75,29 @@ body{
     display: block;
 }
 
-@keyframes move__right {
-    0% {
-      width: 0%;
-    }
-    25% {
-      width: 25%;
-    }
-    50% {
-      width: 50%;
-    }
-    75% {
-      width: 75%;
-    }    
-    100% {
-        width: 100%;
-    }
-  }
-@keyframes fill__out {
-    0% {
-      width: 100%;
-    }
-    25% {
-      width: 75%;
-    }
-    50% {
-      width: 50%;
-    }
-    75% {
-      width: 25%;
-    }    
-    100% {
-        width: 0%;
-    }
-  }
 
 /* game container */
 
 /* result container */
 .result-container{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-evenly;
     align-items:center;
+    width: 15%;
 }
 /* result container */
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-/* media queries */
-
-@media only screen and (max-width: 600px) {
-    .main-container{
-        width: 80%;
-        height: 40%;
-    }
-  }
-/* media queries */
-
-
 /* contorls */
+
+.controls-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
 .controls{
     width: 40%;
     margin-left: auto;
@@ -178,6 +132,81 @@ body{
     border-right: 1px solid black;
 }
 
+.main-container .start{
+    align-self: center;
+}
+
 
 /* contorls */
 
+/* media queries */
+
+@media only screen and (max-width: 600px) {
+    body{
+        width: 100%;
+        height: 90%;
+    }
+
+    .main-container{
+        width: 90%;
+        height: 80%;
+        flex-direction: column;
+    }
+
+    body .main-container .result-container{
+        height: 15%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        
+        align-self: center;
+    }
+
+    body .main-container .result-container div{
+        flex:1;
+        
+    }
+
+    .controls-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+  }
+/* media queries */
+
+
+@keyframes move__right {
+    0% {
+      width: 0%;
+    }
+    25% {
+      width: 25%;
+    }
+    50% {
+      width: 50%;
+    }
+    75% {
+      width: 75%;
+    }    
+    100% {
+        width: 100%;
+    }
+  }
+@keyframes fill__out {
+    0% {
+      width: 100%;
+    }
+    25% {
+      width: 75%;
+    }
+    50% {
+      width: 50%;
+    }
+    75% {
+      width: 25%;
+    }    
+    100% {
+        width: 0%;
+    }
+  }

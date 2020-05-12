@@ -12,7 +12,7 @@ var gameStatus = 'stale';
 
 //main
 createGrid(gridSize);
-numberTheGrids();
+//numberTheGrids();
 var startButton = document.querySelector('#startGame');
 startButton.addEventListener('click',(event)=>{
     
@@ -54,7 +54,7 @@ function createGrid(rows){
         divElement.style.width=`calc(100% / ${gridSize})`;
         divElement.style.height=`calc(100% / ${gridSize})`;
         divElement.id=i.toString();
-        divElement.innerHTML='<span></span>';
+        //divElement.innerHTML='<span></span>';
         gameGrid.appendChild(divElement);
     }    
 }
@@ -226,14 +226,15 @@ document.addEventListener('keydown',event=>{
 //dirction change on mouse click
 gameGrid.addEventListener('click', async function(event) {
     try {
-        if(gameStatus=='stale') return false;                
-        let currID = event.target.parentNode.getAttribute('id');
+        if(gameStatus=='stale') return false;             
+        console.log(event.target.attributes);   
+        let currID = event.target.getAttribute('id');
         let isInLine =await onClick__isInLine(currID);
-        if(!isInLine){
+        if(isInLine == 0){
             await onClick__changeDir(currID);
         }
     } catch (error) {
-        console.log("error from on click change direction function: " + error);
+        console.log("error- mouse click: " + error);
         return false;
     }
 });
@@ -241,27 +242,36 @@ gameGrid.addEventListener('click', async function(event) {
 async function onClick__isInLine(index){
     let quot = Math.floor(tileIndex/gridSize);
     //for left right
-    if (direction=='left' || direction=='right') {
-        let upperLimit = (quot+1) * (gridSize);
+    if ((direction=='left' || direction=='right') && index != null) {
+        try {
+            let upperLimit = (quot+1) * (gridSize);
         let lowerLimit = quot * gridSize;
         if(index < upperLimit && index >= lowerLimit && index != null)
         {
-            console.log(index,lowerLimit,upperLimit,"inline");
-            return true;
+            console.log("left-right: inline - ", index);
+            return 1;
         }
         else{
-            console.log("not in line");
-            return false;
+            // console.log("not in line");
+            return 0;
     }
-    }
+        } catch (error) {
+            return 2;
+        }
+    }else
     //for up down
     if ((direction=='up' || direction=='down') && index!=null) {
         try {
-            console.log("UD: ", index%gridSize==tileIndex%gridSize);
-            return index%gridSize==tileIndex%gridSize;
+            if(index%gridSize==tileIndex%gridSize)
+            {
+                console.log("up-down: inline - ", index);
+                return 1;
+            }
+            else
+            return 0;
         } catch (error) {
-            console.log("UD: not in line");
-            return false;
+            // console.log("UD: not in line");
+            return 2;
         }        
     }
 
@@ -274,16 +284,16 @@ async function onClick__changeDir(clickedIndex){
         up:['left','right'],
         down:['left','right']        
     }
-    console.log("map right",mapOnClike['right']);
+    // console.log("map right",mapOnClike['right']);
     if(direction == 'left' || direction=='right'){
-        console.log(clickedIndex,tileIndex,direction);
+        // console.log(clickedIndex,tileIndex,direction);
         if(clickedIndex < tileIndex){
             await changeDirection('up');
             direction='up';
         }
         else if(clickedIndex > tileIndex){
             await changeDirection('down');
-            console.log('from inside');
+            // console.log('from inside');
             direction='down';
         }
         return true;
