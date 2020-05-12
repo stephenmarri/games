@@ -3,14 +3,25 @@
     --tile-border: 1px solid rgba(5, 196, 107,0.4);
     --tile-width: calc(100% / 16);
     --tile-height: calc(100% / 16);
+    --side-bg-color: rgba(24, 44, 97,1.0);
+}
+
+@font-face {
+    font-family: "CustomFont";
+    src:url('fonts/BalsamiqSans-Regular.ttf');
 }
 
 html{
     width: 100%;
-    height: 100vh;
+    height: 100%;
     margin: 0;
     padding: 0;
     font-size: 10px;
+    font-family: 'CustomFont';   
+    background-image: url('bg_main.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    /* background: linear-gradient(to right, rgba(249, 127, 81,1.0), rgba(234, 181, 67,1.0)); */
 }
 
 body{
@@ -20,11 +31,13 @@ body{
     padding: 0;
     margin-left: auto;
     margin-right: auto;
+    overflow: hidden;
 }
 
 .main-container{
-    width: 60%;
+    width: 80%;
     height: 60%; 
+    box-sizing: border-box;
     margin-top: 10vh;
     margin-left: auto;
     margin-right: auto;
@@ -89,35 +102,81 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    align-items:center;
+    
     width: 20%;
+    font-size: 2rem;
+    background-color: var(--side-bg-color);
+    color: white;
+    box-sizing: border-box;
+    text-align: center;
 }
+
+.result-container *{
+    margin: 0;
+    padding: 0;
+}
+
 /* result container */
 
 
 
-/* contorls */
+/* contorls container */
 
 .controls-container{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     width: 20%;
+    background-color: var(--side-bg-color);
+    color:white;
+    box-sizing: border-box;
+
 }
 
-.controls{
-    width: 40%;
+.controls-container .start{
+    align-self: center;
+    font-size: 2rem;
+    font-weight: 500;
+    width: 100%;
+    height: 60%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.controls-container .start #startGame{
+    border: 1px solid white;
+    border-radius: 10rem;
+    width: 80%;
+    height: 10rem;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 10rem;
+    border-radius: 50%;
+}
+
+.controls-container .start #startGame:hover{
+    background-color: rgba(255,255,255,1.0);
+    color: var(--side-bg-color);
+    font-weight: 600;
+
+}
+.controls-container .controls{
+    
     margin-left: auto;
     margin-right: auto;
     width: 30%;
     text-align: center;
     margin-top: 5%;
     font-size: 2rem;    
+    width: 90%;
 }
 
 .controls div{
     margin-bottom: 5%;
-    outline: 1px solid black;
 }
 
 
@@ -125,37 +184,33 @@ body{
     cursor: pointer;
     font-weight: 600;
 }    
+
+.controls .up:hover, #left:hover, #right:hover, .down:hover i{
+    color: green;
+}
 .controls .horizontal{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
 }
 
-.controls .horizontal span{    
-    flex:1;
-}
 
-.controls .horizontal #left{
-    border-right: 1px solid black;
-}
-
-.main-container .start{
-    align-self: center;
-}
-
-
-/* contorls */
+/* contorls container*/
 
 /* media queries */
 
 @media only screen and (max-width: 600px) {
+    html{
+        background: url('bg.jpg');
+        object-fit: cover;
+    }
     body{
         width: 100%;
         height: 90%;
     }
 
     .main-container{
-        width: 90%;
+        width: 95%;
         height: 80%;
         flex-direction: column;
     }
@@ -164,9 +219,11 @@ body{
         height: 15%;
         display: flex;
         flex-direction: row;
-        justify-content: space-evenly;
+        justify-content: space-around;
         width: 100%;        
-        align-self: center;
+        text-align: center;
+        font-size: 1.5rem;
+        align-items: center;
     }
 
     body .main-container .result-container div{
@@ -180,6 +237,22 @@ body{
         justify-content: space-evenly;
         width: 100%;
     }
+    .controls-container .controls{
+        width: 48%;
+    }
+    .controls-container .controls div{
+        margin-bottom: 2%;
+    }
+    .controls-container .start #startGame{
+        width: 60%;
+        height: 8rem;
+        line-height: 8rem;
+    }
+
+    .controls-container .start{
+        width: 50%;
+    }
+
   }
 /* media queries */
 

@@ -11,6 +11,21 @@ var gameStatus = 'stale';
 //root variables
 
 //main
+
+document.addEventListener('DOMContentLoaded',()=>{
+    let favs = document.getElementsByTagName('i');    
+    console.log(favs);
+    if (window.matchMedia("(max-width: 600px)").matches) {
+        Array.from(favs).forEach(element => {
+            element.classList.add('fa-lg');
+        });
+      } else {
+        Array.from(favs).forEach(element => {
+            element.classList.add('fa-2x');
+        });
+      }
+});
+
 createGrid(gridSize);
 //numberTheGrids();
 var startButton = document.querySelector('#startGame');
