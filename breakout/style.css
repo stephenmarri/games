@@ -7,6 +7,7 @@
 body{
     height: 100vh;    
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background: linear-gradient(#b8e994,#78e08f,#b8e994);
@@ -16,4 +17,11 @@ canvas{
     display: block;
     background: #eee;
     margin: 0 0;
+}
+
+p{
+    padding-top: 10vh;
+    display: block;
+    color: #0095DD;
+    font-size: 1.5rem;
 }

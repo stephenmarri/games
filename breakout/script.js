@@ -231,3 +231,8 @@ document.addEventListener("touchmove",touchMoveHandler,false);
 
 
 var interval = setInterval(draw,speed);
+
+
+setTimeout(()=>{
+    document.getElementById("hint").style.visibility="hidden"
+},2000);
