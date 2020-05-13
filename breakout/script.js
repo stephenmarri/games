@@ -24,7 +24,7 @@ var brickOffsetTop = 30;
 var brickOffsetLeft = 30;
 // 
 var score = 0;
-var speed = 15;
+var speed = 10;
 var lives = 3;
 
 var bricks = [];
@@ -216,11 +216,18 @@ function mouseMoveHandler(e) {
     }
 }
 
+function touchMoveHandler(e) {
+    var relativeX = event.touches[0].clientX; - canvas.offsetLeft;
+    if(relativeX > 0 && relativeX < canvas.width) {
+        paddleX = relativeX - paddleWidth/2;
+    }
+}
+
 
 document.addEventListener('keydown',keyDownHandler,false);
 document.addEventListener('keyup',keyUpHandler,false);
 document.addEventListener("mousemove",mouseMoveHandler,false);
-document.addEventListener("touchmove",mouseMoveHandler,false);
+document.addEventListener("touchmove",touchMoveHandler,false);
 
 
 var interval = setInterval(draw,speed);
