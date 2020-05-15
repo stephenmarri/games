@@ -39,8 +39,8 @@ var tankHeight =spritUnitHeight/2
 var keys =[];
 
 // ################################################################### Invaders rows columns
-var invaderWidth = spriteUnitWidth/3;
-var invaderHeight = spritUnitHeight/3;
+var invaderWidth = spriteUnitWidth/2.5;
+var invaderHeight = spritUnitHeight/2.5;
 var invaderSpriteHeight = spritUnitHeight;
 var armyRows = 5;
 var armyColumns = 10;
@@ -49,10 +49,17 @@ var armyY = 60;
 var invaderLeftOffset = 15;
 var invaderTopOffset = 20;
 var armyDirection = "right";
-var armyDx = 2;
-var armyDy = 5;
+var armyDx = 10;
+var armyDy = 10;
 var armySpeed = 20;  
 var armyArray = [];
+// ################################################################### bullet
+var bullet__height = 10;
+var bullet__width = 3;
+var tankBullet__x;
+var tankBullet__y;
+var shouldMoveTankBullet = false;
+var tankBullet__dy = 10;
 
 
 
@@ -72,6 +79,7 @@ var armyArray = [];
 // ################################################################### main game loop
 window.onload = function init() {
   constructArmy(armyX,armyY);
+
   gameLoop();
 }
 
@@ -81,9 +89,12 @@ function gameLoop(){
   drawArmyOfInvaders();
   keyPressed();
   drawTank(tankX,tankY);  
+  if(shouldMoveTankBullet) {
+    drawBullet(tankBullet__x,tankBullet__y);
+    moveTankBullet();
+  }
   requestAnimationFrame(gameLoop);
   frameCount++;
-  console.log(frameCount);
 }
 // ###################################################################
 
@@ -106,6 +117,10 @@ function keyPressed() {
     if(canvas.width - (tankX+tankWidth) > tankdX) {
       tankX+=tankdX;
     }  
+  }
+  if (keys[88]) {    
+    if(!shouldMoveTankBullet)fireTankBullet();
+    console.log("bullet");
   }
 }
 // ###################################################################
@@ -162,12 +177,14 @@ function moveArmy(){
     return false;
   }
   let dx;
+  let dy=0;
   if (armyDirection == 'right') {
     if(canvas.width - (armyX + (invaderWidth+invaderLeftOffset)*(armyColumns-1)) > invaderWidth){
       dx=1;
     }else{
       armyDirection='left';
       dx=-1;
+      dy=armyDy;
     }
             
   } else
@@ -177,12 +194,13 @@ function moveArmy(){
       }else{
         armyDirection='right';
         dx=1;
+        dy=armyDy;
       }
       
   }
 
   armyX+=armyDx*(dx);
-  constructArmy(armyX,armyY);
+  updateArmy(dx*(armyDx),dy)
 }
 
 
@@ -198,16 +216,52 @@ function constructArmy(aX,aY){
     }
   }
 }
+function updateArmy(adx,ady){
+  for (let i = 0; i < armyRows; i++) {    
+    for(let j = 0; j < armyColumns; j++){
+      let soldier = armyArray[i][j];
+      soldier.x = soldier.x+(adx);
+      soldier.y = soldier.y + ady;
+    }
+  }
+}
 
 function drawArmyOfInvaders(){
   for (let i = 0; i < armyRows; i++) {
     for(let j = 0; j < armyColumns; j++){
         let soldier = armyArray[i][j];
+      if (soldier.status=='alive') {
         drawInvader(soldier.x,soldier.y,invaderSpriteHeight);
-      
+      }
       
     }
   }  
+}
+
+
+function drawBullet(bx,by){
+  ctx.beginPath();
+  ctx.beginPath();       // Start a new path
+  ctx.moveTo(bx, by);    // Move the pen to (30, 50)
+  ctx.lineTo(bx, by-bullet__height);  // Draw a line to (150, 100)
+  ctx.lineWidth = bullet__width;
+  ctx.strokeStyle = "#FFF";
+  ctx.stroke();
+}
+
+function fireTankBullet(){
+    tankBullet__x = tankX + tankWidth/2 ;
+    tankBullet__y = canvas.height - tankHeight;
+    moveTankBullet();
+    shouldMoveTankBullet = true;
+}
+
+function moveTankBullet(){
+    if(tankBullet__y < 0){
+      shouldMoveTankBullet= false;
+      console.log("bullet out of scope");
+    }
+    tankBullet__y -= tankBullet__dy;
 }
 
 // ###################################################################
