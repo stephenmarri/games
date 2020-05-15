@@ -1,3 +1,5 @@
+var interval;
+
 var canvas = document.getElementById('myCanvas');
 /** @type {CanvasRenderingContext2D} */
 var ctx = canvas.getContext("2d");
@@ -15,7 +17,7 @@ var paddleX=(canvas.width-paddleWidth)/2;
 var rightPressed = false;
 var leftPressed = false;
 //bricks
-var brickRowCount = 1;
+var brickRowCount = 3;
 var brickColumnCount =5;
 var brickWidth = 75;
 var brickHeight =20;
@@ -29,6 +31,14 @@ var lives = 3;
 
 var bricks = [];
 
+drawTapToStart();
+
+document.getElementById('myCanvas').addEventListener('click',()=>{
+interval = setInterval(draw,speed);    
+setTimeout(()=>{
+    document.getElementById("hint").style.visibility="hidden"
+},2000);
+})
 
 
 //media query
@@ -43,7 +53,6 @@ if (window.matchMedia("(max-width: 600px)").matches) {
   } 
 
 //media query
-
 
 
 
@@ -172,7 +181,14 @@ function collisionDetection(){
 function drawScore(){
     ctx.font ="16px Calibri";
     ctx.fillStyle = "#0095DD";
-    ctx.fillText("Score: " + score, 8, 20)
+    ctx.fillText("Score: " + score, 55, 20)
+}
+
+function drawTapToStart(){
+    ctx.font ="30px Calibri";
+    ctx.fillStyle = "#0095DD";
+    ctx.textAlign = "center";
+    ctx.fillText("Tap to start", canvas.width/2, canvas.height/2)
 }
 
 function drawLives(){
@@ -228,11 +244,4 @@ document.addEventListener('keydown',keyDownHandler,false);
 document.addEventListener('keyup',keyUpHandler,false);
 document.addEventListener("mousemove",mouseMoveHandler,false);
 document.addEventListener("touchmove",touchMoveHandler,false);
-
-
-var interval = setInterval(draw,speed);
-
-
-setTimeout(()=>{
-    document.getElementById("hint").style.visibility="hidden"
-},2000);
+ 
