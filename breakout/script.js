@@ -40,16 +40,19 @@ slider.oninput = function() {
 //scirpt for speed containment
 
 drawTapToStart();
-
+let firstTime = true;
 //tap to start
 document.getElementById('myCanvas').addEventListener('click',()=>{
 
-interval = setInterval(draw,speed);   
+if(firstTime){
+    firstTime=false;
+    interval = setInterval(draw,speed);   
 document.getElementById("hint").style.visibility="visible"
 slider.disabled = true; 
 setTimeout(()=>{
     document.getElementById("hint").style.visibility="hidden"
 },5000);
+}
 })
 
 
