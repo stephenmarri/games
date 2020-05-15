@@ -24,19 +24,25 @@ const tank = new Image();
 tank.src = spriteBase64;
 const invader = new Image();
 invader.src = spriteBase64;
-// ###################################################################
+// ################################################################### tank and sprite
 
 var frameCount=0;
 var armyPrevFrameCount=0;
 var framesInOneSec = 1000/16;
 var spritUnitHeight = 34;
 var spriteUnitWidth = 64;
+var scoreBarHeight = 50;
+var tank__bottomOffset = (spritUnitHeight/2) + scoreBarHeight;
 var tankX=canvas.width/2;
 var tankdX = 4;
-var tankY=canvas.height-spritUnitHeight/2;
+var tankY=canvas.height-(tank__bottomOffset);
 var tankWidth= spriteUnitWidth/2;
 var tankHeight =spritUnitHeight/2
 var keys =[];
+
+// ################################################################### score and lives
+var score = 0;
+
 
 // ################################################################### Invaders rows columns
 var invaderWidth = spriteUnitWidth/2.5;
@@ -51,7 +57,9 @@ var invaderTopOffset = 20;
 var armyDirection = "right";
 var armyDx = 10;
 var armyDy = 10;
-var armySpeed = 20;  
+var armySpeed = 40;  
+var armySpeed__decrement = 10;
+let aliveInvaders = armyColumns* armyRows;
 var armyArray = [];
 // ################################################################### bullet
 var bullet__height = 10;
@@ -60,6 +68,7 @@ var tankBullet__x;
 var tankBullet__y;
 var shouldMoveTankBullet = false;
 var tankBullet__dy = 10;
+
 
 
 
@@ -79,12 +88,14 @@ var tankBullet__dy = 10;
 // ################################################################### main game loop
 window.onload = function init() {
   constructArmy(armyX,armyY);
-
+  
   gameLoop();
 }
 
 function gameLoop(){
   ctx.clearRect(0,0,canvas.width,canvas.height);
+  drawScoreSeprateLine();
+  drawScore();
   moveArmy();
   drawArmyOfInvaders();
   keyPressed();
@@ -120,7 +131,6 @@ function keyPressed() {
   }
   if (keys[88]) {    
     if(!shouldMoveTankBullet)fireTankBullet();
-    console.log("bullet");
   }
 }
 // ###################################################################
@@ -217,6 +227,8 @@ function constructArmy(aX,aY){
   }
 }
 function updateArmy(adx,ady){
+  
+  
   for (let i = 0; i < armyRows; i++) {    
     for(let j = 0; j < armyColumns; j++){
       let soldier = armyArray[i][j];
@@ -251,17 +263,74 @@ function drawBullet(bx,by){
 
 function fireTankBullet(){
     tankBullet__x = tankX + tankWidth/2 ;
-    tankBullet__y = canvas.height - tankHeight;
+    tankBullet__y = canvas.height - tank__bottomOffset;
+    drawBullet(tankBullet__x,tankBullet__y);
     moveTankBullet();
     shouldMoveTankBullet = true;
 }
 
 function moveTankBullet(){
     if(tankBullet__y < 0){
-      shouldMoveTankBullet= false;
-      console.log("bullet out of scope");
+      shouldMoveTankBullet= false;      
     }
+    //check if a invader is hit by the bullet
+    for (let i = 0; i < armyRows; i++) {
+      for(let j = 0; j < armyColumns; j++){
+          let soldier = armyArray[i][j];
+          if(
+            tankBullet__x > soldier.x &&
+            tankBullet__x < soldier.x + invaderWidth &&
+            tankBullet__y > soldier.y &&
+            tankBullet__y < soldier.y + invaderHeight &&
+            soldier.status == 'alive'
+          )
+          {
+            soldier.status='dead';
+            shouldMoveTankBullet=false;
+            aliveInvaders--;
+            score++;
+
+            //increase speed
+            if((aliveInvaders)%armyColumns==0 && armySpeed > 10){
+              armySpeed-=armySpeed__decrement;
+              console.log("speed increase: " + armySpeed);
+            }
+          }
+          
+        
+      }
+    }  
+    //check if a invader is hit by the bullet    
+
     tankBullet__y -= tankBullet__dy;
+}
+
+function drawScoreSeprateLine(){
+  ctx.beginPath();
+  ctx.beginPath();       // Start a new path
+  ctx.moveTo(0, canvas.height- (scoreBarHeight-15));    // Move the pen to (30, 50)
+  ctx.lineTo(canvas.width, canvas.height - (scoreBarHeight-15));  // Draw a line to (150, 100)
+  ctx.lineWidth = 2;
+  ctx.shadowBlur = 5;
+  ctx.shadowOffsetY=1;
+  ctx.shadowOffsetY=-1;
+  ctx.shadowColor="green";
+  ctx.strokeStyle = "green";
+  ctx.stroke();
+  ctx.shadowBlur = 0;
+  ctx.shadowOffsetY=0;
+  ctx.shadowOffsetY=0;  
+}
+
+
+function drawScore(){
+  ctx.beginPath();
+  ctx.font = "20px Calibri";
+  ctx.fillStyle="white";
+  ctx.fillText("Score: "+score, canvas.width - 90, canvas.height-10);
+  
+  ctx.closePath();
+
 }
 
 // ###################################################################
