@@ -1,0 +1,34 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-size: 10x;
+}
+
+html{
+    width: 100%;
+    
+}
+
+body{
+    width: 100%;
+    height: 100%;
+    background-color: #fbc531;
+}
+
+canvas{
+    display: block;
+    margin: 5vh auto;
+    background-color: #2f3640;
+}
+
+
+/*  media queries */
+
+@media only screen and (max-width: 600px) {
+    body {
+      
+    }
+
+  }
+
+/*  media queries */
