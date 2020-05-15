@@ -26,18 +26,28 @@ var brickOffsetTop = 30;
 var brickOffsetLeft = 30;
 // 
 var score = 0;
-var speed = 10;
+var speed = 20;
 var lives = 3;
-
 var bricks = [];
+
+//scirpt for speed containment
+var slider = document.getElementById("myRange");
+
+slider.oninput = function() {
+  speed = 110- this.value;
+}
+//scirpt for speed containment
 
 drawTapToStart();
 
+//tap to start
 document.getElementById('myCanvas').addEventListener('click',()=>{
-interval = setInterval(draw,speed);    
+interval = setInterval(draw,speed);   
+document.getElementById("hint").style.visibility="visible"
+slider.disabled = true; 
 setTimeout(()=>{
     document.getElementById("hint").style.visibility="hidden"
-},2000);
+},5000);
 })
 
 
@@ -50,6 +60,7 @@ if (window.matchMedia("(max-width: 600px)").matches) {
     y = canvas.height-40;
     paddleWidth=45;
     brickWidth = 45;
+    drawTapToStart();    
   } 
 
 //media query
