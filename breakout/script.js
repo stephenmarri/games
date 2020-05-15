@@ -27,14 +27,15 @@ var brickOffsetLeft = 30;
 // 
 var score = 0;
 var speed = 20;
+var speedFromUser;
 var lives = 3;
 var bricks = [];
 
 //scirpt for speed containment
 var slider = document.getElementById("myRange");
-
+speed =110 - slider.value;
 slider.oninput = function() {
-  speed = 110- this.value;
+  speed = 110 - this.value;
 }
 //scirpt for speed containment
 
@@ -42,6 +43,7 @@ drawTapToStart();
 
 //tap to start
 document.getElementById('myCanvas').addEventListener('click',()=>{
+
 interval = setInterval(draw,speed);   
 document.getElementById("hint").style.visibility="visible"
 slider.disabled = true; 
@@ -120,6 +122,7 @@ function draw() {
             dx=2;
             dy=-2;
             paddleX= (canvas.width-paddleWidth)/2;
+            speed=speedFromUser;
         }
 
     }
