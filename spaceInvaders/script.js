@@ -1,3 +1,6 @@
+import {alertFromCollision} from './collision.js';
+alertFromCollision();
+
 // //media queries
 // let canvas = document.getElementById('myCanvas');
 // /** @type {CanvasRenderingContext2D}  */
