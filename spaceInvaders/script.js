@@ -32,7 +32,7 @@ var startScreenTimeout;
 var frameCount=0;
 var armyPrevFrameCount=0;
 var framesInOneSec = 1000/16;
-var spritUnitHeight = 34;
+var spritUnitHeight = 35;
 var spriteUnitWidth = 64;
 var scoreBarHeight = 50;
 var tank__bottomOffset = (spritUnitHeight/2) + scoreBarHeight;
@@ -45,12 +45,16 @@ var keys =[];
 
 // ################################################################### score and lives
 var score = 0;
-var lives = 3
+var allowedLives = 3;
+var lives = allowedLives;
+var hasLifeDecreased = false;
 var gameRunning = false;
 // ################################################################### Invaders rows columns
 var invaderWidth = spriteUnitWidth/2.5;
 var invaderHeight = spritUnitHeight/2.5;
 var invaderSpriteHeight = spritUnitHeight;
+var invaderSpriteHeightsArray = [[68,102],[102,134],[102,134],[0,34],[0,34]];
+var spriteSelector =0;
 var armyRows = 5;
 var armyColumns = 10;
 var armyX = 60;
@@ -98,11 +102,12 @@ function gameInit(){
   invaderBulletsArray = [];
   armyArray = [];
   score = 0;
-  lives = 3
+  lives = allowedLives;
   armyDirection = "right";  
   aliveInvaders = armyColumns* armyRows;
   frameCount=0;
   armyPrevFrameCount=0;
+  hasLifeDecreased = false;
   armySpeed = 40;
 }
 
@@ -236,6 +241,7 @@ function moveInvaderBullets(){
       invaderBulletsArray.splice(i,1);
       console.log("lost 1 life");            
       lives--;
+      hasLifeDecreased=true;
     }
 
     drawInvaderBullet(iB.x,iB.y);
@@ -246,7 +252,14 @@ function moveInvaderBullets(){
 function helperHandler(){
   if(aliveInvaders == armyColumns* armyRows){
     drawBottomMessage("press X to fire bullet", 150);
-  }  
+  }  else
+  if(hasLifeDecreased){
+    drawBottomMessage(`HIT. Lives Left: ${lives}`, 150);
+    setTimeout(() => {
+    hasLifeDecreased=false;
+    drawBottomMessage(``, 150);      
+    }, 2000);
+  }
 
 }
 
@@ -293,6 +306,7 @@ function moveArmy(){
   if(frameCount-armyPrevFrameCount>armySpeed){
     armyPrevFrameCount=frameCount;
     invaderSpriteHeight=spritUnitHeight-invaderSpriteHeight;
+    spriteSelector= 1 - spriteSelector;
   }
   else{
     return false;
@@ -354,7 +368,8 @@ function drawArmyOfInvaders(){
     for(let j = 0; j < armyColumns; j++){
         let soldier = armyArray[i][j];
         if (soldier.status=='alive') {
-          drawInvader(soldier.x,soldier.y,invaderSpriteHeight);
+          // drawInvader(soldier.x,soldier.y,invaderSpriteHeight);
+          drawInvader(soldier.x,soldier.y,invaderSpriteHeightsArray[i][spriteSelector]);
             //chekc if game over by collision
             if(soldier.y > tankY){
               gameRunning=false;
