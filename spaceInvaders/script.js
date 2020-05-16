@@ -63,6 +63,7 @@ var armyDy = 10;
 var armySpeed = 40;  
 var armySpeed__decrement = 10;
 let aliveInvaders = armyColumns* armyRows;
+var armyInvaderBulletsSpeed = 6;
 var armyArray = [];
 // ################################################################### bullet
 var bullet__height = 10;
@@ -175,7 +176,7 @@ function keypressedHandler(){
 
 // ################################################################### handlers
 function invadersBulletHandler(){
-  if(invaderBulletsArray.length<3 &&  frameCount- invBullet__prevFrameCount>(armySpeed*4)){
+  if(invaderBulletsArray.length<3 &&  frameCount- invBullet__prevFrameCount>(armySpeed*armyInvaderBulletsSpeed)){
     generateInvaderRandomBullet();
     invBullet__prevFrameCount=frameCount;
   }
@@ -184,9 +185,20 @@ function invadersBulletHandler(){
 }
 
 function generateInvaderRandomBullet(){
-    let randomInvaderR = genRandomNumber(armyRows); 
-    let randomInvaderC = genRandomNumber(armyColumns); 
-    let rInvader = armyArray[randomInvaderR][randomInvaderC];
+    // let randomInvaderR = genRandomNumber(armyRows); 
+    // let randomInvaderC = genRandomNumber(armyColumns); 
+    // let rInvader = armyArray[randomInvaderR][randomInvaderC];
+    let aliveArmy = [];
+    for (let i = 0; i < armyRows; i++) {    
+      for(let j = 0; j < armyColumns; j++){
+        let soldier = armyArray[i][j];
+        if(soldier.status=='alive')        
+        aliveArmy.push(armyArray[i][j]);
+      }
+    }
+    
+    let rInvader = aliveArmy[genRandomNumber(aliveArmy.length)];
+    console.log(aliveArmy);
     if (rInvader.status=='alive') {
       let iBullet = {
         x : rInvader.x + invaderWidth/2,
