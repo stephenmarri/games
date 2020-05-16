@@ -417,7 +417,7 @@ function drawBullet(bx,by){
   ctx.beginPath();       // Start a new path
   ctx.moveTo(bx, by);    // Move the pen to (30, 50)
   ctx.lineTo(bx, by-bullet__height);  // Draw a line to (150, 100)
-  ctx.lineWidth = bullet__width;
+  ctx.lineWidth = bullet__width+2;
   ctx.strokeStyle = "green";
   ctx.stroke();
 }
