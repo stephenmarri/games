@@ -1,17 +1,15 @@
+let canvas = document.getElementById('myCanvas');
+  /** @type {CanvasRenderingContext2D}  */
+let ctx = canvas.getContext("2d");
+
 // //media queries
-// let canvas = document.getElementById('myCanvas');
-// /** @type {CanvasRenderingContext2D}  */
-// let ctx = canvas.getContext("2d");
-// if (window.matchMedia("(max-width: 500px)").matches) { // If media query matches
+// if (window.matchMedia("(max-width: 600px)").matches) { // If media query matches
 //     canvas.width = 320;
 //     canvas.height = 480;
 //   } 
 // //media queries
 
 
-let canvas = document.getElementById('myCanvas');
-  /** @type {CanvasRenderingContext2D}  */
-  let ctx = canvas.getContext("2d");
 //globals
 (function () {
   var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;

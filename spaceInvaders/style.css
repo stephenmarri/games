@@ -31,11 +31,13 @@ canvas{
 
 /*  media queries */
 
-@media only screen and (max-width: 600px) {
-    body {
-      
+/* @media only screen and (max-width: 600px) {
+    canvas{
+        display: block;
+        margin: 2vh auto;
+        background-color: #000;
     }
 
-  }
+  } */
 
 /*  media queries */
