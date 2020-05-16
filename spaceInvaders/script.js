@@ -16,7 +16,9 @@ let canvas = document.getElementById('myCanvas');
 (function () {
   var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
   window.requestAnimationFrame = requestAnimationFrame;
+  var cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
 })();
+var animationID;
 
 // ################################################################### load sprites
 let spriteBase64 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAAEACAYAAAADRnAGAAACGUlEQVR42u3aSQ7CMBAEQIsn8P+/hiviAAK8zFIt5QbELiTHmfEYE3L9mZE9AAAAqAVwBQ8AAAD6THY5CgAAAKbfbPX3AQAAYBEEAADAuZrC6UUyfMEEAIBiAN8OePXnAQAAsLcmmKFPAQAAgHMbm+gbr3Sdo/LtcAAAANR6GywPAgBAM4D2JXAAABoBzBjA7AmlOx8AAEAzAOcDAADovTc4vQim6wUCABAYQG8QAADd4dPd2fRVYQAAANQG0B4HAABAawDnAwAA6AXgfAAAALpA2uMAAABwPgAAgPoAM9Ci/R4AAAD2dmqcEQIAIC/AiQGuAAYAAECcRS/a/cJXkUf2AAAAoBaA3iAAALrD+gIAAADY9baX/nwAAADNADwFAADo9YK0e5FMX/UFACA5QPSNEAAAAHKtCekmDAAAAADvBljtfgAAAGgMMGOrunvCy2uCAAAACFU6BwAAwF6AGQPa/XsAAADYB+B8AAAAtU+ItD4OAwAAAFVhAACaA0T7B44/BQAAANALwGMQAAAAADYO8If2+P31AgAAQN0SWbhFDwCAZlXgaO1xAAAA1FngnA8AACAeQPSNEAAAAM4CnC64AAAA4GzN4N9NSfgKEAAAAACszO26X8/X6BYAAAD0Anid8KcLAAAAAAAAAJBnwNEvAAAA9Jns1ygAAAAAAAAAAAAAAAAAAABAQ4COCENERERERERERBrnAa1sJuUVr3rsAAAAAElFTkSuQmCC";
@@ -24,6 +26,7 @@ const tank = new Image();
 tank.src = spriteBase64;
 const invader = new Image();
 invader.src = spriteBase64;
+var startScreenTimeout;
 // ################################################################### tank and sprite
 
 var frameCount=0;
@@ -42,8 +45,8 @@ var keys =[];
 
 // ################################################################### score and lives
 var score = 0;
-
-
+var lives = 3
+var gameRunning = false;
 // ################################################################### Invaders rows columns
 var invaderWidth = spriteUnitWidth/2.5;
 var invaderHeight = spritUnitHeight/2.5;
@@ -56,7 +59,7 @@ var invaderLeftOffset = 15;
 var invaderTopOffset = 20;
 var armyDirection = "right";
 var armyDx = 10;
-var armyDy = 40;
+var armyDy = 10;
 var armySpeed = 40;  
 var armySpeed__decrement = 10;
 let aliveInvaders = armyColumns* armyRows;
@@ -75,30 +78,53 @@ var invBullet__prevFrameCount=0;
 
 
 
-// ###################################################################
-
-
-
-
-
-
-
-
-
-
-
+// ##################################################################
 
 // ################################################################### main game loop
-window.onload = function init() {
-  constructArmy(armyX,armyY);
-  
-  gameLoop();
+window.addEventListener('load', function() {
+  drawStartScreen();  
+})
+
+function startGame(){
+    clearInterval(startScreenTimeout);
+    gameRunning=true;
+    gameInit();
+    constructArmy(armyX,armyY);  
+    gameLoop();
+}
+
+function gameInit(){
+  invaderBulletsArray = [];
+  armyArray = [];
+  score = 0;
+  lives = 3
+  armyDirection = "right";  
+  aliveInvaders = armyColumns* armyRows;
+  frameCount=0;
+  armyPrevFrameCount=0;
+  armySpeed = 40;
 }
 
 function gameLoop(){
+  if(lives == 0){
+    gameRunning=false;
+    ctx.clearRect(0,0,canvas.width,canvas.height);    
+    drawScore();
+    drawLives();    
+    drawGameOver("you lost");
+    drawBottomHelper();
+    return false;
+  }
+  if(aliveInvaders == 0){
+    gameRunning=false;
+    drawGameOver("you won");
+    drawBottomHelper();
+    return false;
+  }
   ctx.clearRect(0,0,canvas.width,canvas.height);
   drawScoreSeprateLine();
   drawScore();
+  drawLives();
   moveArmy();
   drawArmyOfInvaders();
   keyPressed();
@@ -108,7 +134,7 @@ function gameLoop(){
     moveTankBullet();
   }
   invadersBulletHandler();
-  requestAnimationFrame(gameLoop);
+  animationID =  requestAnimationFrame(gameLoop);
   frameCount++;
 }
 // ###################################################################
@@ -122,6 +148,7 @@ function gameLoop(){
 // ################################################################### event listeners
 window.addEventListener("keydown", ()=>keys[event.keyCode] = true);
 window.addEventListener("keyup", ()=>keys[event.keyCode] = false);
+window.addEventListener("keypress", keypressedHandler);
 function keyPressed() {
   if (keys[37]) {     
     if (tankX-tankdX>0) {
@@ -137,6 +164,12 @@ function keyPressed() {
     if(!shouldMoveTankBullet)fireTankBullet();
   }
 }
+function keypressedHandler(){
+  if(event.keyCode == "13" && !gameRunning){
+    startGame();
+  }
+}
+
 // ###################################################################
 
 
@@ -154,12 +187,15 @@ function generateInvaderRandomBullet(){
     let randomInvaderR = genRandomNumber(armyRows); 
     let randomInvaderC = genRandomNumber(armyColumns); 
     let rInvader = armyArray[randomInvaderR][randomInvaderC];
-    let iBullet = {
-      x : rInvader.x + invaderWidth/2,
-      y : rInvader.y + invaderHeight    
-    };
-    invaderBulletsArray.push(iBullet);
-    drawInvaderBullet(iBullet.x,iBullet.y);
+    if (rInvader.status=='alive') {
+      let iBullet = {
+        x : rInvader.x + invaderWidth/2,
+        y : rInvader.y + invaderHeight    
+      };
+      invaderBulletsArray.push(iBullet);
+      drawInvaderBullet(iBullet.x,iBullet.y);
+    }
+    
 
 }
 
@@ -184,7 +220,8 @@ function moveInvaderBullets(){
     )
     {
       invaderBulletsArray.splice(i,1);
-      alert("game over")
+      console.log("lost 1 life");            
+      lives--;
     }
 
     drawInvaderBullet(iB.x,iB.y);
@@ -300,7 +337,8 @@ function drawArmyOfInvaders(){
           drawInvader(soldier.x,soldier.y,invaderSpriteHeight);
             //chekc if game over by collision
             if(soldier.y > tankY){
-              alert("game over by collision")
+              lives--;              
+              console.log("game over");
             }
         }
       
@@ -315,7 +353,7 @@ function drawBullet(bx,by){
   ctx.moveTo(bx, by);    // Move the pen to (30, 50)
   ctx.lineTo(bx, by-bullet__height);  // Draw a line to (150, 100)
   ctx.lineWidth = bullet__width;
-  ctx.strokeStyle = "#FFF";
+  ctx.strokeStyle = "green";
   ctx.stroke();
 }
 
@@ -380,15 +418,25 @@ function drawScoreSeprateLine(){
 }
 
 
-function drawScore(){
-  ctx.beginPath();
-  ctx.font = "20px Calibri";
-  ctx.fillStyle="white";
-  ctx.fillText("Score: "+score, canvas.width - 90, canvas.height-10);
-  
-  ctx.closePath();
 
+function drawBottomMessage(message,sx){
+  ctx.beginPath();
+  ctx.font = "20px Play";
+  ctx.fillStyle="white";
+  ctx.fillText(message, sx, canvas.height-10);  
+  ctx.closePath();
 }
+function drawScore(){
+  drawBottomMessage("Score: "+score,canvas.width - 90)
+}
+function drawLives(){
+  drawBottomMessage("Lives: "+lives,10)
+}
+
+function drawBottomHelper(){
+  drawBottomMessage("Press enter to play",150)
+}
+
 
 function drawInvaderBullet(ix, iy){
   ctx.beginPath();
@@ -398,6 +446,48 @@ function drawInvaderBullet(ix, iy){
   ctx.lineWidth = bullet__width;
   ctx.strokeStyle = "#FFF";
   ctx.stroke();
+}
+
+function drawGameOver(message){
+  drawBlinker(function(){ drawScreen__line1("Game Over ") },function(){ drawScreen__line2(message) });
+}
+
+
+function drawBlinker(func1, func2){
+  let counter=0;
+  startScreenTimeout = setInterval(() => {
+    ctx.clearRect(0,0,canvas.width,canvas.height-50);
+    func1();
+    if(counter%3==0)func2();
+    counter++;
+  }, 400);
+}
+  
+  function drawStartScreen(){
+    drawBlinker(function(){ drawScreen__line1("Space Invaders") },function(){ drawScreen__line2("press enter to play") });
+  }
+
+
+
+function drawScreen__line1(message){
+    ctx.save();
+    ctx.beginPath();
+    ctx.font = "60px Play";
+    ctx.fillStyle="white";
+    ctx.textAlign = "center";
+    ctx.fillText(message, canvas.width/2,canvas.height/2);  
+    ctx.closePath();
+    ctx.restore();
+}
+function drawScreen__line2(message){
+    ctx.save();
+    ctx.beginPath();
+    ctx.fillStyle="green";
+    ctx.textAlign = "center";
+    ctx.font = "40px Play";
+    ctx.fillText(message, canvas.width/2,canvas.height/2+60);  
+    ctx.closePath();
+    ctx.restore();
 }
 
 // ###################################################################
