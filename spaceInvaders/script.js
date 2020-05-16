@@ -107,7 +107,8 @@ function gameInit(){
 }
 
 function gameLoop(){
-  if(lives == 0){
+  //game lost by losing lives
+  if(lives <= 0 || !gameRunning){
     gameRunning=false;
     ctx.clearRect(0,0,canvas.width,canvas.height);    
     drawScore();
@@ -116,6 +117,7 @@ function gameLoop(){
     drawBottomHelper();
     return false;
   }
+  //game won by killing invaders
   if(aliveInvaders == 0){
     gameRunning=false;
     drawGameOver("you won");
@@ -123,6 +125,7 @@ function gameLoop(){
     return false;
   }
   ctx.clearRect(0,0,canvas.width,canvas.height);
+  helperHandler();
   drawScoreSeprateLine();
   drawScore();
   drawLives();
@@ -161,7 +164,7 @@ function keyPressed() {
       tankX+=tankdX;
     }  
   }
-  if (keys[88]) {    
+  if (keys[88] || keys[32]) {    
     if(!shouldMoveTankBullet)fireTankBullet();
   }
 }
@@ -198,7 +201,6 @@ function generateInvaderRandomBullet(){
     }
     
     let rInvader = aliveArmy[genRandomNumber(aliveArmy.length)];
-    console.log(aliveArmy);
     if (rInvader.status=='alive') {
       let iBullet = {
         x : rInvader.x + invaderWidth/2,
@@ -241,6 +243,12 @@ function moveInvaderBullets(){
   }
 }
 
+function helperHandler(){
+  if(aliveInvaders == armyColumns* armyRows){
+    drawBottomMessage("press X to fire bullet", 150);
+  }  
+
+}
 
 // ################################################################### draw functions
 function drawInvader(x,y,sHeight){
@@ -349,8 +357,7 @@ function drawArmyOfInvaders(){
           drawInvader(soldier.x,soldier.y,invaderSpriteHeight);
             //chekc if game over by collision
             if(soldier.y > tankY){
-              lives--;              
-              console.log("game over");
+              gameRunning=false;
             }
         }
       
