@@ -60,6 +60,7 @@ window.addEventListener('load',()=>{
 })
 
 function main(){
+    checkIfWon();
     if(!gameStatus)return;
     ctx.clearRect(0,0,canvas.width,canvas.height);
     constructAllTiles();
@@ -68,7 +69,7 @@ function main(){
     cosntructHero();
     keys=[];
     moveBugs();
-    requestAnimationFrame(main);
+    animationID =  requestAnimationFrame(main);
     frameCount++;
 }
 
@@ -137,17 +138,16 @@ function constructAllTiles(){
 }
 
 function cosntructHero(){
-    let randomX;
+    let randomX;    
     if(heroX == null) {
         randomX = genRandInt(0,tileColumns);
         heroX = randomX*tileWidth; heroY = heroBaseline;
     }
-    drawHero(heroImg,heroX,heroY);
+    drawHero(heroImg,heroX,heroY);    
 }
 
 function generateNewBug(){
     if(bugsArray.length < maxNoOfBugs && genRandInt(0,20) == 1 && frameCount - bugGeneFrameCount > 20){
-        console.log(bugsArray.length);
         bugGeneFrameCount = frameCount;
         let bugObj = {};
         bugObj.x = 0;
@@ -177,7 +177,6 @@ function moveBugs(){
         //collision detection
         let bw = bugsArray[i].x + bugImg.width - 20;
         if(bw > heroX && bw < heroX + heroDX && heroY == bugsArray[i].y){
-            console.log(heroY,bugsArray[i].y);
             alert('You Lost');
             gameStatus = false;
             return;
@@ -185,6 +184,13 @@ function moveBugs(){
     }    
 }
 
+function checkIfWon(){
+    if(heroY==0){
+        cancelAnimationFrame(animationID);
+        alert('you won');
+        gameStatus= false;
+    }
+}
 
 
 //############################################## move
