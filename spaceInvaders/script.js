@@ -14,7 +14,7 @@ let ctx = canvas.getContext("2d");
 (function () {
   var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
   window.requestAnimationFrame = requestAnimationFrame;
-  var cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
+  var cancvelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
 })();
 var animationID;
 
