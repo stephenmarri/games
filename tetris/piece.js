@@ -76,31 +76,35 @@ class Piece{
         return Math.floor(Math.random()*max + 1)
     }
 
-    validLR(p){        
-        if(p.x < 0 || p.x + p.shape.length > wellColumns) return false;
+    validLR(p){                
+        console.table(p.shape);
+
+        let leftX, rightX=0;
+        for(let col=0;col<p.shape[0].length;col++){
+            let sum=0;
+            for(let row = 0; row<p.shape.length; row++){
+                sum += p.shape[row][col];
+            }
+            if(sum>0){
+                leftX = col;
+                break                
+            }          
+        }
+        for(let col=p.shape[0].length-1;col>=0;col--){
+            let sum=0;
+            for(let row = 0; row<p.shape.length; row++){
+                sum += p.shape[row][col];
+            }
+            if(sum>0){
+                rightX++;                              
+            }          
+        }
+        console.log(rightX);
+        if(p.x + leftX < 0 || p.x + leftX + rightX > wellColumns) return false;        
         return true;
     }
 
     reachedBottom(p){
-        let runFlag = true;
-        let returnValue =0 ;
-        p.shape.forEach((row, y) => {
-            if(!runFlag) return returnValue;
-            row.forEach((value,x) => {
-                if(value > 0){                    
-                    if(p.y > 10) {                        
-                        returnValue = 1;
-                        runFlag = false;
-                        return returnValue;                                                
-                    };                                  
-                }
-            })
-        });
-        if(returnValue) this.freeze(p);
-        return returnValue;
-    }
-
-    reachedBottom_1(p){
         
         for (let i = p.shape.length-1; i >=0 ; i--) {
             const element = p.shape[i];
@@ -108,17 +112,20 @@ class Piece{
             if(sum > 0){
                 if(p.y+i+1 >= wellRows){                    
                     this.freeze(p);
-                    console.table(well)
+                    // console.table(well)
                     return 1;
                 }
 
                 let currentY;
                 currentY = p.y + i;
                 for(let k =0; k<element.length;k++){
-                    if(well[currentY+1][p.x +k]>0){
+                    if(element[k] > 0){
+                        if(well[currentY+1][p.x +k]>0){
                         this.freeze(p);                        
                         return 1;
                     }
+                    }
+                    
                 }              
                 
             }

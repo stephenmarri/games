@@ -38,6 +38,7 @@ moves = {
     down: bp => ({...bp, y: bp.y + 1}),
     left: bp => ({...bp, x: bp.x - 1}),
     right: bp => ({...bp, x: bp.x + 1}),
+    up: bp => board.rotate(bp)
 }
 
 document.addEventListener('keydown',  ()=> keyDownHandler(event));
@@ -47,7 +48,7 @@ function keyDownHandler(){
     if(event.key == 'ArrowDown'){
         p = moves.down(bp)        
                 
-        if(board.piece.reachedBottom_1(p)){
+        if(board.piece.reachedBottom(p)){
             board.getNewPiece();
             
         }else {
@@ -62,6 +63,11 @@ function keyDownHandler(){
     }else if(event.key == 'ArrowRight'){
         p = moves.right(bp)
         board.piece.move(p)
+        board.draw();
+    }else if(event.key == 'ArrowUp'){
+        
+        bp = moves.up(bp)
+        board.piece.move(bp);
         board.draw();
     }
     
