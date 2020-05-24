@@ -25,25 +25,46 @@ canvas{
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
     
 }
 
 .result-container #game-header{
-    height: 10%;
+    height: 20%;
     font-size: 2rem;
 }
 .result-container #score{
-    height: 10%;
+    height: 30%;
 }
 .result-container #next-block{
     align-self: center;
     height: 30%;
     width: 100%;
-    border: 1px solid #227093;
     text-align: center;
 }
 .result-container #contorls{
     height: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+.result-container #contorls #controls__play{
+    background-color: #27ae60;
+    font-size: 1.5rem;
+    height: auto;
+    padding: 0.3rem 1.5rem;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+.result-container #contorls #controls__play:hover{
+    background-color: rgb(13, 13, 15);
+    color:#27ae60;
+    cursor: pointer;
+}
+
+.result-container #contorls #controls__play:active{
+    transform: scale(0.95);
 }

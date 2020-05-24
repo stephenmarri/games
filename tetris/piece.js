@@ -3,6 +3,8 @@ const blockActualParam = 20;
 const wellColumns = 10;
 const wellRows = 22;
 var well ;
+var gameRunning=false;
+var isGameOver=false;
 
 //  I J L O S T Z
 const shapes = [ 
@@ -127,17 +129,17 @@ class Piece{
         }
 
         for (const item of leftPoints) {            
-            if(well[item[1]][item[0]]>1){                
+            if(well[item[1]][item[0]]>0){                
                 return false
             }
         }
         for (const item of rightPoints) {            
-            if(well[item[1]][item[0]]>1){
+            if(well[item[1]][item[0]]>0){
                 return false
             }
         }
         // console.log(p.x,p.y);
-         console.table(rightPoints);
+         console.table(leftPoints);
         return true;
     }
 

@@ -7,6 +7,7 @@ let result_container = document.getElementsByClassName('result-container');
 
 var keys = [];
 var animationId;
+var playButton = document.querySelector('#controls__play');
 //################################################################################# Globals
 
 
@@ -18,19 +19,7 @@ result_container[0].style.height = singleBlockSize * wellRows +'px';
 
 
 
-//################################################################################# main
 
-let board = new Board(ctx);
-well = board.getEmptyBoard();
-
-animate()
-
-function animate(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    board.draw();
-
-    animationId = requestAnimationFrame(animate);
-}
 
 
 //################################################################################# main
@@ -41,7 +30,7 @@ moves = {
     up: bp => board.rotate(bp)
 }
 
-document.addEventListener('keydown',  ()=> keyDownHandler(event));
+
 
 function keyDownHandler(){
     bp = board.piece;    
@@ -50,7 +39,7 @@ function keyDownHandler(){
                 
         if(board.piece.reachedBottom(p)){
             board.piece.freeze(p);
-            board.getNewPiece();
+            board.getNewPiece();            
             
         }else {
             board.piece.move(p)        
@@ -59,7 +48,7 @@ function keyDownHandler(){
         
     }else if(event.key == 'ArrowLeft'){
         p = moves.left(bp)
-        if(board.piece.reachedBottom(p)){
+        if(board.piece.reachedBottom(p) ){
             board.piece.freeze(p);
             board.getNewPiece();
             
@@ -69,7 +58,7 @@ function keyDownHandler(){
         board.draw();
     }else if(event.key == 'ArrowRight'){
         p = moves.right(bp)
-        if(board.piece.reachedBottom(p)){
+        if(board.piece.reachedBottom(p) ){
             board.piece.freeze(p);
             board.getNewPiece();
             
@@ -91,9 +80,43 @@ function keyDownHandler(){
 }
 
 
+function gameOver(){
+    cancelAnimationFrame(animationId);
+    ctx.save();
+    ctx.fillStyle = "rgba(0,0,0, 0.5)";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.restore();
+    ctx.font = "30px Chelsea Market";    
+    ctx.textAlign = "center";
+    ctx.fillText("Game Over", canvas.width/2,canvas.height/2);    
+}
 
 
 
+//################################################################################# main
+//playButton.addEventListener('click',playButtonHandler())
+let board;
+function playButtonHandler(){
+     board= new Board(ctx);
+well = board.getEmptyBoard();
+animate()
+document.addEventListener('keydown',  ()=> keyDownHandler(event));
+
+}
+
+
+playButtonHandler();
+
+function animate(){
+
+    
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    board.draw();
+    if(isGameOver){
+        gameOver();
+    }
+    animationId = requestAnimationFrame(animate);
+}
 
 
 

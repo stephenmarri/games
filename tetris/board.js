@@ -24,6 +24,7 @@ class Board{
             
         }
         this.isLineComplete();
+        this.isGameFinished();
     }
 
     getNewPiece(){
@@ -74,4 +75,13 @@ class Board{
     p.shape.forEach(row => row.reverse());
     return p;
   }
+
+    isGameFinished(){
+        let sum;
+        sum = well[1].reduce((a, b) => a + b, 0);        
+        if(sum>0){
+            isGameOver=true;
+            console.log('game over');
+        }
+    }
 }
