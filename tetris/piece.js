@@ -98,6 +98,7 @@ class Piece{
                 rightX++;                              
             }          
         }
+        console.log(`left is: ${p.x + leftX}, height is: ${p.y}`);
         if(p.x + leftX < 0 || p.x + leftX + rightX > wellColumns) return false;        
         return true;
     }
@@ -109,7 +110,7 @@ class Piece{
             const sum = element.reduce((a, b) => a + b, 0)
             if(sum > 0){
                 if(p.y+i+1 >= wellRows){                    
-                    this.freeze(p);
+                    //this.freeze(p);
                     // console.table(well)
                     return 1;
                 }
@@ -119,7 +120,7 @@ class Piece{
                 for(let k =0; k<element.length;k++){
                     if(element[k] > 0){
                         if(well[currentY+1][p.x +k]>0){
-                        this.freeze(p);                        
+                        //this.freeze(p);                        
                         return 1;
                     }
                     }

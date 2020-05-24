@@ -49,6 +49,7 @@ function keyDownHandler(){
         p = moves.down(bp)        
                 
         if(board.piece.reachedBottom(p)){
+            board.piece.freeze(p);
             board.getNewPiece();
             
         }else {
@@ -67,8 +68,10 @@ function keyDownHandler(){
     }else if(event.key == 'ArrowUp'){
         
         bp = moves.up(bp)
-        board.piece.move(bp);
-        board.draw();
+        if(board.piece.reachedBottom(bp) == 0){
+            board.piece.move(bp)      
+            board.draw();
+        }        
     }
     
 
