@@ -48,7 +48,7 @@ class Board{
             if(isComp)lines.push(x);            
         }
         if(lines.length>0) {
-            
+            totalLinesCleared++;    
             for(let k=0; k<lines.length;k++){
                 well.splice(lines[k],1);                
                 well.unshift(Array(wellColumns).fill(0));
@@ -59,6 +59,14 @@ class Board{
             }else{
                 score.textContent = parseInt(score.textContent)+ fixedScores[lines.length];
             }
+            if(totalLinesCleared<13){
+                if(totalLinesCleared%3==0){
+                    gameSpeed=levels[totalLinesCleared/3];
+                    levelElement.textContent = parseInt(levelElement.textContent) + 1;
+                }
+            }
+
+
         };
 
         return 1

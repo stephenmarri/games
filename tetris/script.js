@@ -9,6 +9,7 @@ var keys = [];
 var animationId;
 var playButton = document.querySelector('#controls__play');
 var score = document.querySelector('#score__text')
+var levelElement = document.querySelector('#level__text')
 //################################################################################# Globals
 
 
@@ -154,9 +155,12 @@ function resetGame(){
     frameCount=0;
     isGameOver=false;
     score.textContent=0;
+    levelElement.textContent=1;
     ctx.clearRect(0,0,canvas.width,canvas.height);
     well=null;
     board=null;    
+    totalLinesCleared=0;
+    gameSpeed=intialSpeed;
 }
 
 playButton.addEventListener('click',playButtonHandler)
