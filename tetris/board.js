@@ -9,17 +9,29 @@ class Board{
     }
 
     draw(){
+        this.drawGridLines();
         this.piece.draw();
         this.drawBoard();
     }
 
-    drawBoard(){
+    drawGridLines(){
+        for (let x = 0; x < wellColumns; x++) {
+            for (let y = 0; y < wellRows; y++) {
+                this.ctx.fillStyle="rgba(0,0,0,0.5)";
+                this.ctx.fillRect(x*(singleBlockSize) ,y*(singleBlockSize) ,blockActualParam, blockActualParam);                                
+            }            
+        }
+    }
+
+    drawBoard(){        
+        
         for (let x = 0; x < wellColumns; x++) {
             for (let y = 0; y < wellRows; y++) {
                 if (well[y][x] > 0){
                     ctx.fillStyle = colors[well[y][x]];
                     ctx.fillRect(x*(singleBlockSize),y*(singleBlockSize), blockActualParam , blockActualParam);
                 }
+                
             }
             
         }
