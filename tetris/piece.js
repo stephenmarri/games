@@ -55,6 +55,7 @@ class Piece{
     }
 
     draw(){
+        // console.table(this.shape);
         this.ctx.fillStyle = this.color;        
         this.shape.forEach((row, y) => {
             row.forEach((value,x) => {
@@ -67,13 +68,17 @@ class Piece{
     }
 
     move(p){        
+        // console.table(p.shape)
         if(this.validLR(p)){
             if(this.validLRPieces(p)){
+                // console.log('inside');
                 this.x = p.x;
                 this.y = p.y;
                 this.shape = p.shape;
+                return true;
             }        
         }        
+        return false;
     }
 
     generateRandom(max){
@@ -139,7 +144,7 @@ class Piece{
             }
         }
         // console.log(p.x,p.y);
-         console.table(leftPoints);
+         //console.table(leftPoints);
         return true;
     }
 

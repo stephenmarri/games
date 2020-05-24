@@ -48,22 +48,22 @@ function keyDownHandler(){
         
     }else if(event.key == 'ArrowLeft'){
         p = moves.left(bp)
-        if(board.piece.reachedBottom(p) ){
-            board.piece.freeze(p);
-            board.getNewPiece();
-            
-        }else {
-            board.piece.move(p)        
+        if(board.piece.move(p)){
+            if(board.piece.reachedBottom(p) ){
+                board.piece.freeze(p);
+                board.getNewPiece();
+                
+            }
         }
         board.draw();
     }else if(event.key == 'ArrowRight'){
         p = moves.right(bp)
-        if(board.piece.reachedBottom(p) ){
-            board.piece.freeze(p);
-            board.getNewPiece();
-            
-        }else {
-            board.piece.move(p)        
+        if(board.piece.move(p)){
+            if(board.piece.reachedBottom(p) ){
+                board.piece.freeze(p);
+                board.getNewPiece();
+                
+            }
         }
         board.draw();
     }else if(event.key == 'ArrowUp'){
@@ -88,36 +88,43 @@ function gameOver(){
     ctx.restore();
     ctx.font = "30px Chelsea Market";    
     ctx.textAlign = "center";
-    ctx.fillText("Game Over", canvas.width/2,canvas.height/2);    
+    ctx.fillText("Game Over", canvas.width/2,canvas.height/2);   
+    playButton.textContent='Play' ;
+    document.removeEventListener('keydown',  keyDownHandler);
+
 }
 
 
 
 //################################################################################# main
-//playButton.addEventListener('click',playButtonHandler())
 let board;
 function playButtonHandler(){
-     board= new Board(ctx);
-well = board.getEmptyBoard();
-animate()
-document.addEventListener('keydown',  ()=> keyDownHandler(event));
-
+    if(playButton.textContent='Play'){
+        resetGame();
+        playButton.textContent='Stop'
+        board= new Board(ctx);
+        well = board.getEmptyBoard();
+        animate()
+        document.addEventListener('keydown',  ()=> keyDownHandler(event));
+    }
 }
-
-
-playButtonHandler();
 
 function animate(){
-
-    
     ctx.clearRect(0,0,canvas.width,canvas.height);
-    board.draw();
+    board.draw();       
     if(isGameOver){
-        gameOver();
+    gameOver();
     }
-    animationId = requestAnimationFrame(animate);
+    animationId = requestAnimationFrame(animate);            
 }
 
+function resetGame(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    well=null;
+    board=null;
+}
+
+playButton.addEventListener('click',playButtonHandler)
 
 
 

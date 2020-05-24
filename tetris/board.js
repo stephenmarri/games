@@ -80,8 +80,7 @@ class Board{
         let sum;
         sum = well[1].reduce((a, b) => a + b, 0);        
         if(sum>0){
-            isGameOver=true;
-            console.log('game over');
+            isGameOver=true;            
         }
     }
 }
