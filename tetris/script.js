@@ -59,11 +59,23 @@ function keyDownHandler(){
         
     }else if(event.key == 'ArrowLeft'){
         p = moves.left(bp)
-        board.piece.move(p)
+        if(board.piece.reachedBottom(p)){
+            board.piece.freeze(p);
+            board.getNewPiece();
+            
+        }else {
+            board.piece.move(p)        
+        }
         board.draw();
     }else if(event.key == 'ArrowRight'){
         p = moves.right(bp)
-        board.piece.move(p)
+        if(board.piece.reachedBottom(p)){
+            board.piece.freeze(p);
+            board.getNewPiece();
+            
+        }else {
+            board.piece.move(p)        
+        }
         board.draw();
     }else if(event.key == 'ArrowUp'){
         

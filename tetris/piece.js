@@ -66,9 +66,11 @@ class Piece{
 
     move(p){        
         if(this.validLR(p)){
-            this.x = p.x;
-        this.y = p.y;
-        this.shape = p.shape;
+            if(this.validLRPieces(p)){
+                this.x = p.x;
+                this.y = p.y;
+                this.shape = p.shape;
+            }        
         }        
     }
 
@@ -78,14 +80,15 @@ class Piece{
 
     validLR(p){                
 
-        let leftX, rightX=0;
+        let leftX, rightX=0, leftY=-1;
         for(let col=0;col<p.shape[0].length;col++){
             let sum=0;
             for(let row = 0; row<p.shape.length; row++){
                 sum += p.shape[row][col];
+                if(p.shape[row][col]>0 && leftY<0) leftY=row;
             }
             if(sum>0){
-                leftX = col;
+                leftX = col;                
                 break                
             }          
         }
@@ -98,8 +101,43 @@ class Piece{
                 rightX++;                              
             }          
         }
-        console.log(`left is: ${p.x + leftX}, height is: ${p.y}`);
+          
         if(p.x + leftX < 0 || p.x + leftX + rightX > wellColumns) return false;        
+        return true;
+    }
+
+    validLRPieces(p){
+        let leftPoints=[];
+        let rightPoints=[];
+        for(let row =0; row<p.shape.length; row++){
+            for(let col=0; col<p.shape[row].length;col++){
+                if(p.shape[row][col]>0){
+                    leftPoints.push([p.x+col,p.y+row])
+                    break;
+                }
+            }
+        }
+        for(let row =0; row<p.shape.length; row++){
+            for(let col=p.shape[row].length-1; col>=0;col--){
+                if(p.shape[row][col]>0){
+                    rightPoints.push([p.x+col,p.y+row])
+                    break;
+                }
+            }
+        }
+
+        for (const item of leftPoints) {            
+            if(well[item[1]][item[0]]>1){                
+                return false
+            }
+        }
+        for (const item of rightPoints) {            
+            if(well[item[1]][item[0]]>1){
+                return false
+            }
+        }
+        // console.log(p.x,p.y);
+         console.table(rightPoints);
         return true;
     }
 
