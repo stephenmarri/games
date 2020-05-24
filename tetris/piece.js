@@ -77,7 +77,6 @@ class Piece{
     }
 
     validLR(p){                
-        console.table(p.shape);
 
         let leftX, rightX=0;
         for(let col=0;col<p.shape[0].length;col++){
@@ -99,7 +98,6 @@ class Piece{
                 rightX++;                              
             }          
         }
-        console.log(rightX);
         if(p.x + leftX < 0 || p.x + leftX + rightX > wellColumns) return false;        
         return true;
     }

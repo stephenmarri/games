@@ -14,7 +14,6 @@ class Board{
     }
 
     drawBoard(){
-        this.isLineComplete();
         for (let x = 0; x < wellColumns; x++) {
             for (let y = 0; y < wellRows; y++) {
                 if (well[y][x] > 0){
@@ -24,6 +23,7 @@ class Board{
             }
             
         }
+        this.isLineComplete();
     }
 
     getNewPiece(){
@@ -46,7 +46,15 @@ class Board{
             }
             if(isComp)lines.push(x);            
         }
-        if(lines.length>0) console.log(lines);
+        if(lines.length>0) {
+            console.log(lines)
+            for(let k=0; k<lines.length;k++){
+                well.splice(lines[k],1);                
+                well.unshift(Array(wellColumns).fill(0));
+            }
+        console.table(well)
+
+        };
         return 1
     }
 
