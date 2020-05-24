@@ -3,8 +3,14 @@ const blockActualParam = 20;
 const wellColumns = 10;
 const wellRows = 22;
 var well ;
-var gameRunning=false;
 var isGameOver=false;
+var frameCount=0;
+let downFC=0;
+var score=0;
+const intialSpeed=55;
+var gameSpeed = intialSpeed;
+var isGameWon=false;
+var totalLinesCleared =0;
 
 //  I J L O S T Z
 const shapes = [ 
@@ -17,6 +23,22 @@ const shapes = [
     [ [6,6,6],[0,6,0],[0,0,0]] ,
     [ [7,7,0],[0,7,7],[0,0,0]]    
 ];
+
+const fixedScores = [
+    0,
+    40,
+    100,
+    300,
+    1200
+];
+
+const levels = [
+    0,
+    gameSpeed-10,
+    gameSpeed-20,
+    gameSpeed-30,
+    gameSpeed-40,
+]
 
 const colors =[
     'none',

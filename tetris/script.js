@@ -8,6 +8,7 @@ let result_container = document.getElementsByClassName('result-container');
 var keys = [];
 var animationId;
 var playButton = document.querySelector('#controls__play');
+var score = document.querySelector('#score__text')
 //################################################################################# Globals
 
 
@@ -31,8 +32,26 @@ moves = {
 }
 
 
+function moveDown(){
+    if(frameCount- downFC>gameSpeed && !isGameOver && !isGameWon){
+        downFC=frameCount;
+        bp = board.piece;    
+        p = moves.down(bp)                        
+        if(board.piece.reachedBottom(p)){
+            board.piece.freeze(p);
+            board.getNewPiece();            
+            
+        }else {
+            board.piece.move(p)        
+        }
+        board.draw();
+    }
+    
+}
 
-function keyDownHandler(){
+
+var VarkeyDownHandler = function keyDownHandler(event){  
+      
     bp = board.piece;    
     if(event.key == 'ArrowDown'){
         p = moves.down(bp)        
@@ -80,7 +99,7 @@ function keyDownHandler(){
 }
 
 
-function gameOver(){
+function gameOver(text){
     cancelAnimationFrame(animationId);
     ctx.save();
     ctx.fillStyle = "rgba(0,0,0, 0.5)";
@@ -88,9 +107,9 @@ function gameOver(){
     ctx.restore();
     ctx.font = "30px Chelsea Market";    
     ctx.textAlign = "center";
-    ctx.fillText("Game Over", canvas.width/2,canvas.height/2);   
+    ctx.fillText(text, canvas.width/2,canvas.height/2);   
     playButton.textContent='Play' ;
-    document.removeEventListener('keydown',  keyDownHandler);
+    document.removeEventListener('keydown',  VarkeyDownHandler);
 
 }
 
@@ -99,29 +118,45 @@ function gameOver(){
 //################################################################################# main
 let board;
 function playButtonHandler(){
-    if(playButton.textContent='Play'){
+    if(playButton.textContent=='Play'){
         resetGame();
         playButton.textContent='Stop'
         board= new Board(ctx);
         well = board.getEmptyBoard();
         animate()
-        document.addEventListener('keydown',  ()=> keyDownHandler(event));
+        document.addEventListener('keydown',   VarkeyDownHandler);
+    }else
+    if(playButton.textContent=='Stop'){
+        isGameOver=true;
+        gameOver("Game Over");
+        playButton.textContent='Play';
     }
 }
 
 function animate(){
+    frameCount++;
     ctx.clearRect(0,0,canvas.width,canvas.height);
+    moveDown();
     board.draw();       
-    if(isGameOver){
-    gameOver();
+    if(isGameOver ){
+    gameOver("Game Over");
     }
+    if(isGameWon ){
+    gameOver("You Won");
+    }
+    
     animationId = requestAnimationFrame(animate);            
 }
 
 function resetGame(){
+    isGameWon=false;
+    downFC=0;
+    frameCount=0;
+    isGameOver=false;
+    score.textContent=0;
     ctx.clearRect(0,0,canvas.width,canvas.height);
     well=null;
-    board=null;
+    board=null;    
 }
 
 playButton.addEventListener('click',playButtonHandler)

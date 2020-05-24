@@ -48,14 +48,19 @@ class Board{
             if(isComp)lines.push(x);            
         }
         if(lines.length>0) {
-            console.log(lines)
+            
             for(let k=0; k<lines.length;k++){
                 well.splice(lines[k],1);                
                 well.unshift(Array(wellColumns).fill(0));
+            }    
+            if(lines.length>5){
+                score.textContent = parseInt(score.textContent)+ fixedScores[4];
+                isGameWon=true;                
+            }else{
+                score.textContent = parseInt(score.textContent)+ fixedScores[lines.length];
             }
-        console.table(well)
-
         };
+
         return 1
     }
 
