@@ -94,6 +94,9 @@ canvas{
     user-select: none;
 }
 
+.result-container #mobile__contorls #rotate #rotate__text::before{
+    content: "Rotate";
+}
 .result-container #mobile__contorls #leftRight{
     margin: 4px 4px;
     width: 100%;
