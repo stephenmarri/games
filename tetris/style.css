@@ -89,6 +89,7 @@ canvas{
     -moz-user-select:none;
     -ms-user-select:none;
     -webkit-user-select:none;
+    user-select: none;
 }
 
 .result-container #mobile__contorls #leftRight{
