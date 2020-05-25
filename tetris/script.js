@@ -156,8 +156,7 @@ function playButtonHandler(){
     }
 }
 
-function animate(){
-    console.log(gameSpeed);
+function animate(){    
     frameCount++;
     ctx.clearRect(0,0,canvas.width,canvas.height);
     moveDown();
@@ -187,6 +186,7 @@ function resetGame(){
     currentPiece = null;
     nextPiece = null;
     cancelAnimationFrame(animationId);
+    tetrisCount = 0;
 }
 
 playButton.addEventListener('click',playButtonHandler)

@@ -75,18 +75,36 @@ class Board{
                 well.splice(lines[k],1);                
                 well.unshift(Array(wellColumns).fill(0));
             }    
-            if(lines.length>5){
+            if(lines.length>=4){
                 score.textContent = parseInt(score.textContent)+ fixedScores[4];
-                isGameWon=true;                
+                tetrisCount++;    
+                if(tetrisCount==1){
+                    gameSpeed=levels[1];
+                    levelElement.textContent = parseInt(levelElement.textContent) + 1;    
+                }
+                if(tetrisCount==3){
+                    gameSpeed=levels[2];
+                    levelElement.textContent = parseInt(levelElement.textContent) + 1;    
+                }
+                if(tetrisCount==6){
+                    gameSpeed=levels[3];
+                    levelElement.textContent = parseInt(levelElement.textContent) + 1;    
+                }
+
             }else{
                 score.textContent = parseInt(score.textContent)+ fixedScores[lines.length];
             }
-            if(totalLinesCleared<13){
-                if(totalLinesCleared%3==0){
-                    gameSpeed=levels[totalLinesCleared/3];
-                    levelElement.textContent = parseInt(levelElement.textContent) + 1;
-                }
+
+            if(tetrisCount>=10){
+                isGameWon=true;
             }
+            
+            // if(totalLinesCleared<13){
+            //     if(totalLinesCleared%3==0){
+            //         gameSpeed=levels[totalLinesCleared/3];
+            //         levelElement.textContent = parseInt(levelElement.textContent) + 1;
+            //     }
+            // }
 
 
         };

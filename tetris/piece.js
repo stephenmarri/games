@@ -13,6 +13,7 @@ var isGameWon=false;
 var totalLinesCleared =0;
 var currentPiece = null;
 var nextPiece = null;
+var tetrisCount = 0;
 
 //  I J L O S T Z
 const shapes = [ 
@@ -38,8 +39,8 @@ const levels = [
     0,
     gameSpeed-10,
     gameSpeed-20,
-    gameSpeed-30,
-    gameSpeed-40,
+    gameSpeed-35,
+    gameSpeed-45,
 ]
 
 const colors =[
