@@ -180,6 +180,7 @@ function mediaFunction(media) {
   }
 
   function mediaEventHandler(){
+      event.preventDefault();
       let tId = event.target.parentElement.id;
       let Id = event.target.id;
       bp = board.piece;    
