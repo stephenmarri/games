@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="fontawesome/all.css">
+    <link rel="stylesheet" href="fontawesome/fontawesome.css">
     <link rel="stylesheet" href="style.css">
     <title>Steve's Tetris</title>
 </head>
@@ -16,6 +18,18 @@
             <p>Level: <span id="level__text">1</span></p>
         </div>
         <div id="next-block" class="next-block"></div>
+        <div id="mobile__contorls" class="mobile__contorls">
+            <div id="rotate"><span id="rotate__text">Rotate</span></div>
+            <div id="leftRight">
+                <div id="left__div">
+                    <i class="fas fa-chevron-left fa-2x"></i>
+            </div>
+            <div id="right__div">
+                <i class="fas fa-chevron-right fa-2x"></i>
+            </div>
+        </div>
+            <div id="down"><i class="fas fa-chevron-down fa-2x"></i></div>
+        </div>
         <div id="contorls" class="contorls"><span id="controls__play">Play</span></div>
     </div>
     <script src="piece.js"></script>

@@ -10,6 +10,8 @@ var animationId;
 var playButton = document.querySelector('#controls__play');
 var score = document.querySelector('#score__text')
 var levelElement = document.querySelector('#level__text')
+var mobile__contorls_element = document.querySelector('#mobile__contorls')
+var next__block_element = document.querySelector('#next-block')
 //################################################################################# Globals
 
 
@@ -111,6 +113,7 @@ function gameOver(text){
     ctx.fillText(text, canvas.width/2,canvas.height/2);   
     playButton.textContent='Play' ;
     document.removeEventListener('keydown',  VarkeyDownHandler);
+    mobile__contorls.removeEventListener('click',mediaEventHandler);
 
 }
 
@@ -126,6 +129,7 @@ function playButtonHandler(){
         well = board.getEmptyBoard();
         animate()
         document.addEventListener('keydown',   VarkeyDownHandler);
+        mobile__contorls.addEventListener('click',mediaEventHandler);
     }else
     if(playButton.textContent=='Stop'){
         isGameOver=true;
@@ -165,6 +169,67 @@ function resetGame(){
 
 playButton.addEventListener('click',playButtonHandler)
 
+
+//########################################################################### media queries
+function mediaFunction(media) {
+    if (media.matches) { // If media query matches
+        mobile__contorls_element.style.display = 'Flex';
+        next__block_element.style.display='none';
+        var mobile__contorls = document.querySelector('#mobile__contorls')
+    } 
+  }
+
+  function mediaEventHandler(){
+      let tId = event.target.parentElement.id;
+      let Id = event.target.id;
+      bp = board.piece;    
+
+      if(tId=='rotate' || Id=='rotate'){
+            bp = moves.up(bp)
+            if(board.piece.reachedBottom(bp) == 0){
+                board.piece.move(bp)      
+                board.draw();
+            }   
+      }
+      if(tId=='left__div' || Id=='left__div'){
+        p = moves.left(bp)
+        if(board.piece.move(p)){
+            if(board.piece.reachedBottom(p) ){
+                board.piece.freeze(p);
+                board.getNewPiece();
+                
+            }
+        }
+        board.draw();
+      }
+      if(tId=='right__div' || Id=='right__div'){
+            p = moves.right(bp)
+            if(board.piece.move(p)){
+                if(board.piece.reachedBottom(p) ){
+                    board.piece.freeze(p);
+                    board.getNewPiece();
+                    
+                }
+            }
+            board.draw();
+      }
+      if(tId=='down' || Id =='down'){
+        p = moves.down(bp)        
+                
+        if(board.piece.reachedBottom(p)){
+            board.piece.freeze(p);
+            board.getNewPiece();            
+            
+        }else {
+            board.piece.move(p)        
+        }
+        board.draw();
+      }
+  }
+  
+  var media = window.matchMedia("(max-width: 600px)")
+  mediaFunction(media) // Call listener function at run time
+  media.addListener(mediaFunction)
 
 
 
