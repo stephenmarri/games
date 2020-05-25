@@ -83,6 +83,7 @@ canvas{
     flex-direction: column;
     justify-content: center;
     width: 60%;
+    user-select: none;
 }
 
 .result-container #mobile__contorls #rotate #rotate__text{
