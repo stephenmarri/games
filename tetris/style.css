@@ -84,6 +84,7 @@ canvas{
     justify-content: center;
     width: 60%;
     user-select: none;
+    aria: role;
 }
 
 .result-container #mobile__contorls #rotate #rotate__text{
