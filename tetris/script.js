@@ -128,21 +128,36 @@ let board;
 function playButtonHandler(){
     if(playButton.textContent=='Play'){
         resetGame();
-        playButton.textContent='Stop'
+        playButton.textContent='Pause'
         board= new Board(ctx);
         well = board.getEmptyBoard();
         animate()
         document.addEventListener('keydown',   VarkeyDownHandler);
         mobile__contorls.addEventListener('click',mediaEventHandler);
     }else
-    if(playButton.textContent=='Stop'){
-        isGameOver=true;
-        gameOver("Game Over");
-        playButton.textContent='Play';
+    if(playButton.textContent=='Pause'){                
+        playButton.textContent='Resume';
+        cancelAnimationFrame(animationId);
+        document.removeEventListener('keydown',  VarkeyDownHandler);
+        mobile__contorls.removeEventListener('click',mediaEventHandler);
+        ctx.save();
+        ctx.fillStyle = "rgba(0,0,0, 0.5)";
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+        ctx.restore();
+        ctx.font = "30px Chelsea Market";    
+        ctx.textAlign = "center";
+        ctx.fillText("Paused", canvas.width/2,canvas.height/2);  
+    }else
+    if(playButton.textContent=='Resume'){
+        playButton.textContent='Pause';
+        animate();
+        document.addEventListener('keydown',   VarkeyDownHandler);
+        mobile__contorls.addEventListener('click',mediaEventHandler);
     }
 }
 
 function animate(){
+    console.log(gameSpeed);
     frameCount++;
     ctx.clearRect(0,0,canvas.width,canvas.height);
     moveDown();
@@ -152,12 +167,12 @@ function animate(){
     }
     if(isGameWon ){
     gameOver("You Won");
-    }
-    
+    }    
     animationId = requestAnimationFrame(animate);            
 }
 
 function resetGame(){
+    frameCount=0;
     isGameWon=false;
     downFC=0;
     frameCount=0;
@@ -171,6 +186,7 @@ function resetGame(){
     gameSpeed=intialSpeed;
     currentPiece = null;
     nextPiece = null;
+    cancelAnimationFrame(animationId);
 }
 
 playButton.addEventListener('click',playButtonHandler)
