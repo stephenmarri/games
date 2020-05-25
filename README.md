@@ -1,6 +1,7 @@
-#Vanill JS - games
-These games are inspired from several ideas and I built them to get a hold of the language.
-
+Vanilla JS - games  
+These games are inspired from several ideas and I built them to get a hold of the language.  
+You can play the games at the below links.  
+  
 Tetris: https://stephenmarri.github.io/games/tetris/  
 BreakOut: https://stephenmarri.github.io/games/breakout/  
 Space Invaders: https://stephenmarri.github.io/games/spaceInvaders/  
