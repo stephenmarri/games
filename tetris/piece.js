@@ -89,6 +89,21 @@ class Piece{
         });
     }
 
+    drawInNext(){
+        let offset=singleBlockSize*2
+        let offsetY=singleBlockSize*1
+        nextCtx.clearRect(0,0,nextCanvas.width,nextCanvas.height)
+        nextCtx.fillStyle = this.color;        
+        this.shape.forEach((row, y) => {
+            row.forEach((value,x) => {
+                if(value > 0){
+                    //well[y][x]=value;                    
+                    nextCtx.fillRect(offset+ x*(singleBlockSize) ,offsetY+ y*(singleBlockSize) ,blockActualParam, blockActualParam);
+                }
+            })
+        });
+    }
+
     move(p){        
         // console.table(p.shape)
         if(this.validLR(p)){

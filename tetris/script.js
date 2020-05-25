@@ -1,6 +1,9 @@
 let canvas = document.getElementById('myCanvas');
   /** @type {CanvasRenderingContext2D}  */
 let ctx = canvas.getContext("2d");
+let nextCanvas = document.getElementById('nextCanvas'); 
+/** @type {CanvasRenderingContext2D}  */ 
+let nextCtx = nextCanvas.getContext("2d");
 let result_container = document.getElementsByClassName('result-container');
 
 //################################################################################# Globals
@@ -17,6 +20,7 @@ var next__block_element = document.querySelector('#next-block')
 
 ctx.canvas.width = singleBlockSize * wellColumns;
 ctx.canvas.height = singleBlockSize * wellRows;
+
 
 result_container[0].style.width =  '150px';
 result_container[0].style.height = singleBlockSize * wellRows +'px';
@@ -174,7 +178,8 @@ playButton.addEventListener('click',playButtonHandler)
 function mediaFunction(media) {
     if (media.matches) { // If media query matches
         mobile__contorls_element.style.display = 'Flex';
-        next__block_element.style.display='none';
+        //next__block_element.style.display='none';
+        next__block_element.style.height="25%"
         var mobile__contorls = document.querySelector('#mobile__contorls')
     } 
   }
@@ -232,6 +237,12 @@ function mediaFunction(media) {
   mediaFunction(media) // Call listener function at run time
   media.addListener(mediaFunction)
 
+
+
+
+//########################################################## next canvas
+nextCtx.canvas.height=singleBlockSize*4;
+nextCtx.canvas.width='150';
 
 
 

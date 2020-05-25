@@ -16,8 +16,13 @@ body {
 }
 
 canvas{
-    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.5);
     background-color: rgb(13, 13, 15);
+}
+
+#nextCanvas{
+    background-color: #000204e8;
+    box-shadow: none;
+
 }
 
 .result-container {
@@ -39,15 +44,15 @@ canvas{
     justify-content: center;
 }
 .result-container #score{
-    height: 20%;
+    height: 15%;
 }
+
 .result-container #next-block{
     display: block;
     align-self: center;
-    height: 40%;
+    height: 45%;
     width: 100%;
-    text-align: center;
-    /* border: 1px solid black; */
+    text-align: center;        
 }
 /* moblie */
 .result-container #mobile__contorls{
@@ -84,7 +89,6 @@ canvas{
     justify-content: center;
     width: 60%;
     user-select: none;
-    aria: role;
 }
 
 .result-container #mobile__contorls #rotate #rotate__text{

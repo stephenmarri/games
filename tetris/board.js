@@ -11,6 +11,7 @@ class Board{
     draw(){
         this.drawGridLines();
         this.piece.draw();
+        this.piece.drawInNext();
         this.drawBoard();
     }
 
