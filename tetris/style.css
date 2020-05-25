@@ -84,6 +84,13 @@ canvas{
     justify-content: center;
     width: 60%;
 }
+
+.result-container #mobile__contorls #rotate #rotate__text{
+    -moz-user-select:none;
+    -ms-user-select:none;
+    -webkit-user-select:none;
+}
+
 .result-container #mobile__contorls #leftRight{
     margin: 4px 4px;
     width: 100%;
