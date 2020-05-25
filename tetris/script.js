@@ -169,6 +169,8 @@ function resetGame(){
     board=null;    
     totalLinesCleared=0;
     gameSpeed=intialSpeed;
+    currentPiece = null;
+    nextPiece = null;
 }
 
 playButton.addEventListener('click',playButtonHandler)

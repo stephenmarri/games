@@ -11,7 +11,7 @@ class Board{
     draw(){
         this.drawGridLines();
         this.piece.draw();
-        this.piece.drawInNext();
+        this.piece.drawInNext(nextPiece);
         this.drawBoard();
     }
 
@@ -41,7 +41,16 @@ class Board{
     }
 
     getNewPiece(){
-        this.piece = new Piece(this.ctx)   
+        if(!nextPiece){
+            currentPiece = new Piece(this.ctx);
+            nextPiece = new Piece(this.ctx);
+            this.piece = currentPiece;
+        }else{
+            currentPiece = nextPiece
+            this.piece = currentPiece;
+            nextPiece = new Piece(this.ctx);;
+        }
+        
     }
 
     getEmptyBoard(){

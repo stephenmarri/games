@@ -11,6 +11,8 @@ const intialSpeed=55;
 var gameSpeed = intialSpeed;
 var isGameWon=false;
 var totalLinesCleared =0;
+var currentPiece = null;
+var nextPiece = null;
 
 //  I J L O S T Z
 const shapes = [ 
@@ -89,12 +91,12 @@ class Piece{
         });
     }
 
-    drawInNext(){
+    drawInNext(Piece){
         let offset=singleBlockSize*2
         let offsetY=singleBlockSize*1
         nextCtx.clearRect(0,0,nextCanvas.width,nextCanvas.height)
-        nextCtx.fillStyle = this.color;        
-        this.shape.forEach((row, y) => {
+        nextCtx.fillStyle = Piece.color;        
+        Piece.shape.forEach((row, y) => {
             row.forEach((value,x) => {
                 if(value > 0){
                     //well[y][x]=value;                    
