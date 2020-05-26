@@ -128,7 +128,7 @@ let board;
 function playButtonHandler(){
     if(playButton.textContent=='Play'){
         resetGame();
-        playButton.textContent='Pause'
+        playButton.textContent='Pause';        
         board= new Board(ctx);
         well = board.getEmptyBoard();
         animate()
@@ -136,27 +136,14 @@ function playButtonHandler(){
         mobile__contorls.addEventListener('click',mediaEventHandler);
     }else
     if(playButton.textContent=='Pause'){                
-        playButton.textContent='Resume';
-        cancelAnimationFrame(animationId);
-        document.removeEventListener('keydown',  VarkeyDownHandler);
-        mobile__contorls.removeEventListener('click',mediaEventHandler);
-        ctx.save();
-        ctx.fillStyle = "rgba(0,0,0, 0.5)";
-        ctx.fillRect(0,0,canvas.width,canvas.height);
-        ctx.restore();
-        ctx.font = "30px Chelsea Market";    
-        ctx.textAlign = "center";
-        ctx.fillText("Paused", canvas.width/2,canvas.height/2);  
+        pauseGame();
     }else
     if(playButton.textContent=='Resume'){
-        playButton.textContent='Pause';
-        animate();
-        document.addEventListener('keydown',   VarkeyDownHandler);
-        mobile__contorls.addEventListener('click',mediaEventHandler);
+        resumeGame();
     }
 }
 
-function animate(){    
+async function animate(){    
     frameCount++;
     ctx.clearRect(0,0,canvas.width,canvas.height);
     moveDown();
@@ -167,6 +154,10 @@ function animate(){
     if(isGameWon ){
     gameOver("You Won");
     }    
+    if(levelIncreased){
+        levelIncreased=false;
+        await drawLevels(currentLevel);
+    }
     animationId = requestAnimationFrame(animate);            
 }
 
@@ -182,12 +173,34 @@ function resetGame(){
     well=null;
     board=null;    
     totalLinesCleared=0;
-    gameSpeed=intialSpeed;
+    gameSpeed=55;
     currentPiece = null;
     nextPiece = null;
     cancelAnimationFrame(animationId);
     tetrisCount = 0;
-    currentLevel=1
+    currentLevel=1;
+    levelIncreased = true;
+}
+
+function pauseGame(){
+        playButton.textContent='Resume';
+        cancelAnimationFrame(animationId);
+        document.removeEventListener('keydown',  VarkeyDownHandler);
+        mobile__contorls.removeEventListener('click',mediaEventHandler);
+        ctx.save();
+        ctx.fillStyle = "rgba(0,0,0, 0.5)";
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+        ctx.restore();
+        ctx.font = "30px Chelsea Market";    
+        ctx.textAlign = "center";
+        ctx.fillText("Paused", canvas.width/2,canvas.height/2);  
+}
+
+function resumeGame(){
+        playButton.textContent='Pause';
+        animate();
+        document.addEventListener('keydown',   VarkeyDownHandler);
+        mobile__contorls.addEventListener('click',mediaEventHandler);
 }
 
 playButton.addEventListener('click',playButtonHandler)
@@ -300,10 +313,33 @@ function drawRules(){
 
 }
 
-function drawLevels(){
+async function drawLevels(level){        
+        document.removeEventListener('keydown',  VarkeyDownHandler);
+        mobile__contorls.removeEventListener('click',mediaEventHandler);
 
+    ctx.clearRect(0,0,canvas.width,canvas.height)
+    ctx.fillStyle="white";
+    ctx.textAlign = "center";
+    ctx.font = "30px Chelsea Market";    
+    ctx.fillText(`Level ${level}`, canvas.width/2,canvas.height/2);   
+    ctx.font = "normal normal 20px Caveat";              
+    ctx.fillText(`Target: ${level} Tetris`, canvas.width/2,canvas.height/2 + 40); 
+    ctx.font = "normal normal 12px Verdana";                   
+    ctx.fillText("(Tetris: 4 Lines)", canvas.width/2,canvas.height/2 + 70);   
+    await sleep(2000);
+        
+        document.addEventListener('keydown',   VarkeyDownHandler);
+        mobile__contorls.addEventListener('click',mediaEventHandler);
 }
 
 window.addEventListener('DOMContentLoaded',()=>{
     window.addEventListener('load',drawRules);
+    
 })
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+  
+
+  

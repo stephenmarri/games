@@ -85,17 +85,17 @@ class Board{
                 if(tetrisCount==levelTargets.level1.tcount && currentLevel==1){
                     gameSpeed=levels[1];
                     levelElement.textContent = parseInt(levelElement.textContent) + 1;
-                    currentLevel++;    
+                    currentLevel++;    levelIncreased=true;
                 }
                 if(tetrisCount==levelTargets.level2.tcount && currentLevel==2){
                     gameSpeed=levels[2];
                     levelElement.textContent = parseInt(levelElement.textContent) + 1;  
-                    currentLevel++;  
+                    currentLevel++;  levelIncreased=true;
                 }
                 if(tetrisCount==levelTargets.level3.tcount && currentLevel==3){
                     gameSpeed=levels[3];
                     levelElement.textContent = parseInt(levelElement.textContent) + 1;    
-                    currentLevel++;
+                    currentLevel++;levelIncreased=true;
                 }
 
             }else{//increase score
@@ -107,17 +107,18 @@ class Board{
             if(intScore>=levelTargets.level1.score && currentLevel==1){
                 gameSpeed=levels[1];
                 levelElement.textContent = parseInt(levelElement.textContent) + 1;
-                currentLevel++;    
+                currentLevel++;levelIncreased=true;
+
             }
             if(intScore>=levelTargets.level2.score && currentLevel==2){
                 gameSpeed=levels[2];
                 levelElement.textContent = parseInt(levelElement.textContent) + 1;  
-                currentLevel++;  
+                currentLevel++;  levelIncreased=true;
             }
             if(intScore>=levelTargets.level3.score && currentLevel==3){
                 gameSpeed=levels[3];
                 levelElement.textContent = parseInt(levelElement.textContent) + 1;    
-                currentLevel++;
+                currentLevel++;levelIncreased=true;
             }
 
             //game won

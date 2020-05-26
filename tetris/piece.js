@@ -7,7 +7,7 @@ var isGameOver=false;
 var frameCount=0;
 let downFC=0;
 var score=0;
-const intialSpeed=55;
+const intialSpeed=65;
 var gameSpeed = intialSpeed;
 var isGameWon=false;
 var totalLinesCleared =0;
@@ -15,6 +15,7 @@ var currentPiece = null;
 var nextPiece = null;
 var tetrisCount = 0;
 var currentLevel=1;
+var levelIncreased = true;
 
 //  I J L O S T Z
 const shapes = [ 
@@ -38,9 +39,9 @@ const fixedScores = [
 
 const levels = [
     0,
-    gameSpeed-15,
+    gameSpeed-20,
     gameSpeed-33,
-    gameSpeed-40,
+    gameSpeed-45,
 ]
 
 const levelTargets= {
