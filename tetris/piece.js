@@ -14,6 +14,7 @@ var totalLinesCleared =0;
 var currentPiece = null;
 var nextPiece = null;
 var tetrisCount = 0;
+var currentLevel=1;
 
 //  I J L O S T Z
 const shapes = [ 
@@ -37,11 +38,17 @@ const fixedScores = [
 
 const levels = [
     0,
-    gameSpeed-10,
-    gameSpeed-20,
-    gameSpeed-35,
-    gameSpeed-45,
+    gameSpeed-15,
+    gameSpeed-33,
+    gameSpeed-40,
 ]
+
+const levelTargets= {
+    level1:{tcount: 1,  score:1* fixedScores[4]},
+    level2:{tcount: 3,  score:3* fixedScores[4]},
+    level3:{tcount: 6,  score:6* fixedScores[4]},
+    level4:{tcount: 10, score:10*fixedScores[4]}
+}
 
 const colors =[
     'none',

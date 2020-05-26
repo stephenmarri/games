@@ -187,6 +187,7 @@ function resetGame(){
     nextPiece = null;
     cancelAnimationFrame(animationId);
     tetrisCount = 0;
+    currentLevel=1
 }
 
 playButton.addEventListener('click',playButtonHandler)
@@ -264,3 +265,6 @@ nextCtx.canvas.width='150';
 
 
 
+function drawRules(){
+    
+}

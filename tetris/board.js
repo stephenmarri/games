@@ -57,7 +57,8 @@ class Board{
         return Array.from({length: wellRows}, ()=> Array(wellColumns).fill(0) )
     }
 
-    isLineComplete(){
+    isLineComplete(){        
+
         let lines = []
         for (let x = 0; x < wellRows; x++) {
             let isComp = true;
@@ -69,46 +70,62 @@ class Board{
             }
             if(isComp)lines.push(x);            
         }
+
+        //will only enter inside if a line is cleared        
         if(lines.length>0) {
             totalLinesCleared++;    
             for(let k=0; k<lines.length;k++){
                 well.splice(lines[k],1);                
                 well.unshift(Array(wellColumns).fill(0));
             }    
-            if(lines.length>=4){
+            //when a tetris is made
+            if(lines.length==4){
                 score.textContent = parseInt(score.textContent)+ fixedScores[4];
                 tetrisCount++;    
-                if(tetrisCount==1){
+                if(tetrisCount==levelTargets.level1.tcount && currentLevel==1){
                     gameSpeed=levels[1];
-                    levelElement.textContent = parseInt(levelElement.textContent) + 1;    
+                    levelElement.textContent = parseInt(levelElement.textContent) + 1;
+                    currentLevel++;    
                 }
-                if(tetrisCount==3){
+                if(tetrisCount==levelTargets.level2.tcount && currentLevel==2){
                     gameSpeed=levels[2];
-                    levelElement.textContent = parseInt(levelElement.textContent) + 1;    
+                    levelElement.textContent = parseInt(levelElement.textContent) + 1;  
+                    currentLevel++;  
                 }
-                if(tetrisCount==6){
+                if(tetrisCount==levelTargets.level3.tcount && currentLevel==3){
                     gameSpeed=levels[3];
                     levelElement.textContent = parseInt(levelElement.textContent) + 1;    
+                    currentLevel++;
                 }
 
-            }else{
+            }else{//increase score
                 score.textContent = parseInt(score.textContent)+ fixedScores[lines.length];
+            }                                                
+
+            //changing level based on score
+            let intScore = parseInt(score.textContent);
+            if(intScore>=levelTargets.level1.score && currentLevel==1){
+                gameSpeed=levels[1];
+                levelElement.textContent = parseInt(levelElement.textContent) + 1;
+                currentLevel++;    
+            }
+            if(intScore>=levelTargets.level2.score && currentLevel==2){
+                gameSpeed=levels[2];
+                levelElement.textContent = parseInt(levelElement.textContent) + 1;  
+                currentLevel++;  
+            }
+            if(intScore>=levelTargets.level3.score && currentLevel==3){
+                gameSpeed=levels[3];
+                levelElement.textContent = parseInt(levelElement.textContent) + 1;    
+                currentLevel++;
             }
 
-            if(tetrisCount>=10){
+            //game won
+            if((tetrisCount>=levelTargets.level4.tcount || parseInt(score.textContent)>=levelTargets.level4.score) && currentLevel==4){            
                 isGameWon=true;
             }
-            
-            // if(totalLinesCleared<13){
-            //     if(totalLinesCleared%3==0){
-            //         gameSpeed=levels[totalLinesCleared/3];
-            //         levelElement.textContent = parseInt(levelElement.textContent) + 1;
-            //     }
-            // }
 
-
-        };
-
+    };
         return 1
     }
 
