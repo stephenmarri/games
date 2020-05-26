@@ -334,6 +334,8 @@ async function drawLevels(level){
 
 window.addEventListener('DOMContentLoaded',()=>{
     window.addEventListener('load',drawRules);
+     document.getElementsByClassName('hidethis')[0].style.display="none";
+     document.getElementsByClassName('hidethis')[1].style.display="none";
     
 })
 

@@ -6,6 +6,7 @@
 
 html{
     font-family: 'Chelsea Market','Caveat','Raleway', 'cursive';
+    overflow: hidden;
 
 }
 body {
@@ -15,7 +16,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 16px;
+    font-size: 16px;    
+
 }
 
 canvas{
