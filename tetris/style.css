@@ -11,7 +11,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Chelsea Market', cursive;
+    font-family: 'Chelsea Market', 'Caveat','Raleway' cursive;
     font-size: 16px;
 }
 
@@ -32,7 +32,7 @@ canvas{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+    font-family: 'Chelsea Market';
 }
 
 .result-container #game-header{
