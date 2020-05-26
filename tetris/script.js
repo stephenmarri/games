@@ -22,7 +22,7 @@ ctx.canvas.width = singleBlockSize * wellColumns;
 ctx.canvas.height = singleBlockSize * wellRows;
 
 
-result_container[0].style.width =  '150px';
+result_container[0].style.width =  '145px';
 result_container[0].style.height = singleBlockSize * wellRows +'px';
 
 
@@ -131,9 +131,9 @@ function playButtonHandler(){
         playButton.textContent='Pause';        
         board= new Board(ctx);
         well = board.getEmptyBoard();
-        animate()
         document.addEventListener('keydown',   VarkeyDownHandler);
         mobile__contorls.addEventListener('click',mediaEventHandler);
+        animate()
     }else
     if(playButton.textContent=='Pause'){                
         pauseGame();
@@ -314,9 +314,8 @@ function drawRules(){
 }
 
 async function drawLevels(level){        
-        document.removeEventListener('keydown',  VarkeyDownHandler);
-        mobile__contorls.removeEventListener('click',mediaEventHandler);
-
+    document.removeEventListener('keydown',  VarkeyDownHandler);
+    mobile__contorls.removeEventListener('click',mediaEventHandler);
     ctx.clearRect(0,0,canvas.width,canvas.height)
     ctx.fillStyle="white";
     ctx.textAlign = "center";
@@ -328,8 +327,8 @@ async function drawLevels(level){
     ctx.fillText("(Tetris: 4 Lines)", canvas.width/2,canvas.height/2 + 70);   
     await sleep(2000);
         
-        document.addEventListener('keydown',   VarkeyDownHandler);
-        mobile__contorls.addEventListener('click',mediaEventHandler);
+    document.addEventListener('keydown',   VarkeyDownHandler);
+    mobile__contorls.addEventListener('click',mediaEventHandler);
 }
 
 window.addEventListener('DOMContentLoaded',()=>{
