@@ -265,14 +265,14 @@ nextCtx.canvas.width='150';
 
 
 
-function drawRules(){        
+function drawRules(){           
     ctx.fillStyle="white";
     ctx.textAlign = "center";
     ctx.font = "30px Chelsea Market";    
-    ctx.fillText("Rules", canvas.width/2,40);      
-    ctx.font = "20px Caveat";    
+    ctx.fillText("Rules", canvas.width/2,40);     
+    ctx.font = "normal normal 20px Caveat";    
     ctx.fillText("--------------", canvas.width/2,60);      
-    ctx.fillText("Score:", canvas.width/4,90);  
+    ctx.fillText("Score:", canvas.width/4,84);  
     ctx.font = "13px Raleway";    
     ctx.textAlign = "left";
     ctx.fillText("1 line  cleared:   40 points", 30,110);      
@@ -284,15 +284,19 @@ function drawRules(){
     ctx.font = "20px Caveat";           
     ctx.fillText("Levels:", 30,230); 
     ctx.font = "13px Raleway";          
-    ctx.fillText("L1: 1 Tetris OR 1200 points", 30, 256);      
-    ctx.fillText("L2: 2 Tetris OR 3600 points", 30,271);      
-    ctx.fillText("L3: 3 Tetris OR 7200 points", 30,286);      
-    ctx.fillText("L4: 4 Tetris OR 12000 points", 30,301); 
+    ctx.fillText("L1: 1 Tetris or 1200 points", 30, 256);      
+    ctx.fillText("L2: 2 Tetris or 3600 points", 30,271);      
+    ctx.fillText("L3: 3 Tetris or 7200 points", 30,286);      
+    ctx.fillText("L4: 4 Tetris or 12000 points", 30,301); 
     ctx.font = "20px Caveat";           
     ctx.fillText("How to win?:", 30,350); 
     ctx.font = "13px Raleway";          
     ctx.fillText("Clear L4: Total 10 Tetris or", 30, 376);      
-    ctx.fillText("Score 12000 pts", 88, 396);      
+    ctx.fillText("Score 12000 pts", 88, 396);  
+    nextCtx.fillStyle="white";    
+    nextCtx.font = "15px Chelsea Market";    
+    nextCtx.fillText("Next piece will", 20,30); 
+    nextCtx.fillText("appear here", 30,50); 
 
 }
 
@@ -300,4 +304,6 @@ function drawLevels(){
 
 }
 
-window.addEventListener('load',drawRules);
+window.addEventListener('DOMContentLoaded',()=>{
+    window.addEventListener('load',drawRules);
+})
