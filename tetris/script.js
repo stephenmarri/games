@@ -296,4 +296,8 @@ function drawRules(){
 
 }
 
+function drawLevels(){
+
+}
+
 window.addEventListener('load',drawRules);
