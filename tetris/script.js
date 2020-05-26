@@ -180,6 +180,7 @@ function resetGame(){
     tetrisCount = 0;
     currentLevel=1;
     levelIncreased = true;
+    generatedBlocksCount = 0;
 }
 
 function pauseGame(){

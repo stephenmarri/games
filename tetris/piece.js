@@ -16,6 +16,7 @@ var nextPiece = null;
 var tetrisCount = 0;
 var currentLevel=1;
 var levelIncreased = true;
+var generatedBlocksCount = 0;
 
 //  I J L O S T Z
 const shapes = [ 
@@ -130,6 +131,8 @@ class Piece{
     }
 
     generateRandom(max){
+        generatedBlocksCount++;
+        if(generatedBlocksCount%20==0) return 1;
         return Math.floor(Math.random()*max + 1)
     }
 
