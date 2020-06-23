@@ -16,6 +16,11 @@ var levelElement = document.querySelector('#level__text')
 var mobile__contorls_element = document.querySelector('#mobile__contorls')
 var next__block_element = document.querySelector('#next-block')
 //################################################################################# Globals
+//################################################################################# audio files
+const audio_oneline = document.querySelector('#oneline')
+const audio_fourlines = document.querySelector('#fourlines')
+const audio_gameover = document.querySelector('#gameover')
+//################################################################################# audio files
 
 
 ctx.canvas.width = singleBlockSize * wellColumns;
@@ -106,7 +111,7 @@ var VarkeyDownHandler = function keyDownHandler(event){
 }
 
 
-function gameOver(text){
+async function gameOver(text){
     cancelAnimationFrame(animationId);
     ctx.save();
     ctx.fillStyle = "rgba(0,0,0, 0.5)";
@@ -121,6 +126,10 @@ function gameOver(text){
 
 }
 
+async function gameOverAudio() {
+    audio_gameover.currentTime=0
+    audio_gameover.play()
+} 
 
 
 //################################################################################# main
@@ -149,10 +158,10 @@ async function animate(){
     moveDown();
     board.draw();       
     if(isGameOver ){
-    gameOver("Game Over");
+        gameOver("Game Over");
     }
     if(isGameWon ){
-    gameOver("You Won");
+        gameOver("You Won");
     }    
     if(levelIncreased){
         levelIncreased=false;

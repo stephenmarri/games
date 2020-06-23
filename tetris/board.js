@@ -73,11 +73,24 @@ class Board{
 
         //will only enter inside if a line is cleared        
         if(lines.length>0) {
+            
             totalLinesCleared++;    
             for(let k=0; k<lines.length;k++){
                 well.splice(lines[k],1);                
                 well.unshift(Array(wellColumns).fill(0));
             }    
+
+            //audio
+            if(lines.length==4){
+                audio_fourlines.currentTime=0
+                audio_fourlines.play()
+            }else{
+                //play oneline one
+                audio_oneline.currentTime=0
+                audio_oneline.play()
+            }
+
+
             //when a tetris is made
             if(lines.length==4){
                 score.textContent = parseInt(score.textContent)+ fixedScores[4];
@@ -151,7 +164,8 @@ class Board{
         let sum;
         sum = well[1].reduce((a, b) => a + b, 0);        
         if(sum>0){
-            isGameOver=true;            
+            isGameOver=true;  
+                     
         }
     }
 }
