@@ -123,14 +123,8 @@ async function gameOver(text){
     playButton.textContent='Play' ;
     document.removeEventListener('keydown',  VarkeyDownHandler);
     mobile__contorls.removeEventListener('click',mediaEventHandler);
-
+    
 }
-
-async function gameOverAudio() {
-    audio_gameover.currentTime=0
-    audio_gameover.play()
-} 
-
 
 //################################################################################# main
 let board;
@@ -158,6 +152,7 @@ async function animate(){
     moveDown();
     board.draw();       
     if(isGameOver ){
+        audio_gameover.play()
         gameOver("Game Over");
     }
     if(isGameWon ){
@@ -167,7 +162,9 @@ async function animate(){
         levelIncreased=false;
         await drawLevels(currentLevel);
     }
-    animationId = requestAnimationFrame(animate);            
+    if(!isGameOver){
+        animationId = requestAnimationFrame(animate);            
+    }
 }
 
 function resetGame(){
