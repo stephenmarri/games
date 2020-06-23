@@ -22,7 +22,6 @@ const audio_fourlines = document.querySelector('#fourlines')
 const audio_gameover = document.querySelector('#gameover')
 //################################################################################# audio files
 
-
 ctx.canvas.width = singleBlockSize * wellColumns;
 ctx.canvas.height = singleBlockSize * wellRows;
 
