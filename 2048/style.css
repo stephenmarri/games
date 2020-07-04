@@ -57,6 +57,10 @@ body{
     height: 500px;
     width: 500px;
     border-radius: 5px;
+    color: wheat;
+    font-size: 3rem;
+    font-weight: bold;
+    font-family: Helvetica, sans-serif;
     
     display: grid;
     grid-template-columns: auto auto auto auto;
@@ -70,6 +74,11 @@ body{
     height: 100px;
     background-color: rgba(238, 228, 218, 0.35);
     border-radius: 3px;
+    transition: background-color 1s linear;
+}
+
+.tile.active{
+    background-color: red;
 }
 
 /* game */
@@ -96,9 +105,10 @@ body{
         height: 100vh;
         margin: 0;
         padding: 0;
-        font-size: 5px;
+        font-size: 6px;
     }
     .wrapper{
+        height: 80vh;
         justify-content: space-around !important;
     }
     #stats{
