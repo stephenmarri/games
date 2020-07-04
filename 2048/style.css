@@ -58,7 +58,7 @@ body{
     width: 500px;
     border-radius: 5px;
     color: wheat;
-    font-size: 3rem;
+    font-size: 4rem;
     font-weight: bold;
     font-family: Helvetica, sans-serif;
     
@@ -74,11 +74,12 @@ body{
     height: 100px;
     background-color: rgba(238, 228, 218, 0.35);
     border-radius: 3px;
-    transition: background-color 1s linear;
+    transition: background-color 0.3s linear;
 }
 
 .tile.active{
-    background-color: red;
+    color: #776e65;
+    font-weight: 500;
 }
 
 /* game */
