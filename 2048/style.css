@@ -108,11 +108,10 @@ body{
         font-size: 6px;
     }
     .wrapper{
-        position: absolute;
-        top: 0px;
         width: 80%;
-        height: 80%;
+        height: 100%;
         justify-content: space-around !important;
+        overscroll-behavior: none;
     }
     #stats{
         width: 340px;
