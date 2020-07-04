@@ -108,7 +108,8 @@ body{
         font-size: 6px;
     }
     .wrapper{
-        height: 80vh;
+        width: 80%;
+        height: 60vh;
         justify-content: space-around !important;
     }
     #stats{
@@ -119,12 +120,7 @@ body{
         background-color: rgb(194, 187, 179);
 
     }
-    .wrapper{
-        width: 80%;
-        height: 80%;
-        
-    }
-    
+ 
     #grid{
         width: 340px;
         height: 340px;
