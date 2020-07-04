@@ -108,6 +108,8 @@ body{
         font-size: 6px;
     }
     .wrapper{
+        position: absolute;
+        top: 0px;
         width: 80%;
         height: 80%;
         justify-content: space-around !important;
