@@ -5,6 +5,7 @@ document.addEventListener('keyup', moveHandler)
 
 async function moveHandler(event){
     let k = event.keyCode;
+    board.removeClass('double')
     moved=false
     if(k==40){
         board.cDown();        
@@ -18,9 +19,9 @@ async function moveHandler(event){
 
     if(k >= 37 && k<=40){
         board.drawBoard();
-        await sleep(500)
         if(moved){
             board.genNewTile();
+            await sleep(300)
             board.drawBoard();
         }
     }

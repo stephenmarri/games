@@ -51,6 +51,8 @@ class Board{
         let x = emptyPos[rand][0]
         let y = emptyPos[rand][1]
         this.matrix[x][y]=value;
+        this.removeClass('born')
+        document.querySelector(`[data-id="${x}${y}"]`).classList.add('born')
     }
 
     genRandom(max){
@@ -64,6 +66,9 @@ class Board{
                 if(this.matrix[i][j]>0){
                     html.innerHTML=`<span>${this.matrix[i][j]}</span>`;
                     html.classList.add('active')
+                    
+                    //style validations
+                    if(this.matrix[i][j]>1000)html.style.fontSize = "3rem"                  
                     if(this.matrix[i][j]<=2048){                    
                         html.style.backgroundColor = this.colors[this.matrix[i][j]]
                     }else{                        
@@ -131,7 +136,13 @@ class Board{
             }
             cArr =  this.arrangeFour(cArr[0],cArr[1],cArr[2],cArr[3])
             for(let k=0;k<this.size;k++){
+                if((this.matrix[k][i])*2 == cArr[k] && cArr[k]>0){
+                    document.querySelector(`[data-id="${k}${i}"]`).classList.add('double')                    
+                    console.log('doubled',k,i);               
+                }
+                
                 this.matrix[k][i] = cArr[k]
+
             }
         }
     }
@@ -144,6 +155,10 @@ class Board{
             }
             cArr =  this.arrangeFour(cArr[3],cArr[2],cArr[1],cArr[0])
             for(let k=0;k<this.size;k++){
+                if((this.matrix[k][i])*2 == cArr[3-k] && cArr[3-k]>0){
+                    console.log('doubled',k,i);               
+                    document.querySelector(`[data-id="${k}${i}"]`).classList.add('double')                    
+                }
                 this.matrix[k][i] = cArr[3-k]
             }
         }
@@ -157,6 +172,10 @@ class Board{
             }
             cArr =  this.arrangeFour(cArr[3],cArr[2],cArr[1],cArr[0])        
             for(let k=0;k<this.size;k++){
+                if((this.matrix[i][k])*2 == cArr[3-k] && cArr[3-k]>0){
+                    document.querySelector(`[data-id="${i}${k}"]`).classList.add('double')                    
+                    console.log('doubled',i,k);               
+                }
                 this.matrix[i][k] = cArr[3-k]
             }
         }
@@ -170,6 +189,10 @@ class Board{
             }
             cArr =  this.arrangeFour(cArr[0],cArr[1],cArr[2],cArr[3])        
             for(let k=0;k<this.size;k++){
+                if((this.matrix[i][k])*2 == cArr[k] && cArr[k]>0){
+                    document.querySelector(`[data-id="${i}${k}"]`).classList.add('double')     
+                    console.log('doubled',i,k);               
+                }
                 this.matrix[i][k] = cArr[k]
             }
         }
@@ -249,5 +272,14 @@ class Board{
 
         }
     }    
+
+    removeClass(cname){
+        for(let i=0;i<this.size;i++){
+            for(let j=0;j<this.size;j++){
+                let html = document.querySelector(`[data-id="${i}${j}"]`);
+                html.classList.remove(cname);
+            }
+        }
+    }
 
 }
