@@ -121,7 +121,7 @@ class Board{
             
             if(target != i){
                 p[target] = p[i] + ( double * p[i])
-                if(p[target]==16){
+                if(p[target]==2048){
                     banner.style.display="inline-flex"
                     banner_t.textContent="Game Won!"
                 }
