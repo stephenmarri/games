@@ -68,7 +68,11 @@ class Board{
                     html.classList.add('active')
                     
                     //style validations
-                    if(this.matrix[i][j]>1000)html.style.fontSize = "3rem"                  
+                    if(this.matrix[i][j]>1000){
+                        html.style.fontSize = "3rem"
+                    }else{
+                        html.style.fontSize = "4.5rem"
+                    }
                     if(this.matrix[i][j]<=2048){                    
                         html.style.backgroundColor = this.colors[this.matrix[i][j]]
                     }else{                        

@@ -131,11 +131,11 @@ body{
     font-weight: 600;    
 }
 .tile.double{
-    animation: grow 300ms ease 100ms;
+    animation: grow 300ms ease 50ms;
     animation-fill-mode: backwards;    
 }
 .tile.born{
-    animation: bornGrow 200ms ease 100ms;
+    animation: bornGrow 200ms ease 50ms;
     animation-fill-mode: backwards;
 }
 
