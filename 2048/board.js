@@ -93,6 +93,7 @@ class Board{
             let next = i+1;
             let double = 0
             for(let j = i+1; j<= uLimit;j++){
+                if(p[i]==0)break
                 //if next block is filled
                 if(p[j]!=0){
                     if(p[j]!=p[i]){
@@ -115,6 +116,7 @@ class Board{
             if(target != i){
                 p[target] = p[i] + ( double * p[i])
                 p[i]=0;
+                moved=true
             }
         }
     
@@ -125,7 +127,6 @@ class Board{
         for(let i=0; i< this.size; i++){
             let cArr=[];
             for(let j=0; j< this.size ; j++){
-                console.log(cArr);
                  cArr.push(this.matrix[j][i])
             }
             cArr =  this.arrangeFour(cArr[0],cArr[1],cArr[2],cArr[3])
@@ -139,7 +140,6 @@ class Board{
         for(let i=0; i< this.size; i++){
             let cArr=[];
             for(let j=0; j< this.size ; j++){
-                console.log(cArr);
                  cArr.push(this.matrix[j][i])
             }
             cArr =  this.arrangeFour(cArr[3],cArr[2],cArr[1],cArr[0])
@@ -153,7 +153,6 @@ class Board{
         for(let i=0; i< this.size; i++){
             let cArr=[];
             for(let j=0; j< this.size ; j++){
-                console.log(cArr);
                  cArr.push(this.matrix[i][j])
             }
             cArr =  this.arrangeFour(cArr[3],cArr[2],cArr[1],cArr[0])        
@@ -167,7 +166,6 @@ class Board{
         for(let i=0; i< this.size; i++){
             let cArr=[];
             for(let j=0; j< this.size ; j++){
-                console.log(cArr);
                  cArr.push(this.matrix[i][j])
             }
             cArr =  this.arrangeFour(cArr[0],cArr[1],cArr[2],cArr[3])        
