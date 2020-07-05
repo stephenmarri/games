@@ -3,19 +3,29 @@ board.createNewGame();
 
 document.addEventListener('keyup', moveHandler)
 
-function moveHandler(event){
+async function moveHandler(event){
     let k = event.keyCode;
 
     if(k==40){
-        board.calcDown();        
-        board.drawBoard();
-        board.genNewTile();
-        board.drawBoard();
+        board.cDown();        
     }else  if(k==38){
-        board.calcUp();        
+        board.cUp();        
+    }else  if(k==37){
+        board.cLeft();        
+    }else  if(k==39){
+        board.cRight();        
+    }
+
+    if(k >= 37 && k<=40){
         board.drawBoard();
+        await sleep(500)
         board.genNewTile();
         board.drawBoard();
     }
 
 }
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+  
