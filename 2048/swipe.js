@@ -40,8 +40,11 @@ function detectswipe(el,func) {
   
   function myfunction(el,d) {
     console.log("you swiped on element with id '"+el+"' to "+d+" direction");
-    if(d=='d'){
-        direction=40;
+    if(d!=""){
+        if(d=="l") direction = 37
+        if(d=="u") direction = 38
+        if(d=="r") direction = 39
+        if(d=="d") direction = 40
         moveHandler();
     }
   }
