@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/js/all.min.js"></script>
     <link rel="stylesheet" href="style.css">
     <title>Steve's 2048</title>
 </head>
@@ -12,10 +13,14 @@
     <div class="wrapper flex-col">
         <div id="stats" class="flex-row">
             <div id="title">2048</div>
-            <div id="score">Score <br> 23</div>
-
+            <div id="restart"><i class="fas fa-sync-alt fa-3x"></i></div>
+            <div id="score">
+                <div id="score_text">SCORE</div>
+                <div id="score_value">152</div>
+            </div>
+            
         </div>
-
+        
         <div id="grid" >
             <div class="flex-row tile" data-id="00"><SPAN></SPAN></div>
             <div class="flex-row tile" data-id="01"><SPAN></SPAN></div>
@@ -33,6 +38,10 @@
             <div class="flex-row tile" data-id="31"><SPAN></SPAN></div>
             <div class="flex-row tile" data-id="32"><SPAN></SPAN></div>
             <div class="flex-row tile" data-id="33"><SPAN></SPAN></div>
+            <div id="banner" class="flex-col">
+                <span>Game Over!</span>
+                <p>Tap to play again</p>
+            </div>
         </div>
 
     </div>
