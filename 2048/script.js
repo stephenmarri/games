@@ -1,5 +1,12 @@
 let board = new Board();
 board.createNewGame();
+let reset = document.querySelector('#reset')
+let score = document.querySelector('#sValue')
+
+reset.addEventListener('click', ()=>{
+    board.createNewGame();
+    score.textContent=0;
+})
 
 document.addEventListener('keyup', moveHandler)
 

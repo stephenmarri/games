@@ -61,6 +61,11 @@ body{
     background-color: #776e65;
     color: white;
     border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+#reset:active{
+    transform: scale(0.98);
 }
 #score{
     border-radius: 0.5rem;
@@ -78,11 +83,12 @@ body{
     height: 20%;
     width: 100%;
     justify-content: flex-end !important;
+    color: antiquewhite;
 }
 #score_value{
     width: 100%     ;
     height: 80%;
-    font-size: 4rem;
+    font-size: 3.5rem;
 }
 /* stats */
 
@@ -125,11 +131,11 @@ body{
     font-weight: 600;    
 }
 .tile.double{
-    animation: grow 200ms ease 100ms;
+    animation: grow 300ms ease 100ms;
     animation-fill-mode: backwards;    
 }
 .tile.born{
-    animation: bornGrow 100ms ease 100ms;
+    animation: bornGrow 200ms ease 100ms;
     animation-fill-mode: backwards;
 }
 

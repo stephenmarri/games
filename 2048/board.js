@@ -60,6 +60,7 @@ class Board{
     }
 
     drawBoard(){
+        this.gameOver()
         for(let i=0;i<this.size;i++){
             for(let j=0;j<this.size;j++){
                 let html = document.querySelector(`[data-id="${i}${j}"]`);
@@ -120,6 +121,7 @@ class Board{
             
             if(target != i){
                 p[target] = p[i] + ( double * p[i])
+                score.textContent = parseInt(score.textContent) + (p[target]*double)
                 p[i]=0;
                 moved=true
             }
@@ -138,7 +140,6 @@ class Board{
             for(let k=0;k<this.size;k++){
                 if((this.matrix[k][i])*2 == cArr[k] && cArr[k]>0){
                     document.querySelector(`[data-id="${k}${i}"]`).classList.add('double')                    
-                    console.log('doubled',k,i);               
                 }
                 
                 this.matrix[k][i] = cArr[k]
@@ -156,7 +157,6 @@ class Board{
             cArr =  this.arrangeFour(cArr[3],cArr[2],cArr[1],cArr[0])
             for(let k=0;k<this.size;k++){
                 if((this.matrix[k][i])*2 == cArr[3-k] && cArr[3-k]>0){
-                    console.log('doubled',k,i);               
                     document.querySelector(`[data-id="${k}${i}"]`).classList.add('double')                    
                 }
                 this.matrix[k][i] = cArr[3-k]
@@ -174,7 +174,6 @@ class Board{
             for(let k=0;k<this.size;k++){
                 if((this.matrix[i][k])*2 == cArr[3-k] && cArr[3-k]>0){
                     document.querySelector(`[data-id="${i}${k}"]`).classList.add('double')                    
-                    console.log('doubled',i,k);               
                 }
                 this.matrix[i][k] = cArr[3-k]
             }
@@ -191,7 +190,6 @@ class Board{
             for(let k=0;k<this.size;k++){
                 if((this.matrix[i][k])*2 == cArr[k] && cArr[k]>0){
                     document.querySelector(`[data-id="${i}${k}"]`).classList.add('double')     
-                    console.log('doubled',i,k);               
                 }
                 this.matrix[i][k] = cArr[k]
             }
@@ -279,6 +277,20 @@ class Board{
                 let html = document.querySelector(`[data-id="${i}${j}"]`);
                 html.classList.remove(cname);
             }
+        }
+    }
+
+    gameOver(){ 
+        let hasZero = false
+        for(let i=0;i<this.size;i++){
+            for(let j=0;j<this.size;j++){
+                if(this.matrix[i][j]==0){
+                    hasZero = true;
+                }
+            }
+        }
+        if(!hasZero){
+            
         }
     }
 
