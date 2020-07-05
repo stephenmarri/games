@@ -58,8 +58,8 @@ body{
     width: 500px;
     border-radius: 5px;
     color: wheat;
-    font-size: 4rem;
-    font-weight: bold;
+    font-size: 4.5rem;
+    font-weight: 800;
     font-family: Helvetica, sans-serif;
     
     display: grid;
@@ -78,8 +78,10 @@ body{
 }
 
 .tile.active{
+    font-family:  "Clear Sans", "Helvetica Neue", Arial, sans-serif;;
     color: #776e65;
-    font-weight: 500;
+    font-size: 4.5rem;
+    font-weight: 600;
 }
 
 /* game */

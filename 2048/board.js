@@ -5,7 +5,12 @@ class Board{
     set = [2,4]
     colors = {
         2: "#eee4da",
-        4: "#ede0c8"
+        4: "#ede0c8",
+        8: "#f2b179",
+        16: "#f59563",
+        32: "#f67c5f"
+
+
     }
     
 
@@ -55,6 +60,12 @@ class Board{
                     html.innerHTML=`<span>${this.matrix[i][j]}</span>`;
                     html.classList.add('active')
                     html.style.backgroundColor = this.colors[this.matrix[i][j]]
+                    //text color
+                    if(this.matrix[i][j]>4){
+                        html.style.color = "white";
+                    }else{
+                        html.style.color = "#776e65";
+                    }
                 }else{
                     html.innerHTML="";
                     html.classList.remove('active')
@@ -62,6 +73,10 @@ class Board{
                 }
             }
         }
+    }
+
+    arrangeFour(a,b,c,d){
+        
     }
 
     calcDown(){
@@ -89,6 +104,43 @@ class Board{
                                 }else{
                                     this.matrix[d][col] = 0;
                                     this.matrix[row-1][col] = tValue;
+                                }
+                                break;
+                            }
+
+                        }
+                    }
+                }
+            //console.groupEnd(row,col);
+
+        }
+    }    
+
+    calcUp(){
+        for(let row = 0; row < this.size-1; row++){
+            for(let col = 0; col< this.size;col++){
+                //for each tile 
+                //console.group(row,col);
+                let currValue = this.matrix[row][col];
+                //console.log(currValue);
+
+                for(let d = row+1; d < this.size;d++){
+                    let tValue = this.matrix[d][col];
+                    // if value == 0
+                    if(currValue == 0){
+                            if(tValue != 0){
+                                this.matrix[row][col] = tValue;
+                                this.matrix[d][col] = 0;
+                                break;
+                            }
+                        }else{
+                            if(tValue!=0){
+                                if(tValue == currValue){
+                                    this.matrix[row][col] = currValue*2;
+                                    this.matrix[d][col] = 0;
+                                }else{
+                                    this.matrix[d][col] = 0;
+                                    this.matrix[row+1][col] = tValue;
                                 }
                                 break;
                             }
