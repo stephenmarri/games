@@ -2,10 +2,18 @@ let board = new Board();
 board.createNewGame();
 let reset = document.querySelector('#reset')
 let score = document.querySelector('#sValue')
+let banner = document.querySelector('#banner')
+let banner_t = document.querySelector('#banner_t')
 
 reset.addEventListener('click', ()=>{
     board.createNewGame();
     score.textContent=0;
+})
+
+banner.addEventListener('click',()=>{
+    if(banner_t.textContent=='Game Won!'){
+        banner.style.display="none";
+    }    
 })
 
 document.addEventListener('keyup', moveHandler)
