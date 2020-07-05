@@ -4,7 +4,8 @@ board.createNewGame();
 document.addEventListener('keyup', moveHandler)
 
 async function moveHandler(event){
-    let k = event.keyCode;
+    let k = direction != 0 ? direction : event.keyCode
+    
     board.removeClass('double')
     moved=false
     if(k==40){
@@ -25,7 +26,7 @@ async function moveHandler(event){
             board.drawBoard();
         }
     }
-
+    direction = 0;
 }
 
 function sleep(ms) {
