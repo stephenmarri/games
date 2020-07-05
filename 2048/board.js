@@ -87,7 +87,6 @@ class Board{
                 }
             }
         }
-        this.gameOver()
     }
 
     arrangeFour(a,b,c,d){

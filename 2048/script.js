@@ -13,6 +13,10 @@ reset.addEventListener('click', ()=>{
 banner.addEventListener('click',()=>{
     if(banner_t.textContent=='Game Won!'){
         banner.style.display="none";
+    }else{
+        banner.style.display="none";
+        board.createNewGame();
+        score.textContent=0;
     }    
 })
 
@@ -39,6 +43,7 @@ async function moveHandler(event){
             board.genNewTile();
             await sleep(300)
             board.drawBoard();
+            board.gameOver();
         }
     }
     direction = 0;

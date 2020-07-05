@@ -49,4 +49,4 @@ function detectswipe(el,func) {
     }
   }
 
-  detectswipe("grid",myfunction)
+  detectswipe("wrapper",myfunction)
