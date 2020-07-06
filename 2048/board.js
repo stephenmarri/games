@@ -163,8 +163,8 @@ class Board{
             for(let j=0; j< this.size ; j++){
                  cArr.push(this.matrix[j][i])
             }
+            cArr =  this.arrangeFour(cArr[3],cArr[2],cArr[1],cArr[0])
             if(!forChecking){
-                cArr =  this.arrangeFour(cArr[3],cArr[2],cArr[1],cArr[0])
                 for(let k=0;k<this.size;k++){
                     if((this.matrix[k][i])*2 == cArr[3-k] && cArr[3-k]>0){
                         document.querySelector(`[data-id="${k}${i}"]`).classList.add('double')                    
@@ -181,8 +181,8 @@ class Board{
             for(let j=0; j< this.size ; j++){
                  cArr.push(this.matrix[i][j])
             }
+            cArr =  this.arrangeFour(cArr[3],cArr[2],cArr[1],cArr[0])        
             if(!forChecking){
-                cArr =  this.arrangeFour(cArr[3],cArr[2],cArr[1],cArr[0])        
                 for(let k=0;k<this.size;k++){
                     if((this.matrix[i][k])*2 == cArr[3-k] && cArr[3-k]>0){
                         document.querySelector(`[data-id="${i}${k}"]`).classList.add('double')                    
@@ -199,8 +199,8 @@ class Board{
             for(let j=0; j< this.size ; j++){
                  cArr.push(this.matrix[i][j])
             }
+            cArr =  this.arrangeFour(cArr[0],cArr[1],cArr[2],cArr[3])        
             if(!forChecking){
-                cArr =  this.arrangeFour(cArr[0],cArr[1],cArr[2],cArr[3])        
                 for(let k=0;k<this.size;k++){
                     if((this.matrix[i][k])*2 == cArr[k] && cArr[k]>0){
                         document.querySelector(`[data-id="${i}${k}"]`).classList.add('double')     
