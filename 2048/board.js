@@ -70,7 +70,10 @@ class Board{
                     //style validations
                     if(this.matrix[i][j]>1000){
                         html.style.fontSize = "4rem"
-                    }else{
+                    }else  if(this.matrix[i][j]>100000){
+                        html.style.fontSize = "2.7rem"
+                    }
+                    else{
                         html.style.fontSize = "4.5rem"
                     }
                     if(this.matrix[i][j]<=2048){                    

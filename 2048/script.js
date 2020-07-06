@@ -1,6 +1,6 @@
 let board = new Board();
 board.createNewGame();
-let reset = document.querySelector('#reset')
+let reset = document.querySelector('#reset2')
 let score = document.querySelector('#sValue')
 let banner = document.querySelector('#banner')
 let banner_t = document.querySelector('#banner_t')

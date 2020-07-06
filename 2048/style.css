@@ -28,6 +28,25 @@ body{
 }
 
 /* stats */
+#r_wrapper{
+    height: 80px;
+    width: 100%;
+    color: #776e65;
+    font-weight: 700;
+    font-family: 'Clear';
+    justify-content: flex-end !important;
+}
+
+#reset2{
+    max-height: 60%;
+    height: 60%;
+    width: 10%;
+    background-color: #776e65;
+    color: white;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
 #stats{
     height: 80px;
     width: 100%;
@@ -49,7 +68,7 @@ body{
     width: 50%;
     font-size: 80px ;
     font-family: 'clear sans',helvetica neue,Arial,sans-serif;
-    letter-spacing: 3px;
+    letter-spacing: 1px;
     font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
     justify-content: flex-start !important;
 }
@@ -64,7 +83,7 @@ body{
     cursor: pointer;
 }
 
-#reset:active{
+#reset2:active{
     transform: scale(0.98);
 }
 #score{
@@ -72,10 +91,24 @@ body{
     color: #fff;
     background-color: #776e65;
     height: 100%;
-    width: 50%;
+    min-width: 35%;
+    width: fit-content;
     justify-content: stretch;
     text-align: center;
+    margin-left: 10px;
 }
+#h_score{
+    border-radius: 0.5rem;
+    color: #fff;
+    background-color: #776e65;
+    height: 100%;
+    min-width: 45%;
+    width: fit-content;
+    justify-content: stretch;
+    text-align: center;
+    margin-left: 10px;
+}
+
 
 #score_text{
     margin-top: 5%;
@@ -211,20 +244,40 @@ body{
   
     #stats{
         width: 340px;
-        height: 12%;
         border-radius: 5px;
-        margin-bottom: 10%;
+    }
+
+    #r_wrapper{
+        max-height: 12%;
+        height: auto;
+        width: 340px;
+        color: #776e65;
+        font-weight: 700;
+        font-family: 'Clear';
+        justify-content: flex-end !important;
+        align-items: center;
+    }
+
+    #reset2{
+        min-height: 40px !important;
+        height: 40px !important;
+        min-width: 40px !important;
+        background-color: #776e65;
+        color: white;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        margin-right: 0px;
+        margin: 8px 0;
     }
 
     #score{
         height: 70%;
     }
-    #reset{
-        margin-left: 0;
-        width: 25%;
-        height: 50%;
-        font-size: 1.5rem;
+    #h_score{
+        height: 70%;
+
     }
+
 
     #title{
         font-size: 72px;
@@ -254,6 +307,8 @@ body{
         font-size: 5rem;
     }
 
+    /* stats */
+    
    
     
 
