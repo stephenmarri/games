@@ -19,7 +19,7 @@ function detectswipe(el,func) {
       swipe_det.eY = t.screenY;    
     },false);
     ele.addEventListener('touchend',function(e){
-      console.log(swipe_det.sY, swipe_det.eY );
+      // console.log(swipe_det.sY, swipe_det.eY );
       //horizontal detection
       if ((((swipe_det.eX - min_x > swipe_det.sX) || (swipe_det.eX + min_x < swipe_det.sX)) && ((swipe_det.eY < swipe_det.sY + max_y) && (swipe_det.sY > swipe_det.eY - max_y) && (swipe_det.eX > 0)))) {
         if(swipe_det.eX > swipe_det.sX) direc = "r";
@@ -40,7 +40,7 @@ function detectswipe(el,func) {
   }
   
   function myfunction(el,d) {
-    console.log("you swiped on element with id '"+el+"' to "+d+" direction");
+    // console.log("you swiped on element with id '"+el+"' to "+d+" direction");
     if(d!=""){
         if(d=="l") direction = 37
         if(d=="u") direction = 38
