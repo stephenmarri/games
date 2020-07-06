@@ -81,14 +81,14 @@ class Board{
             }    
 
             //audio
-            if(lines.length==4){
-                audio_fourlines.currentTime=0
-                audio_fourlines.play()
-            }else{
-                //play oneline one
-                audio_oneline.currentTime=0
-                audio_oneline.play()
-            }
+            // if(lines.length==4){
+            //     audio_fourlines.currentTime=0
+            //     audio_fourlines.play()
+            // }else{
+            //     //play oneline one
+            //     audio_oneline.currentTime=0
+            //     audio_oneline.play()
+            // }
 
 
             //when a tetris is made
