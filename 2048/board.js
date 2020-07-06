@@ -69,7 +69,7 @@ class Board{
                     
                     //style validations
                     if(this.matrix[i][j]>1000){
-                        html.style.fontSize = "3rem"
+                        html.style.fontSize = "4rem"
                     }else{
                         html.style.fontSize = "4.5rem"
                     }
@@ -212,79 +212,79 @@ class Board{
     }
     
 
-    calcDown(){
-        for(let row = this.size-1; row>0;row--){
-            for(let col = 0; col< this.size;col++){
-                //for each tile 
-                //console.group(row,col);
-                let currValue = this.matrix[row][col];
-                //console.log(currValue);
+    // calcDown(){
+    //     for(let row = this.size-1; row>0;row--){
+    //         for(let col = 0; col< this.size;col++){
+    //             //for each tile 
+    //             //console.group(row,col);
+    //             let currValue = this.matrix[row][col];
+    //             //console.log(currValue);
 
-                for(let d = row-1; d>=0;d--){
-                    let tValue = this.matrix[d][col];
-                    // if value == 0
-                    if(currValue == 0){
-                            if(tValue != 0){
-                                this.matrix[row][col] = tValue;
-                                this.matrix[d][col] = 0;
-                                break;
-                            }
-                        }else{
-                            if(tValue!=0){
-                                if(tValue == currValue){
-                                    this.matrix[row][col] = currValue*2;
-                                    this.matrix[d][col] = 0;
-                                }else{
-                                    this.matrix[d][col] = 0;
-                                    this.matrix[row-1][col] = tValue;
-                                }
-                                break;
-                            }
+    //             for(let d = row-1; d>=0;d--){
+    //                 let tValue = this.matrix[d][col];
+    //                 // if value == 0
+    //                 if(currValue == 0){
+    //                         if(tValue != 0){
+    //                             this.matrix[row][col] = tValue;
+    //                             this.matrix[d][col] = 0;
+    //                             break;
+    //                         }
+    //                     }else{
+    //                         if(tValue!=0){
+    //                             if(tValue == currValue){
+    //                                 this.matrix[row][col] = currValue*2;
+    //                                 this.matrix[d][col] = 0;
+    //                             }else{
+    //                                 this.matrix[d][col] = 0;
+    //                                 this.matrix[row-1][col] = tValue;
+    //                             }
+    //                             break;
+    //                         }
 
-                        }
-                    }
-                }
-            //console.groupEnd(row,col);
+    //                     }
+    //                 }
+    //             }
+    //         //console.groupEnd(row,col);
 
-        }
-    }    
+    //     }
+    // }    
 
-    calcUp(){
-        for(let row = 0; row < this.size-1; row++){
-            for(let col = 0; col< this.size;col++){
-                //for each tile 
-                //console.group(row,col);
-                let currValue = this.matrix[row][col];
-                //console.log(currValue);
+    // calcUp(){
+    //     for(let row = 0; row < this.size-1; row++){
+    //         for(let col = 0; col< this.size;col++){
+    //             //for each tile 
+    //             //console.group(row,col);
+    //             let currValue = this.matrix[row][col];
+    //             //console.log(currValue);
 
-                for(let d = row+1; d < this.size;d++){
-                    let tValue = this.matrix[d][col];
-                    // if value == 0
-                    if(currValue == 0){
-                            if(tValue != 0){
-                                this.matrix[row][col] = tValue;
-                                this.matrix[d][col] = 0;
-                                break;
-                            }
-                        }else{
-                            if(tValue!=0){
-                                if(tValue == currValue){
-                                    this.matrix[row][col] = currValue*2;
-                                    this.matrix[d][col] = 0;
-                                }else{
-                                    this.matrix[d][col] = 0;
-                                    this.matrix[row+1][col] = tValue;
-                                }
-                                break;
-                            }
+    //             for(let d = row+1; d < this.size;d++){
+    //                 let tValue = this.matrix[d][col];
+    //                 // if value == 0
+    //                 if(currValue == 0){
+    //                         if(tValue != 0){
+    //                             this.matrix[row][col] = tValue;
+    //                             this.matrix[d][col] = 0;
+    //                             break;
+    //                         }
+    //                     }else{
+    //                         if(tValue!=0){
+    //                             if(tValue == currValue){
+    //                                 this.matrix[row][col] = currValue*2;
+    //                                 this.matrix[d][col] = 0;
+    //                             }else{
+    //                                 this.matrix[d][col] = 0;
+    //                                 this.matrix[row+1][col] = tValue;
+    //                             }
+    //                             break;
+    //                         }
 
-                        }
-                    }
-                }
-            //console.groupEnd(row,col);
+    //                     }
+    //                 }
+    //             }
+    //         //console.groupEnd(row,col);
 
-        }
-    }    
+    //     }
+    // }    
 
     removeClass(cname){
         for(let i=0;i<this.size;i++){
