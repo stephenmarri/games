@@ -2,8 +2,18 @@ let board = new Board();
 board.createNewGame();
 let reset = document.querySelector('#reset2')
 let score = document.querySelector('#sValue')
+let highScore = document.querySelector('#high_sValue')
 let banner = document.querySelector('#banner')
 let banner_t = document.querySelector('#banner_t')
+let hsFromLoc=0;
+
+//local storage
+if(localStorage.getItem('hscore')){
+    hsFromLoc = parseInt(localStorage.getItem('hscore'))
+    highScore.textContent = hsFromLoc
+}else{
+    localStorage.setItem('hscore',"0");
+}
 
 reset.addEventListener('click', ()=>{
     board.createNewGame();

@@ -70,8 +70,6 @@ class Board{
                     //style validations
                     if(this.matrix[i][j]>1000){
                         html.style.fontSize = "4rem"
-                    }else  if(this.matrix[i][j]>100000){
-                        html.style.fontSize = "2.7rem"
                     }
                     else{
                         html.style.fontSize = "4.5rem"
@@ -132,6 +130,10 @@ class Board{
                     banner_t.textContent="Game Won!"
                 }
                 score.textContent = parseInt(score.textContent) + (p[target]*double)
+                if(parseInt(score.textContent) > parseInt(highScore.textContent)){
+                    localStorage.setItem('hscore',score.textContent);
+                    highScore.textContent= parseInt(score.textContent)
+                }
                 p[i]=0;
                 moved=true
             }

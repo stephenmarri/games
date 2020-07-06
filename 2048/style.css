@@ -92,10 +92,10 @@ body{
     background-color: #776e65;
     height: 100%;
     min-width: 35%;
-    width: fit-content;
+    width: auto;
     justify-content: stretch;
     text-align: center;
-    margin-left: 10px;
+    margin-left: 8px;
 }
 #h_score{
     border-radius: 0.5rem;
@@ -109,7 +109,10 @@ body{
     margin-left: 10px;
 }
 
-
+.sco{
+    font-size: 3rem;
+    padding: 0 2px;
+}
 #score_text{
     margin-top: 5%;
     font-size: 1.5rem;
