@@ -128,7 +128,7 @@ body{
     font-family:  "Clear Sans", "Helvetica Neue", Arial, sans-serif;;
     color: #776e65;
     font-size: 4.5rem;
-    font-weight: 600;    
+    font-weight: 500;    
 }
 .tile.double{
     animation: grow 300ms ease 50ms;
