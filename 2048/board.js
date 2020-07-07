@@ -128,6 +128,8 @@ class Board{
                 if(p[target]==2048){
                     banner.style.display="inline-flex"
                     banner_t.textContent="Game Won!"
+                    banner_t.style.fontSize = "5rem";
+
                 }
                 score.textContent = parseInt(score.textContent) + (p[target]*double)
                 if(parseInt(score.textContent) > parseInt(highScore.textContent)){
@@ -318,6 +320,7 @@ class Board{
             this.cRight()            
             if(!moved){
                 banner.style.display="inline-flex";
+                banner_t.style.fontSize = "5rem";
                 banner_t2.textContent="Tap to play new Game"
                 banner_t.textContent="Game Over!"
             }

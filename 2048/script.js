@@ -24,6 +24,8 @@ if(localStorage.getItem('hscore')){
 reset.addEventListener('click', ()=>{
     banner.style.display="inline-flex";
     banner_t.textContent = "Do you want to Restart?"
+    banner_t.style.fontSize = "4rem";
+
     banner_t2.textContent=""
     banner_yesNo.style.display = 'flex'
     
