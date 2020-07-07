@@ -34,6 +34,7 @@ reset.addEventListener('click', ()=>{
 banner_yes.addEventListener('click',()=>{
     board.createNewGame();
     score.textContent=0;
+    hasWon=false
     banner.style.display="";
     banner_yesNo.style.display = 'none'
 })
@@ -44,11 +45,12 @@ banner_no.addEventListener('click',()=>{
 
 banner.addEventListener('click',()=>{
     if(banner_t.textContent=='Game Won!'){
-        banner.style.display="none";
+        banner.style.display="none";        
     }else if(banner_t.textContent=='Game Over!'){
         banner.style.display="none";
         board.createNewGame();
         score.textContent=0;
+        hasWon=false
     }    
 })
 

@@ -125,11 +125,11 @@ class Board{
             
             if(target != i){
                 p[target] = p[i] + ( double * p[i])
-                if(p[target]==2048){
+                if(p[target]==2048 && !hasWon){
+                    hasWon=true
                     banner.style.display="inline-flex"
                     banner_t.textContent="Game Won!"
                     banner_t.style.fontSize = "5rem";
-
                 }
                 score.textContent = parseInt(score.textContent) + (p[target]*double)
                 if(parseInt(score.textContent) > parseInt(highScore.textContent)){
