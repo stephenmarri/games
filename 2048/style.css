@@ -67,7 +67,7 @@ body{
     height: 80px;
     width: 50%;
     font-size: 80px ;
-    font-weight: 500 !important;
+    font-weight: 450 !important;
     font-family: 'clear sans',helvetica neue,Arial,sans-serif;
     letter-spacing: 1px;
     font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
@@ -188,9 +188,24 @@ body{
     height: 500px;
     width: 500px;
     top: 0px;
-    font-size: 5rem;
+    font-size: 4rem;
 }
 
+#banner_t{
+    font-weight: 600;
+}
+#yesNo *{
+    cursor: pointer;
+}
+#yesNo{
+    display: none;
+    font-weight: 600;
+    font-size: 3rem;
+    margin-top: 10%;
+    width: 60%;
+    justify-content: space-evenly !important;
+    color: firebrick;
+}
 #banner  p{
     font-size: 2rem;
 }
@@ -286,6 +301,8 @@ body{
     #title{
         font-size: 72px;
         margin-top: 30px;
+        letter-spacing: 0px;
+
     }
     
     #grid{
@@ -308,7 +325,6 @@ body{
         color: #776e65;
         position: absolute;
         top: 0px;
-        font-size: 5rem;
     }
 
     /* stats */

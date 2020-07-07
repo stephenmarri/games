@@ -3,11 +3,17 @@ board.createNewGame();
 let reset = document.querySelector('#reset2')
 let score = document.querySelector('#sValue')
 let highScore = document.querySelector('#high_sValue')
+
 let banner = document.querySelector('#banner')
 let banner_t = document.querySelector('#banner_t')
-let hsFromLoc=0;
+let banner_t2 = document.querySelector('#banner_t2')
+let banner_yesNo = document.querySelector('#yesNo')
+let banner_yes = document.querySelector('#yes')
+let banner_no = document.querySelector('#no')
+
 
 //local storage
+let hsFromLoc=0;
 if(localStorage.getItem('hscore')){
     hsFromLoc = parseInt(localStorage.getItem('hscore'))
     highScore.textContent = hsFromLoc
@@ -16,14 +22,28 @@ if(localStorage.getItem('hscore')){
 }
 
 reset.addEventListener('click', ()=>{
+    banner.style.display="inline-flex";
+    banner_t.textContent = "Do you want to Restart?"
+    banner_t2.textContent=""
+    banner_yesNo.style.display = 'flex'
+    
+})
+
+banner_yes.addEventListener('click',()=>{
     board.createNewGame();
     score.textContent=0;
+    banner.style.display="";
+    banner_yesNo.style.display = 'none'
+})
+banner_no.addEventListener('click',()=>{
+    banner.style.display="";
+    banner_yesNo.style.display = 'none'
 })
 
 banner.addEventListener('click',()=>{
     if(banner_t.textContent=='Game Won!'){
         banner.style.display="none";
-    }else{
+    }else if(banner_t.textContent=='Game Over!'){
         banner.style.display="none";
         board.createNewGame();
         score.textContent=0;

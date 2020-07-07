@@ -318,6 +318,7 @@ class Board{
             this.cRight()            
             if(!moved){
                 banner.style.display="inline-flex";
+                banner_t2.textContent="Tap to play new Game"
                 banner_t.textContent="Game Over!"
             }
             
