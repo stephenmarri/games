@@ -29,7 +29,7 @@ body{
 
 /* stats */
 #r_wrapper{
-    height: 80px;
+    height: 70px;
     width: 100%;
     color: #776e65;
     font-weight: 700;
@@ -67,6 +67,7 @@ body{
     height: 80px;
     width: 50%;
     font-size: 80px ;
+    font-weight: 500 !important;
     font-family: 'clear sans',helvetica neue,Arial,sans-serif;
     letter-spacing: 1px;
     font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
@@ -95,7 +96,7 @@ body{
     width: auto;
     justify-content: stretch;
     text-align: center;
-    margin-left: 8px;
+    margin-left: 6px;
 }
 #h_score{
     border-radius: 0.5rem;
@@ -251,7 +252,7 @@ body{
     }
 
     #r_wrapper{
-        max-height: 12%;
+        max-height: 10%;
         height: auto;
         width: 340px;
         color: #776e65;
