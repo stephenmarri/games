@@ -63,6 +63,10 @@ body{
     align-items: flex-end !important;
 }
 
+#title span{
+    cursor: pointer;
+    user-select: none;
+}
 #title{
     height: 80px;
     width: 50%;
@@ -72,6 +76,7 @@ body{
     letter-spacing: 1px;
     font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
     justify-content: flex-start !important;
+    user-select: none;
 }
 
 #reset{

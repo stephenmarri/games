@@ -3,6 +3,7 @@ board.createNewGame();
 let reset = document.querySelector('#reset2')
 let score = document.querySelector('#sValue')
 let highScore = document.querySelector('#high_sValue')
+let title = document.querySelector('#title').firstElementChild
 
 let banner = document.querySelector('#banner')
 let banner_t = document.querySelector('#banner_t')
@@ -87,3 +88,24 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
   
+
+//clear localStorage
+title.addEventListener('click',clearLocalStorage)
+
+function clearLocalStorage(){
+
+    if(click1 == 0){
+        click1 = performance.now()
+        clickCounter=0
+        setTimeout(()=>{
+            click1=0
+        }, 2000)
+    }else{
+        clickCounter++
+        if(clickCounter == 4){
+            localStorage.clear()
+            highScore.textContent=0
+        }
+    }
+
+}
