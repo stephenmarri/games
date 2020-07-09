@@ -66,6 +66,7 @@ body{
 #title span{
     cursor: pointer;
     user-select: none;
+    -webkit-tap-highlight-color:transparent;
 }
 #title{
     height: 80px;
@@ -76,7 +77,7 @@ body{
     letter-spacing: 1px;
     font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
     justify-content: flex-start !important;
-    user-select: none;
+    user-select: none;-webkit-tap-highlight-color:transparent;
 }
 
 #reset{
