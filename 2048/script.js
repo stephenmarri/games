@@ -60,6 +60,17 @@ document.addEventListener('keyup', moveHandler)
 async function moveHandler(event){
     let k = direction != 0 ? direction : event.keyCode
     
+    //kanumi code to clear localstorage
+    keysPressed.push(k)
+    if(keysPressed.length > 4) {
+        if(keysPressed.join("") == [67, 76, 69, 65, 82].join("")) {
+            localStorage.clear()
+            highScore.textContent=0
+        }
+        keysPressed.shift(k)
+    }
+    
+
     board.removeClass('double')
     moved=false
     if(k==40){

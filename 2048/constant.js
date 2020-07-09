@@ -5,5 +5,5 @@ let forChecking = false;
 let hasWon = false;
 let click1, clickCounter=0;
 click1=0;
-
+let keysPressed=[]
 
