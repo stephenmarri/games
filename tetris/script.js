@@ -151,7 +151,7 @@ async function animate(){
     moveDown();
     board.draw();       
     if(isGameOver ){
-        audio_gameover.play()
+        //audio_gameover.play()
         gameOver("Game Over");
     }
     if(isGameWon ){
