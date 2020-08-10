@@ -1,7 +1,7 @@
 let isFirstTime = true;
 let emptyItems;
 let keyPadItems;
-let user__level = level;
+let user__level = [level,'Evil'];
 let user__size = boardSize;
 
 function initActions() {
@@ -67,9 +67,7 @@ function initActions() {
         let main__container = document.querySelector('#main__container')
         home.style.display = "none";
         main__container.style.display = "block";        
-        console.log('user__level', user__level)
-        console.log('user__size', user__size)
-        newGame(user__size, user__level)
+        newGame(user__size, user__level[0])
         declareBoardElements()
     }
 
@@ -83,7 +81,9 @@ function initActions() {
             })
             this.style.color = "white";
             this.style.background = "#0097e6";
-            user__level = parseInt(this.dataset["level"])
+            user__level[0] = parseInt(this.dataset["level"])
+            user__level[1] = this.textContent;
+            
         } else if (this.parentNode.parentNode.id == "selection__size") {
             remaining.forEach(x => x.style.color = "black")
             this.style.color = "#0097e6";
