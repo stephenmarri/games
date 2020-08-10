@@ -1,11 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Steve's SuDoKu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Recursive&family=Red+Rose&family=Sriracha&family=Ubuntu&family=Poppins&family=Raleway&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Steve's SUDOKU</title>
 </head>
-<body>
-    
+
+<body class="flex-row">
+
+    <div id="main__container">
+        <div id="header__controls" class="flex-row">
+            <span id="header__level">Easy</span>
+            <Span id="header__header">SUDOKU</Span>
+            <span id="header__submit">Submit</span>
+        </div>
+        <!-- board -->
+        <div id="board">
+
+        </div>
+        <div id="keypad" class="flex-row">            
+        </div>
+    </div>
+
+
+
+    <script src="global.js"></script>
+    <script src="combinations.js"></script>
+    <script src="validate.js"></script>
+    <script src="board.js"></script>
+    <script src="view.js"></script>
+    <script src="digger.js"></script>
+    <script src="userActions.js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>
