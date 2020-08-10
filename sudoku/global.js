@@ -1,8 +1,9 @@
 let setLimits;
-let boardSize = 9;
+let boardSize = 4;
 let level = 2; // 0 = Easy, 1 = Hard, 2 = Evil
 let board, boxSize,isBoardValidate,solvedBoard,digger,questionBoard;
 let view;
+
 
 //get set limits. for eg. for grid size: 4, set limits are [[0,1],[2,3]]
 function getSetLimits(size){

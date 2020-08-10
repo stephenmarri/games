@@ -1,23 +1,21 @@
 let isFirstTime = true;
-let user__level;
-let user__size;
+let emptyItems;
+let keyPadItems;
+let user__level = level;
+let user__size = boardSize;
 
 function initActions() {
 
-    if (isFirstTime) {
-        let emptyItems = document.querySelectorAll('.emptyItem')
-        let keyPadItems = document.querySelectorAll('.keypad__item')
+    if (isFirstTime) {              
         let submitButton = document.querySelector('#header__submit > span')
         let body = document.querySelector('body')
         let startButton = document.querySelector('#start')
         let home__options = document.querySelectorAll('.selection .options span')
-
-        emptyItems.forEach(x => x.addEventListener('click', emptyItemHandler))
-        keyPadItems.forEach(x => x.addEventListener('click', keyPadHandler))
+                
         submitButton.addEventListener('click', submitHandler)
         body.addEventListener('keyup', keyUpHandler)
-        startButton.addEventListener('click',startHandler)
-        home__options.forEach( x => x.addEventListener('click',homeOptionsHandler))
+        startButton.addEventListener('click', startHandler)
+        home__options.forEach(x => x.addEventListener('click', homeOptionsHandler))
 
         isFirstTime = false;
     }
@@ -64,18 +62,21 @@ function initActions() {
 
     }
 
-    function startHandler(){
+    function startHandler() {
         let home = document.querySelector('#home')
-        let main__container = document.querySelector('#main__container')        
+        let main__container = document.querySelector('#main__container')
         home.style.display = "none";
-        main__container.style.display = "block";
-        newGame(user__size,user__level)
+        main__container.style.display = "block";        
+        console.log('user__level', user__level)
+        console.log('user__size', user__size)
+        newGame(user__size, user__level)
+        declareBoardElements()
     }
 
-    function homeOptionsHandler(){
+    function homeOptionsHandler() {
         let remaining = this.parentNode;
         remaining = remaining.querySelectorAll('span');
-        if(this.parentNode.parentNode.id == "selection__level"){
+        if (this.parentNode.parentNode.id == "selection__level") {
             remaining.forEach(x => {
                 x.style.background = "none"
                 x.style.color = "black"
@@ -83,10 +84,17 @@ function initActions() {
             this.style.color = "white";
             this.style.background = "#0097e6";
             user__level = parseInt(this.dataset["level"])
-        }else  if(this.parentNode.parentNode.id == "selection__size"){            
+        } else if (this.parentNode.parentNode.id == "selection__size") {
             remaining.forEach(x => x.style.color = "black")
             this.style.color = "#0097e6";
             user__size = parseInt(this.dataset["size"])
         }
+    }
+
+    function declareBoardElements(){
+        emptyItems = document.querySelectorAll('.emptyItem')
+        keyPadItems = document.querySelectorAll('.keypad__item')
+        emptyItems.forEach(x => x.addEventListener('click', emptyItemHandler))
+        keyPadItems.forEach(x => x.addEventListener('click', keyPadHandler))
     }
 }

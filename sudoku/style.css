@@ -234,6 +234,10 @@ html body #home #selection__size .options svg:hover {
   color: #047cbd;
 }
 
+html body #home #selection__size .options span:first-child {
+  color: #0097e6;
+}
+
 html body #home #selection__level .options span {
   border: 1px solid black;
   padding: 0.3rem 0.5rem;
@@ -249,6 +253,11 @@ html body #home #selection__level .options span:hover {
 html body #home #selection__level .options span:active {
   background-color: #0097e6;
   color: white;
+}
+
+html body #home #selection__level .options span:last-child {
+  color: white;
+  background-color: #0097e6;
 }
 
 html body #home #start {
