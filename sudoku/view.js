@@ -52,5 +52,6 @@ class View{
         let boardElement = document.querySelector('#board')
         boardElement.style.gridTemplateColumns = temp
         boardElement.style.gridTemplateRows = temp
+        boardElement.style.fontSize = size == 4 ? "2.25rem" : "1rem";
     }
 }

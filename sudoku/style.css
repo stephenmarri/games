@@ -202,5 +202,9 @@ html body #main__container #keypad .keypad__item:active {
     margin-right: auto;
     width: 96vw;
   }
+  html body #main__container #keypad .keypad__item {
+    height: 8vw;
+    width: 8vw;
+  }
 }
 /*# sourceMappingURL=style.css.map */
