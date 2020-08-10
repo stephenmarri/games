@@ -1,7 +1,7 @@
 class View{
 
-    createBoardHTML(size = 9){
-        if(size == 4 )  this.changeGridCSS()  
+    createBoardHTML(size){
+        this.changeGridCSS(size)  
 
         //board
         let boardElement = document.querySelector('#board')
@@ -18,6 +18,7 @@ class View{
                 html += item;
             }
         }
+
         boardElement.innerHTML = html;
 
         //keypad
@@ -26,7 +27,7 @@ class View{
         for(let i=0;i<size;i++){
             html += `<span class="flex-col keypad__item">${i+1}</span>`
         }
-        html+=`<span class="flex-col keypad__item"><img src="images/trash-o.svg" alt=""></span>`;
+        html+=`<span class="flex-col keypad__item"><img src="images/trash-o.svg" alt=""></span>`;        
         keypad.innerHTML = html;        
     }
 
@@ -46,9 +47,10 @@ class View{
         }
     }
 
-    changeGridCSS(){
+    changeGridCSS(size){
+        let temp = "auto ".repeat(size)
         let boardElement = document.querySelector('#board')
-        boardElement.style.gridTemplateColumns = "auto auto auto auto"
-        boardElement.style.gridTemplateRows = "auto auto auto auto"
+        boardElement.style.gridTemplateColumns = temp
+        boardElement.style.gridTemplateRows = temp
     }
 }

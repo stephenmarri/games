@@ -7,8 +7,8 @@ class Digger {
     levels = [
         [
             [4, 6],
-            [5, 7],
-            [7, 8]
+            [8,9],
+            [10, 11]
         ],
         [
             [32, 45],
@@ -17,9 +17,16 @@ class Digger {
         ]
     ];
     rowColumn_MinCount = [
-        [4,8],
-        [3,6],
-        [1,4]
+        [
+            [2],
+            [1],
+            [1]
+        ],
+        [
+            [4, 8],
+            [3, 6],
+            [1, 4]
+        ]
     ];
 
     constructor(_level, _board, _boardSize) {
@@ -28,7 +35,7 @@ class Digger {
         this.boardSize = _boardSize;
         let LevelSelector = _boardSize == 9 ? 1 : 0;
         this.holesCount = this.random(this.levels[LevelSelector][_level][1], this.levels[LevelSelector][_level][0])
-        this.randomDig(this.holesCount)         
+        this.randomDig(this.holesCount)
     }
 
     random(max, min = 0) {
@@ -36,16 +43,17 @@ class Digger {
     }
 
     randomDig(howMany) {
-        console.log(howMany);
+        
         while (howMany > 0) {
             let row = this.random(this.boardSize - 1)
             let col = this.random(this.boardSize - 1)
 
             //row min checker
             let rowMinCount = this.board[row].filter(x => x > 0);
-            let min = this.rowColumn_MinCount[this.level][0];
-            while (rowMinCount.length == min ) {
-                console.log("Maximum digs complete in row: ", row);
+            let LevelSelector = this.boardSize == 9 ? 1 : 0;
+            let min = this.rowColumn_MinCount[LevelSelector][this.level][0];
+            while (rowMinCount.length == min) {
+                //console.log("Maximum digs complete in row: ", row);
                 row = this.random(this.boardSize - 1)
                 rowMinCount = this.board[row].filter(x => x > 0);
             }
