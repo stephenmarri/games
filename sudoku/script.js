@@ -1,4 +1,6 @@
-newGame(boardSize,level)
+window.addEventListener('load', () => {
+    newGame(boardSize,level)
+})
 
 function newGame(_boardSize, _level) {
     boardSize = _boardSize;

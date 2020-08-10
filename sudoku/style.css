@@ -77,6 +77,7 @@ html body {
   background-image: url("images/bg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  background-size: 100% 100%;
 }
 
 html body #main__container {
@@ -93,7 +94,7 @@ html body #main__container #header__controls {
 
 html body #main__container #header__controls #header__level {
   width: 33.3%;
-  font-family: 'Poppins';
+  font-family: "Poppins";
   text-align-last: left;
 }
 
@@ -101,14 +102,20 @@ html body #main__container #header__controls #header__header {
   width: 33.3%;
   font-size: 2rem;
   text-align: center;
-  font-family: 'Recursive';
+  font-family: "Recursive";
 }
 
 html body #main__container #header__controls #header__submit {
   width: 33.3%;
   text-align: right;
-  font-family: 'Poppins';
+  font-family: "Poppins";
   cursor: pointer;
+}
+
+html body #main__container #header__controls #header__submit img {
+  height: 0.754rem;
+  vertical-align: middle;
+  margin-left: 0.25rem;
 }
 
 html body #main__container #header__controls #header__submit span:hover {
@@ -119,15 +126,18 @@ html body #main__container #header__controls #header__submit span:hover {
   font-weight: 400;
 }
 
-html body #main__container #header__controls #header__submit:active {
-  -webkit-transform: scale(0.96);
-          transform: scale(0.96);
+html body #main__container #header__controls #header__submit span:active {
+  padding: 4px 7px;
+}
+
+html body #main__container #header__controls #header__submit img:active {
+  padding: 1px;
 }
 
 html body #main__container #board {
   width: 60vh;
   height: 60vh;
-  font-family: 'Ubuntu';
+  font-family: "Ubuntu";
   border-top: 2.5px solid black;
   border-left: 2.5px solid black;
   display: -ms-grid;
@@ -147,7 +157,7 @@ html body #main__container #keypad {
   width: 100%;
   height: 6vh;
   margin-top: 2vh;
-  font-family: 'Red Rose';
+  font-family: "Red Rose";
 }
 
 html body #main__container #keypad .keypad__item {
@@ -171,5 +181,26 @@ html body #main__container #keypad .keypad__item:hover {
 html body #main__container #keypad .keypad__item:active {
   -webkit-transform: scale(0.96);
           transform: scale(0.96);
+}
+
+@media only screen and (max-width: 600px) {
+  html body #main__container {
+    width: 100vw;
+  }
+  html body #main__container #header__controls {
+    width: 100vw;
+    padding: 0 2vw;
+  }
+  html body #main__container #board {
+    margin-left: auto;
+    margin-right: auto;
+    width: 96vw;
+    height: 100vw;
+  }
+  html body #main__container #keypad {
+    margin-left: auto;
+    margin-right: auto;
+    width: 96vw;
+  }
 }
 /*# sourceMappingURL=style.css.map */

@@ -1,11 +1,10 @@
-window.addEventListener('load', () => {
-    initActions()
-})
+
 
 function initActions(){
+    console.log("init actions is called");
     let emptyItems = document.querySelectorAll('.emptyItem')
     let keyPadItems = document.querySelectorAll('.keypad__item')
-    let submitButton = document.querySelector('#header__submit')
+    let submitButton = document.querySelector('#header__submit > span')
     let body = document.querySelector('body')
     let selection;
 
@@ -29,10 +28,15 @@ function initActions(){
         }
     }
 
-    function submitHandler() {
+    function submitHandler(event) {
+        event.stopPropagation();
         let validater = new Validate(board.board, boardSize)
         let isValid = validater.runTests();
-        console.log("brother the board is :", isValid);
+        if(isValid){
+            alert("You've Solved this. Awesome!!!")
+        }else{
+            alert("That's not correct. Keep trying.")
+        }
     }
 
     function keyUpHandler(event) {
