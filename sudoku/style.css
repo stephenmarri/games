@@ -81,6 +81,7 @@ html body {
 }
 
 html body #main__container {
+  display: none;
   width: 60vh;
   height: 80vh;
 }
@@ -183,6 +184,96 @@ html body #main__container #keypad .keypad__item:active {
           transform: scale(0.96);
 }
 
+html body #home {
+  display: block;
+  position: relative;
+  width: 60vh;
+  height: 60vh;
+  border-radius: 0.25rem;
+}
+
+html body #home::before {
+  background-color: #7ed6df;
+  -webkit-box-shadow: 0 0 5px #22a6b3;
+          box-shadow: 0 0 5px #22a6b3;
+}
+
+html body #home #header {
+  height: 30%;
+  font-size: 4rem;
+  margin-top: 1rem;
+  text-align: center;
+  font-family: 'Recursive';
+}
+
+html body #home .selection {
+  font-size: 1rem;
+  width: 80%;
+  height: 30%;
+  margin: 2rem auto 1rem auto;
+  vertical-align: middle;
+}
+
+html body #home .selection .title {
+  width: 30%;
+  font-size: 1.075rem;
+  font-weight: 600;
+}
+
+html body #home .selection .options {
+  width: 70%;
+}
+
+html body #home #selection__size .options {
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  cursor: pointer;
+}
+
+html body #home #selection__size .options svg:hover {
+  color: #047cbd;
+}
+
+html body #home #selection__level .options span {
+  border: 1px solid black;
+  padding: 0.3rem 0.5rem;
+  margin-right: 0.2rem;
+  cursor: pointer;
+}
+
+html body #home #selection__level .options span:hover {
+  background-color: #0097e6;
+  color: white;
+}
+
+html body #home #selection__level .options span:active {
+  background-color: #0097e6;
+  color: white;
+}
+
+html body #home #start {
+  font-family: 'Raleway';
+  width: 40%;
+  font-size: 2.25rem;
+  position: absolute;
+  bottom: 10%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  cursor: pointer;
+  border: 1px solid darkcyan;
+  background-color: #44bd32;
+}
+
+html body #home #start:hover {
+  background-color: #3fac2f;
+}
+
+html body #home #start:active {
+  -webkit-transform: scale(0.96);
+          transform: scale(0.96);
+}
+
 @media only screen and (max-width: 600px) {
   html body #main__container {
     width: 100vw;
@@ -205,6 +296,12 @@ html body #main__container #keypad .keypad__item:active {
   html body #main__container #keypad .keypad__item {
     height: 8vw;
     width: 8vw;
+  }
+  html body #home {
+    width: 90vw;
+  }
+  html body #home .selection .options {
+    width: 100%;
   }
 }
 /*# sourceMappingURL=style.css.map */

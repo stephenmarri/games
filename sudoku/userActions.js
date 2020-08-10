@@ -1,18 +1,28 @@
+let isFirstTime = true;
+let user__level;
+let user__size;
 
+function initActions() {
 
-function initActions(){
-    console.log("init actions is called");
-    let emptyItems = document.querySelectorAll('.emptyItem')
-    let keyPadItems = document.querySelectorAll('.keypad__item')
-    let submitButton = document.querySelector('#header__submit > span')
-    let body = document.querySelector('body')
+    if (isFirstTime) {
+        let emptyItems = document.querySelectorAll('.emptyItem')
+        let keyPadItems = document.querySelectorAll('.keypad__item')
+        let submitButton = document.querySelector('#header__submit > span')
+        let body = document.querySelector('body')
+        let startButton = document.querySelector('#start')
+        let home__options = document.querySelectorAll('.selection .options span')
+
+        emptyItems.forEach(x => x.addEventListener('click', emptyItemHandler))
+        keyPadItems.forEach(x => x.addEventListener('click', keyPadHandler))
+        submitButton.addEventListener('click', submitHandler)
+        body.addEventListener('keyup', keyUpHandler)
+        startButton.addEventListener('click',startHandler)
+        home__options.forEach( x => x.addEventListener('click',homeOptionsHandler))
+
+        isFirstTime = false;
+    }
+
     let selection;
-
-
-    emptyItems.forEach(x => x.addEventListener('click', emptyItemHandler))
-    keyPadItems.forEach(x => x.addEventListener('click', keyPadHandler))
-    submitButton.addEventListener('click', submitHandler)
-    body.addEventListener('keyup', keyUpHandler)
 
     function emptyItemHandler() {
         emptyItems.forEach(x => x.classList.remove('selected'))
@@ -32,9 +42,9 @@ function initActions(){
         event.stopPropagation();
         let validater = new Validate(board.board, boardSize)
         let isValid = validater.runTests();
-        if(isValid){
+        if (isValid) {
             alert("You've Solved this. Awesome!!!")
-        }else{
+        } else {
             alert("That's not correct. Keep trying.")
         }
     }
@@ -52,5 +62,31 @@ function initActions(){
             }
         }
 
+    }
+
+    function startHandler(){
+        let home = document.querySelector('#home')
+        let main__container = document.querySelector('#main__container')        
+        home.style.display = "none";
+        main__container.style.display = "block";
+        newGame(user__size,user__level)
+    }
+
+    function homeOptionsHandler(){
+        let remaining = this.parentNode;
+        remaining = remaining.querySelectorAll('span');
+        if(this.parentNode.parentNode.id == "selection__level"){
+            remaining.forEach(x => {
+                x.style.background = "none"
+                x.style.color = "black"
+            })
+            this.style.color = "white";
+            this.style.background = "#0097e6";
+            user__level = parseInt(this.dataset["level"])
+        }else  if(this.parentNode.parentNode.id == "selection__size"){            
+            remaining.forEach(x => x.style.color = "black")
+            this.style.color = "#0097e6";
+            user__size = parseInt(this.dataset["size"])
+        }
     }
 }

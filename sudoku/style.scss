@@ -57,6 +57,7 @@ html {
         background-size: 100% 100%;
 
         #main__container {
+            display: none;
             width: 60vh;
             height: 80vh;
 
@@ -152,6 +153,94 @@ html {
                     }
                 }
             }
+
+
+        }
+
+        #home {
+            display: block;
+            position: relative;
+            width: 60vh;
+            height: 60vh;            
+            border-radius: 0.25rem;
+
+            &::before{
+                background-color: rgb(126, 214, 223);
+                box-shadow: 0 0 5px rgba(34, 166, 179, 1.0);
+            }
+
+            #header {
+                height: 30%;
+                font-size: 4rem;
+                margin-top: 1rem;
+                text-align: center;
+                font-family: 'Recursive';
+            }
+
+            .selection {
+                font-size: 1rem;
+                width: 80%;
+                height: 30%;
+                margin: 2rem auto 1rem auto;
+                vertical-align: middle;
+
+                .title {
+                    width: 30%;
+                    font-size: 1.075rem;
+                    font-weight: 600;
+                }
+
+                .options {
+                    width: 70%;
+                }
+            }
+
+            #selection__size .options{                
+                justify-content: space-around;
+                cursor: pointer;
+
+                svg:hover{
+                    color: #047cbd;;
+                }
+            }
+
+            #selection__level .options span {
+                border: 1px solid black;
+                padding: 0.3rem 0.5rem;
+                margin-right: 0.2rem;
+                cursor: pointer;
+
+                &:hover{
+                    background-color: #0097e6;
+                    color: white;
+                }
+
+                &:active{
+                    background-color: #0097e6;
+                    color: white;
+                }
+            }
+
+            #start {
+                font-family: 'Raleway';
+                width: 40%;
+                font-size: 2.25rem;
+                position: absolute;
+                bottom: 10%;     
+                left: 0;
+                right: 0;         
+                margin: 0 auto;
+                cursor: pointer;
+                border: 1px solid darkcyan;
+                background-color: #44bd32;
+                
+                &:hover{
+                    background-color: #3fac2f;                    
+                }
+                &:active{
+                    transform: scale(0.96);
+                }
+            }
         }
     }
 }
@@ -183,6 +272,16 @@ html {
                     .keypad__item {
                         height: 8vw;
                         width: 8vw;
+                    }
+                }
+            }
+
+            #home {
+                width: 90vw;                
+                .selection {
+
+                    .options{
+                        width: 100%;
                     }
                 }
             }

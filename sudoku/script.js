@@ -1,5 +1,5 @@
 window.addEventListener('load', () => {
-    newGame(boardSize,level)
+    initActions()
 })
 
 function newGame(_boardSize, _level) {
