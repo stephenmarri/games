@@ -84,6 +84,7 @@ html body #main__container {
   display: none;
   width: 60vh;
   height: 80vh;
+  position: relative;
 }
 
 html body #main__container #header__controls {
@@ -133,6 +134,35 @@ html body #main__container #header__controls #header__submit span:active {
 
 html body #main__container #header__controls #header__submit img:active {
   padding: 1px;
+}
+
+html body #main__container #dotMenu {
+  display: none;
+  min-width: 30%;
+  height: 20%;
+  position: absolute;
+  right: 0;
+  top: 8vh;
+}
+
+html body #main__container #dotMenu div {
+  background-color: #f1f2f6;
+  border: 1px solid #a4b0be;
+  font-family: 'Poppins';
+  font-size: 1.075rem;
+  margin-bottom: 1px;
+  text-align: center;
+  padding: 0.2rem 0;
+  cursor: pointer;
+}
+
+html body #main__container #dotMenu div:hover {
+  background-color: #a4b0be;
+}
+
+html body #main__container #dotMenu div:active {
+  -webkit-transform: scale(0.98);
+          transform: scale(0.98);
 }
 
 html body #main__container #board {
@@ -281,6 +311,10 @@ html body #home #start:hover {
 html body #home #start:active {
   -webkit-transform: scale(0.96);
           transform: scale(0.96);
+}
+
+.d-block {
+  display: block !important;
 }
 
 @media only screen and (max-width: 600px) {

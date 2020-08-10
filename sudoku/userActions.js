@@ -11,6 +11,7 @@ function initActions() {
         let body = document.querySelector('body')
         let startButton = document.querySelector('#start')
         let home__options = document.querySelectorAll('.selection .options span')
+        
                 
         submitButton.addEventListener('click', submitHandler)
         body.addEventListener('keyup', keyUpHandler)
@@ -45,6 +46,22 @@ function initActions() {
         } else {
             alert("That's not correct. Keep trying.")
         }
+    }
+
+    function dotMenuHandler(){
+        let dotMenuDiv = document.querySelector('#dotMenu')
+        dotMenuDiv.classList.toggle('d-block')
+        //page reloadon clear ALl
+        document.querySelector('#back').addEventListener('click',(event)=>{
+            event.stopPropagation()
+            window.location.reload()
+        })
+        //clear user input
+        document.querySelector('#clear').addEventListener('click',(event)=>{
+            event.stopPropagation()
+            clearUserInput()
+            dotMenuDiv.classList.remove('d-block')  
+        })
     }
 
     function keyUpHandler(event) {
@@ -94,7 +111,9 @@ function initActions() {
     function declareBoardElements(){
         emptyItems = document.querySelectorAll('.emptyItem')
         keyPadItems = document.querySelectorAll('.keypad__item')
+        dotMenuButton = document.querySelector('#dotMenuSpan')
         emptyItems.forEach(x => x.addEventListener('click', emptyItemHandler))
         keyPadItems.forEach(x => x.addEventListener('click', keyPadHandler))
+        dotMenuButton.addEventListener('click', dotMenuHandler)        
     }
 }
