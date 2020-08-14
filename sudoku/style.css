@@ -199,7 +199,6 @@ html body #main__container #keypad .keypad__item {
   border: 1px solid black;
   border-radius: 50%;
   text-align: center;
-  cursor: pointer;
   background-color: white;
 }
 
@@ -212,6 +211,11 @@ html body #main__container #keypad .keypad__item:hover {
 html body #main__container #keypad .keypad__item:active {
   -webkit-transform: scale(0.96);
           transform: scale(0.96);
+  outline: none;
+}
+
+html body #main__container #keypad .keypad__item img {
+  cursor: pointer;
 }
 
 html body #home {
@@ -220,12 +224,6 @@ html body #home {
   width: 60vh;
   height: 60vh;
   border-radius: 0.25rem;
-}
-
-html body #home::before {
-  background-color: #7ed6df;
-  -webkit-box-shadow: 0 0 5px #22a6b3;
-          box-shadow: 0 0 5px #22a6b3;
 }
 
 html body #home #header {
@@ -257,10 +255,10 @@ html body #home .selection .options {
 html body #home #selection__size .options {
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  cursor: pointer;
 }
 
 html body #home #selection__size .options svg:hover {
+  cursor: pointer;
   color: #047cbd;
 }
 
@@ -345,6 +343,9 @@ html body #home #start:active {
   }
   html body #home .selection .options {
     width: 100%;
+  }
+  html body #home #header #start {
+    margin-bottom: 1.5rem;
   }
 }
 /*# sourceMappingURL=style.css.map */

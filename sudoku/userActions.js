@@ -28,7 +28,8 @@ function initActions() {
         this.classList.add('selected')
     }
 
-    function keyPadHandler() {
+    function keyPadHandler(event) {
+        event.stopPropagation() 
         if (selection = document.querySelector('.selected')) {
             selection.textContent = this.textContent;
             let x = selection.id[0];
@@ -88,7 +89,8 @@ function initActions() {
         declareBoardElements()
     }
 
-    function homeOptionsHandler() {
+    function homeOptionsHandler(event) {
+        event.stopPropagation()
         let remaining = this.parentNode;
         remaining = remaining.querySelectorAll('span');
         if (this.parentNode.parentNode.id == "selection__level") {

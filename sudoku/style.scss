@@ -169,7 +169,6 @@ html {
                     border: 1px solid black;
                     border-radius: 50%;
                     text-align: center;
-                    cursor: pointer;
                     background-color: white;
 
                     &:hover {
@@ -180,6 +179,11 @@ html {
 
                     &:active {
                         transform: scale(0.96);
+                        outline: none;
+                    }
+                    
+                    img{
+                        cursor: pointer;
                     }
                 }
             }
@@ -194,10 +198,7 @@ html {
             height: 60vh;            
             border-radius: 0.25rem;
 
-            &::before{
-                background-color: rgb(126, 214, 223);
-                box-shadow: 0 0 5px rgba(34, 166, 179, 1.0);
-            }
+           
 
             #header {
                 height: 30%;
@@ -227,16 +228,16 @@ html {
 
             #selection__size .options{                
                 justify-content: space-around;
-                cursor: pointer;
-
+                
                 svg:hover{
+                    cursor: pointer;
                     color: #047cbd;;
                 }
 
                 //defaul selection
                 span:first-child{
                     color: #0097e6;
-                }
+                }                
             }
 
             #selection__level .options span {
@@ -328,6 +329,9 @@ html {
                     .options{
                         width: 100%;
                     }
+                }
+                #header #start{
+                    margin-bottom: 1.5rem;
                 }
             }
         }
