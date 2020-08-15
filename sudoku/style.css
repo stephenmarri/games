@@ -125,10 +125,14 @@ html body #main__container #header__controls #header__submit {
   font-family: "Poppins";
 }
 
-html body #main__container #header__controls #header__submit span:hover {
+html body #main__container #header__controls #header__submit span {
+  border: 1px solid black;
   padding: 5px 8px;
-  background-color: #3498db;
-  border-radius: 0.5rem;
+}
+
+html body #main__container #header__controls #header__submit span:hover {
+  background-color: #27ae60;
+  border-color: #27ae60;
   color: white;
   font-weight: 400;
   cursor: pointer;
