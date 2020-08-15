@@ -4,10 +4,11 @@ class Digger {
     board;
     board_transpose;
     boardSize;
+    LevelSelector;
     levels = [
         [
             [4, 6],
-            [8,9],
+            [8, 9],
             [10, 11]
         ],
         [
@@ -33,29 +34,64 @@ class Digger {
         this.level = _level
         this.board = _board;
         this.boardSize = _boardSize;
-        let LevelSelector = _boardSize == 9 ? 1 : 0;
-        this.holesCount = this.random(this.levels[LevelSelector][_level][1], this.levels[LevelSelector][_level][0])
+        this.LevelSelector = _boardSize == 9 ? 1 : 0;
+        this.holesCount = this.random(this.levels[this.LevelSelector][_level][1], this.levels[this.LevelSelector][_level][0])        
         this.randomDig(this.holesCount)
+        //this.symmetricalDig()
     }
 
     random(max, min = 0) {
         return Math.floor(Math.random() * (max - min + 1) + min)
     }
 
-    randomDig(howMany) {
-        
+    randomDig(howMany){
+        let copyOfBoard = copyBoard(this.board)
+        let copyOfHowMany = howMany;
+
         while (howMany > 0) {
-            let row = this.random(this.boardSize - 1)
-            let col = this.random(this.boardSize - 1)
+            let availabaleArray = this.availableCells();            
+            //if no cells available for digging, copy board and holesCount and start again
+            if(availabaleArray.length < 1){                
+                howMany = copyOfHowMany
+                this.board = copyOfBoard
+                copyOfBoard = copyBoard(this.board)                                
+            }else{
+                let randomCell = availabaleArray[this.random(availabaleArray.length - 1)]            
+                this.board[randomCell[0]][randomCell[1]] = 0;
+                howMany--;
+            }            
+        }        
+    }
+
+    randomDig1(howMany) {
+        let availableRows = Array.from({length: this.boardSize}, (val, idx) => idx)
+        let availableColumns = Array.from({length: this.boardSize}, (val, idx) => idx)        
+        let min = this.rowColumn_MinCount[this.LevelSelector][this.level][0];        
+
+        while (howMany > 0) {
+            this.availableCells()
+            let row = availableRows[this.random(availableRows.length - 1)]
+            let col = availableColumns[this.random(availableColumns.length - 1)]
 
             //row min checker
             let rowMinCount = this.board[row].filter(x => x > 0);
-            let LevelSelector = this.boardSize == 9 ? 1 : 0;
-            let min = this.rowColumn_MinCount[LevelSelector][this.level][0];
-            while (rowMinCount.length == min) {
-                //console.log("Maximum digs complete in row: ", row);
-                row = this.random(this.boardSize - 1)
+            //col min checker
+            let colMinCount = 0;
+            for (let i = 0; i < this.boardSize; i++) colMinCount += (this.board[i][col] > 0);
+        
+            while (rowMinCount.length == min || colMinCount == min) {
+                if(rowMinCount.length == min) availableRows.splice(row, 1)
+                if(colMinCount == min) availableColumns.splice(col, 1)
+                if(availableColumns.length <1 || availableRows.length < 1 ){
+                    console.log('available columns or available rows exhausted');
+                    break;
+                }
+                row = availableRows[this.random(availableRows.length - 1)]
+                col = availableColumns[this.random(availableColumns.length - 1)]
+
                 rowMinCount = this.board[row].filter(x => x > 0);
+                colMinCount = 0;
+                for (let i = 0; i < this.boardSize; i++) colMinCount += (this.board[i][col] > 0)
             }
             //col min 
 
@@ -68,22 +104,59 @@ class Digger {
     }
 
     symmetricalDig(howMany) {
-        this.board_transpose = transposeBoard(this.board, this.boardSize, 'positions')
+        //this.board_transpose = transposeBoard(this.board, this.boardSize, 'positions')
 
         let row = this.random(this.boardSize - 1)
         let col = this.random(this.boardSize - 1)
-        let row_t = this.board_transpose[row][col][0]
-        let col_t = this.board_transpose[row][col][1]
+        let row_t = (this.boardSize - 1) - row
+        let col_t = (this.boardSize - 1) - col
+        console.log('row, col', row, col)
+        console.log('row_t, col_t', row_t, col_t)
 
-        if (row == col) {
-            row_t = (this.boardSize - 1) - row
-            col_t = (this.boardSize - 1) - col
-        }
+
 
         this.board[row][col] = 0;
         this.board[row_t][col_t] = 0;
 
         console.table(this.board);
+    }
+
+    availableCells(){
+        let availableRows = [];
+        let availableColumns = [];
+        let availCells = []
+        let min = this.rowColumn_MinCount[this.LevelSelector][this.level][0];    
+
+        //availabale rows
+        this.board.forEach((x, idx) => {
+          let rowValuesSum =  x.filter(y => y > 0)
+          if(rowValuesSum.length > min ) availableRows.push(idx)
+        })
+
+        for(let col = 0; col < this.boardSize; col++){
+            let colValuesSum = 0
+            for(let row=0; row< this.boardSize; row++){
+                colValuesSum += (this.board[row][col] > 0)
+            }
+            if(colValuesSum > min) availableColumns.push(col)
+        }
+
+        // console.log(this.board);
+        // console.log('availableRows: ', availableRows);
+        // console.log('availableColumns: ', availableColumns);
+
+        for(let row = 0 ;row < availableRows.length; row++){
+            for(let col =0; col < availableColumns.length; col ++){
+                let x = availableRows[row];
+                let y = availableColumns[col]
+
+                if(this.board[x][y] > 0){
+                    availCells.push([x,y]);
+                }
+            }
+        }
+
+        return availCells
     }
 
 

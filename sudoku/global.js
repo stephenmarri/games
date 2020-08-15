@@ -47,7 +47,7 @@ function generateBoxArray(board, boardSize) {
 }
 
 
-//return the tranposed values of the board
+//return the tranposed values of the board, and 'which' has 2 values: position or values
 function transposeBoard(board, boardSize, which){
     let board_inv = Array.from(Array(boardSize), () => new Array(boardSize).fill(0));
     for (let i = 0; i < board.length; i++) {
