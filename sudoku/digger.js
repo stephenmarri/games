@@ -71,46 +71,7 @@ class Digger {
         }        
     }
 
-    //this function is no more in use and is replaced by the above function
-    randomDig1(howMany) {
-        let availableRows = Array.from({length: this.boardSize}, (val, idx) => idx)
-        let availableColumns = Array.from({length: this.boardSize}, (val, idx) => idx)        
-        let min = this.rowColumn_MinCount[this.LevelSelector][this.level][0];        
-
-        while (howMany > 0) {
-            this.availableCells()
-            let row = availableRows[this.random(availableRows.length - 1)]
-            let col = availableColumns[this.random(availableColumns.length - 1)]
-
-            //row min checker
-            let rowMinCount = this.board[row].filter(x => x > 0);
-            //col min checker
-            let colMinCount = 0;
-            for (let i = 0; i < this.boardSize; i++) colMinCount += (this.board[i][col] > 0);
-        
-            while (rowMinCount.length == min || colMinCount == min) {
-                if(rowMinCount.length == min) availableRows.splice(row, 1)
-                if(colMinCount == min) availableColumns.splice(col, 1)
-                if(availableColumns.length <1 || availableRows.length < 1 ){
-                    console.log('available columns or available rows exhausted');
-                    break;
-                }
-                row = availableRows[this.random(availableRows.length - 1)]
-                col = availableColumns[this.random(availableColumns.length - 1)]
-
-                rowMinCount = this.board[row].filter(x => x > 0);
-                colMinCount = 0;
-                for (let i = 0; i < this.boardSize; i++) colMinCount += (this.board[i][col] > 0)
-            }
-            //col min 
-
-            if (this.board[row][col] != 0) {
-                this.board[row][col] = 0;
-                howMany--;
-            }
-
-        }
-    }
+    
 
     symmetricalDig(howMany) {
         let copyOfBoard = copyBoard(this.board)
@@ -178,5 +139,46 @@ class Digger {
         return availCells
     }
 
+
+    //this function is no more in use and is replaced by the above function
+    randomDig1(howMany) {
+        let availableRows = Array.from({length: this.boardSize}, (val, idx) => idx)
+        let availableColumns = Array.from({length: this.boardSize}, (val, idx) => idx)        
+        let min = this.rowColumn_MinCount[this.LevelSelector][this.level][0];        
+
+        while (howMany > 0) {
+            this.availableCells()
+            let row = availableRows[this.random(availableRows.length - 1)]
+            let col = availableColumns[this.random(availableColumns.length - 1)]
+
+            //row min checker
+            let rowMinCount = this.board[row].filter(x => x > 0);
+            //col min checker
+            let colMinCount = 0;
+            for (let i = 0; i < this.boardSize; i++) colMinCount += (this.board[i][col] > 0);
+        
+            while (rowMinCount.length == min || colMinCount == min) {
+                if(rowMinCount.length == min) availableRows.splice(row, 1)
+                if(colMinCount == min) availableColumns.splice(col, 1)
+                if(availableColumns.length <1 || availableRows.length < 1 ){
+                    console.log('available columns or available rows exhausted');
+                    break;
+                }
+                row = availableRows[this.random(availableRows.length - 1)]
+                col = availableColumns[this.random(availableColumns.length - 1)]
+
+                rowMinCount = this.board[row].filter(x => x > 0);
+                colMinCount = 0;
+                for (let i = 0; i < this.boardSize; i++) colMinCount += (this.board[i][col] > 0)
+            }
+            //col min 
+
+            if (this.board[row][col] != 0) {
+                this.board[row][col] = 0;
+                howMany--;
+            }
+
+        }
+    }
 
 }

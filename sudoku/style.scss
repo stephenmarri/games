@@ -108,20 +108,20 @@ html {
                         padding: 1px;
                     }
                 }
-                
+
             }
 
-            #dotMenu{
+            #dotMenu {
                 display: none;
                 min-width: 30%;
                 height: 20%;
                 position: absolute;
                 right: 0;
-                top:8vh;
-                
-                div{
+                top: 8vh;
+
+                div {
                     background-color: #f1f2f6;
-                    border: 1px solid rgba(164, 176, 190,1.0);
+                    border: 1px solid rgba(164, 176, 190, 1.0);
                     font-family: 'Poppins';
                     font-size: 1.075rem;
                     margin-bottom: 1px;
@@ -129,11 +129,11 @@ html {
                     padding: 0.2rem 0;
                     cursor: pointer;
 
-                    &:hover{
+                    &:hover {
                         background-color: #a4b0be;
                     }
 
-                    &:active{
+                    &:active {
                         transform: scale(0.98);
                     }
                 }
@@ -181,8 +181,8 @@ html {
                         transform: scale(0.96);
                         outline: none;
                     }
-                    
-                    img{
+
+                    img {
                         cursor: pointer;
                     }
                 }
@@ -195,10 +195,10 @@ html {
             display: block;
             position: relative;
             width: 60vh;
-            height: 60vh;            
+            height: 60vh;
             border-radius: 0.25rem;
 
-           
+
 
             #header {
                 height: 30%;
@@ -226,18 +226,19 @@ html {
                 }
             }
 
-            #selection__size .options{                
+            #selection__size .options {
                 justify-content: space-around;
-                
-                svg:hover{
+
+                svg:hover {
                     cursor: pointer;
-                    color: #047cbd;;
+                    color: #047cbd;
+                    ;
                 }
 
                 //defaul selection
-                span:first-child{
+                span:first-child {
                     color: #0097e6;
-                }                
+                }
             }
 
             #selection__level .options span {
@@ -246,18 +247,18 @@ html {
                 margin-right: 0.2rem;
                 cursor: pointer;
 
-                &:hover{
+                &:hover {
                     background-color: #0097e6;
                     color: white;
                 }
 
-                &:active{
+                &:active {
                     background-color: #0097e6;
                     color: white;
                 }
 
                 //default selection
-                &:last-child{
+                &:last-child {
                     color: white;
                     background-color: #0097e6;
                 }
@@ -268,18 +269,19 @@ html {
                 width: 40%;
                 font-size: 2.25rem;
                 position: absolute;
-                bottom: 10%;     
+                bottom: 10%;
                 left: 0;
-                right: 0;         
+                right: 0;
                 margin: 0 auto;
                 cursor: pointer;
                 border: 1px solid darkcyan;
                 background-color: #44bd32;
-                
-                &:hover{
-                    background-color: #3fac2f;                    
+
+                &:hover {
+                    background-color: #3fac2f;
                 }
-                &:active{
+
+                &:active {
                     transform: scale(0.96);
                 }
             }
@@ -287,15 +289,17 @@ html {
     }
 }
 
-.d-block{
+.d-block {
     display: block !important;
 }
 
 //media queries
 @media only screen and (max-width: 600px) {
     html {
+
         body {
-            height: 100vh;
+            background-size: 100vw 100vh;
+
             #main__container {
                 width: 100vw;
 
@@ -324,14 +328,16 @@ html {
             }
 
             #home {
-                width: 90vw;                
+                width: 90vw;
+
                 .selection {
 
-                    .options{
+                    .options {
                         width: 100%;
                     }
                 }
-                #header #start{
+
+                #header #start {
                     margin-bottom: 1.5rem;
                 }
             }

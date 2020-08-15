@@ -317,7 +317,7 @@ html body #home #start:active {
 
 @media only screen and (max-width: 600px) {
   html body {
-    height: 100vh;
+    background-size: 100vw 100vh;
   }
   html body #main__container {
     width: 100vw;
