@@ -4,8 +4,7 @@ window.addEventListener('load', () => {
 })
 
 function newGame(_boardSize, _level) {    
-
-    document.querySelector('#header__level').textContent = user__level[1];
+    
     boardSize = _boardSize;
     boxSize = parseInt(Math.sqrt(boardSize))
     level = _level; 

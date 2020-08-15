@@ -41,6 +41,7 @@
 
 .emptyItem.selected {
     background-color: #45aaf2;
+    color: whitesmoke;
 }
 
 html {
@@ -67,10 +68,21 @@ html {
                 width: 100%;
                 justify-content: space-around;
 
-                #header__level {
+                #header__menu {
                     width: 33.3%;
                     font-family: "Poppins";
                     text-align-last: left;
+
+                    img {
+                        cursor: pointer;
+                        height: 0.754rem;
+                        vertical-align: middle;
+                        margin-left: 0.25rem;
+                    }
+
+                    img:active {
+                        padding: 1px;
+                    }
                 }
 
                 #header__header {
@@ -84,15 +96,8 @@ html {
                     width: 33.3%;
                     text-align: right;
                     font-family: "Poppins";
+
                     
-                    img {
-                        cursor: pointer;
-                        height: 0.754rem;
-                        vertical-align: middle;
-                        margin-left: 0.25rem;
-                    }
-
-
 
                     span:hover {
                         padding: 5px 8px;
@@ -100,14 +105,11 @@ html {
                         border-radius: 0.5rem;
                         color: white;
                         font-weight: 400;
+                        cursor: pointer;
                     }
 
                     span:active {
                         padding: 4px 7px;
-                    }
-
-                    img:active {
-                        padding: 1px;
                     }
                 }
 
@@ -118,7 +120,7 @@ html {
                 min-width: 30%;
                 height: 20%;
                 position: absolute;
-                right: 0;
+                left: 0;
                 top: 8vh;
 
                 div {
@@ -133,6 +135,7 @@ html {
 
                     &:hover {
                         background-color: #a4b0be;
+                        color: white;
                     }
 
                     &:active {
@@ -172,6 +175,7 @@ html {
                     border-radius: 50%;
                     text-align: center;
                     background-color: white;
+                    cursor: pointer;
 
                     &:hover {
                         border: 1px solid black;
@@ -184,9 +188,8 @@ html {
                         outline: none;
                     }
 
-                    img {
-                        cursor: pointer;
-                    }
+
+
                 }
             }
 
@@ -199,8 +202,6 @@ html {
             width: 60vh;
             height: 60vh;
             border-radius: 0.25rem;
-
-
 
             #header {
                 height: 30%;
@@ -233,8 +234,7 @@ html {
 
                 svg:hover {
                     cursor: pointer;
-                    color: #047cbd;
-                    ;
+                    color: #047cbd;                    
                 }
 
                 //defaul selection

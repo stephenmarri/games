@@ -42,8 +42,7 @@ class Digger {
     digChooser(howMany){
         let partition1 = random(howMany - 1) + 1;
         partition1 += ( parseInt(partition1%2) )
-        let partition2 = howMany - partition1;
-        console.log(howMany, partition1, partition2);
+        let partition2 = howMany - partition1;        
         this.symmetricalDig(partition1)
         this.randomDig(partition2)
     }

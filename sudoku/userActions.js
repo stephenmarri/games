@@ -1,18 +1,19 @@
 let isFirstTime = true;
+let isFirstTime_dotMenu = true;
 let emptyItems;
 let keyPadItems;
-let user__level = [level,'Evil'];
+let user__level = [level, 'Evil'];
 let user__size = boardSize;
 
 function initActions() {
-
-    if (isFirstTime) {              
+    
+    if (isFirstTime) {
         let submitButton = document.querySelector('#header__submit > span')
         let body = document.querySelector('body')
         let startButton = document.querySelector('#start')
         let home__options = document.querySelectorAll('.selection .options span')
-        
-                
+
+
         submitButton.addEventListener('click', submitHandler)
         body.addEventListener('keyup', keyUpHandler)
         startButton.addEventListener('click', startHandler)
@@ -29,7 +30,7 @@ function initActions() {
     }
 
     function keyPadHandler(event) {
-        event.stopPropagation() 
+        event.stopPropagation()
         if (selection = document.querySelector('.selected')) {
             selection.textContent = this.textContent;
             let x = selection.id[0];
@@ -49,20 +50,39 @@ function initActions() {
         }
     }
 
-    function dotMenuHandler(){
+    function dotMenuHandler(e) {
+        e.stopPropagation()
         let dotMenuDiv = document.querySelector('#dotMenu')
-        dotMenuDiv.classList.toggle('d-block')
-        //page reloadon clear ALl
-        document.querySelector('#back').addEventListener('click',(event)=>{
-            event.stopPropagation()
-            window.location.reload()
-        })
-        //clear user input
-        document.querySelector('#clear').addEventListener('click',(event)=>{
-            event.stopPropagation()
-            clearUserInput()
-            dotMenuDiv.classList.remove('d-block')  
-        })
+        dotMenuDiv.classList.add('d-block')
+
+        if (isFirstTime_dotMenu) {
+            isFirstTime_dotMenu = false;
+            //page reloadon clear ALl
+            document.querySelector('#back').addEventListener('click', (event) => {
+                event.stopPropagation()
+                window.location.reload()
+            })
+
+            //clear user input
+            document.querySelector('#clear').addEventListener('click', (event) => {
+                event.stopPropagation()
+                clearUserInput()
+                dotMenuDiv.classList.remove('d-block')
+            })
+
+            //load new game, with same user inputs
+            document.querySelector('#newGame').addEventListener('click', (event) => {
+                event.stopPropagation()
+                startHandler()
+                dotMenuDiv.classList.remove('d-block')
+            })
+
+            //hide menu when clicking on div
+            document.querySelector('body').addEventListener('click', () => {
+                dotMenuDiv.classList.remove('d-block')
+            })
+        }
+
     }
 
     function keyUpHandler(event) {
@@ -80,11 +100,12 @@ function initActions() {
 
     }
 
+    //starts here: after user clicks on start game button
     function startHandler() {
         let home = document.querySelector('#home')
         let main__container = document.querySelector('#main__container')
         home.style.display = "none";
-        main__container.style.display = "block";        
+        main__container.style.display = "block";
         newGame(user__size, user__level[0])
         declareBoardElements()
     }
@@ -102,7 +123,7 @@ function initActions() {
             this.style.background = "#0097e6";
             user__level[0] = parseInt(this.dataset["level"])
             user__level[1] = this.textContent;
-            
+
         } else if (this.parentNode.parentNode.id == "selection__size") {
             remaining.forEach(x => x.style.color = "black")
             this.style.color = "#0097e6";
@@ -110,12 +131,12 @@ function initActions() {
         }
     }
 
-    function declareBoardElements(){
+    function declareBoardElements() {
         emptyItems = document.querySelectorAll('.emptyItem')
         keyPadItems = document.querySelectorAll('.keypad__item')
         dotMenuButton = document.querySelector('#dotMenuSpan')
         emptyItems.forEach(x => x.addEventListener('click', emptyItemHandler))
         keyPadItems.forEach(x => x.addEventListener('click', keyPadHandler))
-        dotMenuButton.addEventListener('click', dotMenuHandler)        
+        dotMenuButton.addEventListener('click', (e) => dotMenuHandler(e))
     }
 }

@@ -60,6 +60,7 @@
 
 .emptyItem.selected {
   background-color: #45aaf2;
+  color: whitesmoke;
 }
 
 html {
@@ -94,10 +95,21 @@ html body #main__container #header__controls {
       justify-content: space-around;
 }
 
-html body #main__container #header__controls #header__level {
+html body #main__container #header__controls #header__menu {
   width: 33.3%;
   font-family: "Poppins";
   text-align-last: left;
+}
+
+html body #main__container #header__controls #header__menu img {
+  cursor: pointer;
+  height: 0.754rem;
+  vertical-align: middle;
+  margin-left: 0.25rem;
+}
+
+html body #main__container #header__controls #header__menu img:active {
+  padding: 1px;
 }
 
 html body #main__container #header__controls #header__header {
@@ -113,27 +125,17 @@ html body #main__container #header__controls #header__submit {
   font-family: "Poppins";
 }
 
-html body #main__container #header__controls #header__submit img {
-  cursor: pointer;
-  height: 0.754rem;
-  vertical-align: middle;
-  margin-left: 0.25rem;
-}
-
 html body #main__container #header__controls #header__submit span:hover {
   padding: 5px 8px;
   background-color: #3498db;
   border-radius: 0.5rem;
   color: white;
   font-weight: 400;
+  cursor: pointer;
 }
 
 html body #main__container #header__controls #header__submit span:active {
   padding: 4px 7px;
-}
-
-html body #main__container #header__controls #header__submit img:active {
-  padding: 1px;
 }
 
 html body #main__container #dotMenu {
@@ -141,7 +143,7 @@ html body #main__container #dotMenu {
   min-width: 30%;
   height: 20%;
   position: absolute;
-  right: 0;
+  left: 0;
   top: 8vh;
 }
 
@@ -158,6 +160,7 @@ html body #main__container #dotMenu div {
 
 html body #main__container #dotMenu div:hover {
   background-color: #a4b0be;
+  color: white;
 }
 
 html body #main__container #dotMenu div:active {
@@ -200,6 +203,7 @@ html body #main__container #keypad .keypad__item {
   border-radius: 50%;
   text-align: center;
   background-color: white;
+  cursor: pointer;
 }
 
 html body #main__container #keypad .keypad__item:hover {
@@ -212,10 +216,6 @@ html body #main__container #keypad .keypad__item:active {
   -webkit-transform: scale(0.96);
           transform: scale(0.96);
   outline: none;
-}
-
-html body #main__container #keypad .keypad__item img {
-  cursor: pointer;
 }
 
 html body #home {
