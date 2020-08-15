@@ -84,13 +84,15 @@ html {
                     width: 33.3%;
                     text-align: right;
                     font-family: "Poppins";
-                    cursor: pointer;
-
+                    
                     img {
+                        cursor: pointer;
                         height: 0.754rem;
                         vertical-align: middle;
                         margin-left: 0.25rem;
                     }
+
+
 
                     span:hover {
                         padding: 5px 8px;
@@ -298,6 +300,7 @@ html {
     html {
 
         body {
+            height: 100vh;
             background-size: 100vw 100vh;
 
             #main__container {
