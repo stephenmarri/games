@@ -36,8 +36,16 @@ class Digger {
         this.boardSize = _boardSize;
         this.LevelSelector = _boardSize == 9 ? 1 : 0;
         this.holesCount = this.random(this.levels[this.LevelSelector][_level][1], this.levels[this.LevelSelector][_level][0])        
-        this.randomDig(this.holesCount)
-        //this.symmetricalDig()
+        this.digChooser(this.holesCount)
+    }
+
+    digChooser(howMany){
+        let partition1 = random(howMany - 1) + 1;
+        partition1 += ( parseInt(partition1%2) )
+        let partition2 = howMany - partition1;
+        console.log(howMany, partition1, partition2);
+        this.symmetricalDig(partition1)
+        this.randomDig(partition2)
     }
 
     random(max, min = 0) {
@@ -63,6 +71,7 @@ class Digger {
         }        
     }
 
+    //this function is no more in use and is replaced by the above function
     randomDig1(howMany) {
         let availableRows = Array.from({length: this.boardSize}, (val, idx) => idx)
         let availableColumns = Array.from({length: this.boardSize}, (val, idx) => idx)        
@@ -104,21 +113,31 @@ class Digger {
     }
 
     symmetricalDig(howMany) {
-        //this.board_transpose = transposeBoard(this.board, this.boardSize, 'positions')
+        let copyOfBoard = copyBoard(this.board)
+        let copyOfHowMany = howMany;
 
-        let row = this.random(this.boardSize - 1)
-        let col = this.random(this.boardSize - 1)
-        let row_t = (this.boardSize - 1) - row
-        let col_t = (this.boardSize - 1) - col
-        console.log('row, col', row, col)
-        console.log('row_t, col_t', row_t, col_t)
+        while(howMany > 0){
+            let availabaleArray = this.availableCells();
+            
+            //if no items avaialble for diggin, start over
+            if(availabaleArray.length < 1){
+                howMany = copyOfHowMany
+                this.board = copyBoard(copyOfBoard)
+                copyOfBoard = copyBoard(this.board)
+            }else{
+                let randomCell = availabaleArray[random( parseInt(availabaleArray.length/2 - 1) )]            
+                let row = randomCell[0]
+                let col = randomCell[1]
+                let row_t = (this.boardSize - 1) - row
+                let col_t = (this.boardSize - 1) - col
+        
+                this.board[row][col] = 0;
+                this.board[row_t][col_t] = 0;
+        
+                howMany -= 2;
+            }
 
-
-
-        this.board[row][col] = 0;
-        this.board[row_t][col_t] = 0;
-
-        console.table(this.board);
+        }
     }
 
     availableCells(){
