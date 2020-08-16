@@ -25,6 +25,9 @@ function newGame(_boardSize, _level) {
     view.printBoard(questionBoard)
 
     initActions()
+
+    //solver
+    solver = new Solver(board.board)
 }
 
 function clearUserInput(){
