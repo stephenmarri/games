@@ -30,6 +30,7 @@ class Solver {
 
         this.initEmptiesObject()
         this.singlesFinder()
+        if(!this.isBoardSolved) this.backTracking()
     }
 
     initEmptiesObject() {
@@ -47,7 +48,7 @@ class Solver {
                         currentValue: 0,
                         possibleValues: [],
                         possibleIdx: null,
-                        isSingle: null,
+                        isSingle: false,
                         solved: false
                     }
 
@@ -124,34 +125,33 @@ class Solver {
         // is board solved
         if (this.solvedCount == this.questionsCount) {
             this.isBoardSolved = true;
-            console.log("Board Solved: singlesFInder attempt 1");
+            console.log("Singles: board solved");
             //validate the board
             let isSolutionValid = this.boardValidation()
-            if(isSolutionValid) console.log('Solution board is a valid sudoku');
+            if(isSolutionValid) console.log('Singles: solution is a valid sudoku');
         }
+        console.log(`Singles: ${this.solvedCount} filled out of ${this.questionsCount}`);
     }
 
     findSinglesFromObject(obj) {
         let valueFilled = 0;
         let { row, col, box } = obj;
         let isSingle = this.checkIfSingle(row, col, box);
-        if (isSingle > 0) {
-            valueFilled = isSingle;
+        if (isSingle.length == 1) {
+            valueFilled = isSingle[0];
 
             obj.isSingle = true;
             obj.solved = true;
-            obj.currentValue = isSingle;
-            obj.possibleValues.push(isSingle)
-            obj.possibleIdx = 0;
+            obj.currentValue = isSingle[0];
         }
+        obj.possibleValues = [...isSingle];
+        obj.possibleIdx = 0;
 
         return valueFilled;
     }
 
     checkIfSingle(row, col, box) {
-        let possible = Array.from({
-            length: boardSize
-        }, (val, idx) => idx + 1)
+        let possible = Array.from({ length: boardSize }, (val, idx) => idx + 1)
         let rowValues = [...new Set(this.boardRows[row])]
         let colValues = [...new Set(this.boardColumns[col])]
         let boxValues = [...new Set(this.boardBoxes[box])]
@@ -160,10 +160,79 @@ class Solver {
 
         for (let item of existigValues) removeInArrayValue(possible, item);
 
-        return possible.length == 1 ? possible[0] : 0;
+        return possible;
     }
 
     //################################ Singles Finder END
+    
+    //################################ back tracking START
+    backTracking(){
+        let bTquestions = this.createBackTrackingObject()
+        console.log(`backTrackign: remaining empty items are: ${bTquestions}`);
+        let beforeBackTrackBoard = copyBoard(this.board);
+
+        let i = 0;
+        while(i < bTquestions){
+            let obj = this.backTrackObject[i]                        
+            let {row, col, box, possibleValues, possibleIdx} = obj;
+            console.log('backtracking: ',row, col, box, possibleIdx, possibleValues);
+
+            let isFilled = false;
+            while(possibleIdx < possibleValues.length){
+                let value = possibleValues[possibleIdx]
+                let isValueValid = this.checkIfValidValue(row, col, box, value)
+                possibleIdx++;
+                this.backTrackObject[i].possibleIdx = possibleIdx;
+                if(isValueValid){
+                    this.backTrackObject[i].currentValue = value   
+                    isFilled = true       
+                    break;
+                }
+            }
+
+            //if no value filled for this 'i'
+            if(!isFilled){
+                if(i == 0 ){
+                    console.log('backTracking: solution cannot be found');
+                    return;
+                }else{
+                    this.backTrackObject[i].possibleIdx = 0;
+                    this.backTrackObject[i].currentValue = 0;
+                    i -= 2;
+                }
+            }
+            
+            this.writeToBoard(this.backTrackObject)
+            view.printBoard(this.board)          
+            i++;
+        }
+
+        console.log('backTracking complete');
+    }
+
+    checkIfValidValue(row,col,box,value){
+        let isValid = true;
+        let rowValues = [...new Set(this.boardRows[row])]
+        let colValues = [...new Set(this.boardColumns[col])]
+        let boxValues = [...new Set(this.boardBoxes[box])]
+        if(rowValues.includes(value) || colValues.includes(value) || boxValues.includes(value)) isValid = false;        
+
+        return isValid;
+    }
+
+    createBackTrackingObject(){
+        let counter = 0;
+        for(let idx in this.emptiesObject){
+            let obj = this.emptiesObject[idx];
+            if(!obj.solved){
+                this.backTrackObject[counter] = obj;
+                counter++;
+            }
+        }
+
+        return counter;
+    }
+    //################################ back tracking END
 
     writeToBoard(_obj) {
         let objLen = Object.keys(_obj).length;
