@@ -6,13 +6,12 @@ let user__level = [level, 'Evil'];
 let user__size = boardSize;
 
 function initActions() {
-    
+
     if (isFirstTime) {
         let submitButton = document.querySelector('#header__submit > span')
         let body = document.querySelector('body')
         let startButton = document.querySelector('#start')
         let home__options = document.querySelectorAll('.selection .options span')
-
 
         submitButton.addEventListener('click', submitHandler)
         body.addEventListener('keyup', keyUpHandler)
@@ -52,11 +51,15 @@ function initActions() {
 
     function dotMenuHandler(e) {
         e.stopPropagation()
-        let dotMenuDiv = document.querySelector('#dotMenu')
+        dotMenuDiv = document.querySelector('#dotMenu')
         dotMenuDiv.classList.add('d-block')
 
         if (isFirstTime_dotMenu) {
             isFirstTime_dotMenu = false;
+
+            //solver handlers
+            solverStartButton.addEventListener('click', () => solverStartHandler())
+
             //page reloadon clear ALl
             document.querySelector('#back').addEventListener('click', (event) => {
                 event.stopPropagation()
@@ -77,9 +80,15 @@ function initActions() {
                 startHandler()
             })
 
+            document.querySelector('#solver').addEventListener('click', (event) => {
+                event.stopPropagation()                
+                solverMenu.classList.toggle('d-block')
+            })
+            
             //hide menu when clicking on div
-            document.querySelector('body').addEventListener('click', () => {
+            document.querySelector('body').addEventListener('click', () => {                
                 dotMenuDiv.classList.remove('d-block')
+                solverMenu.classList.remove('d-block')
             })
         }
 
@@ -131,12 +140,20 @@ function initActions() {
         }
     }
 
+    function solverStartHandler() {     
+        dotMenuDiv.classList.remove('d-block')   
+        solver = new Solver(board.board)
+    }
+
     function declareBoardElements() {
         emptyItems = document.querySelectorAll('.emptyItem')
         keyPadItems = document.querySelectorAll('.keypad__item')
         dotMenuButton = document.querySelector('#dotMenuSpan')
+        solverMenu = document.querySelector('#solverMenu')
+        solverStartButton = document.querySelector('#solverStart')
+
         emptyItems.forEach(x => x.addEventListener('click', emptyItemHandler))
         keyPadItems.forEach(x => x.addEventListener('click', keyPadHandler))
-        dotMenuButton.addEventListener('click', (e) => dotMenuHandler(e))
+        dotMenuButton.addEventListener('click', (e) => dotMenuHandler(e))        
     }
 }
