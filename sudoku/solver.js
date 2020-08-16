@@ -1,4 +1,8 @@
 class Solver {
+    watch = true;
+    speed = 200;
+    requestStop = false;    
+
     board;
     originalBoard;
 
@@ -26,8 +30,10 @@ class Solver {
 
         this.init3arrays()
         this.questionsCount = this.findQuestionsCount();
-        this.solvedCount = 0;
+        this.solvedCount = 0;        
+    }
 
+    startSolving(){
         this.initEmptiesObject()
         this.singlesFinder()
         if(!this.isBoardSolved) this.backTracking()
@@ -129,6 +135,7 @@ class Solver {
             //validate the board
             let isSolutionValid = this.boardValidation()
             if(isSolutionValid) console.log('Singles: solution is a valid sudoku');
+            alert('Yo!!! Board Solved')
         }
         console.log(`Singles: ${this.solvedCount} filled out of ${this.questionsCount}`);
     }
@@ -166,7 +173,8 @@ class Solver {
     //################################ Singles Finder END
     
     //################################ back tracking START
-    async backTracking(){
+    async backTracking(){        
+
         let bTquestions = this.createBackTrackingObject()
         console.log(`backTrackign: remaining empty items are: ${bTquestions}`);
         let beforeBackTrackBoard = copyBoard(this.board);
@@ -204,7 +212,17 @@ class Solver {
             
             this.writeToBoard(this.backTrackObject)
             view.printBoard(this.board)   
-            await sleep(150 - ( parseInt(iterations/100)*10 ) )        
+            //if user requests to stop then abort
+            if(this.requestStop) return;
+
+            // all things related to speeed and watch
+            if(this.watch){
+                let reduction = parseInt(iterations/100)*10
+                reduction = reduction >= this.speed ? 0 : reduction;
+                await sleep(this.speed - reduction )   
+            }
+
+
             i++; iterations++;
         }
 

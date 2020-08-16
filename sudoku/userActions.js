@@ -59,6 +59,11 @@ function initActions() {
 
             //solver handlers
             solverStartButton.addEventListener('click', () => solverStartHandler())
+            speedRangeButton.addEventListener('click', () => speedRangeHandler())
+            solverStopButton.addEventListener('click', ()=> {
+                dotMenuDiv.classList.remove('d-block');
+                solver.requestStop = true;
+            })
 
             //page reloadon clear ALl
             document.querySelector('#back').addEventListener('click', (event) => {
@@ -143,6 +148,9 @@ function initActions() {
     function solverStartHandler() {     
         dotMenuDiv.classList.remove('d-block')   
         solver = new Solver(board.board)
+        solver.watch = solverWatchButton.checked;
+        solver.requestStop = false;
+        solver.startSolving()
     }
 
     function declareBoardElements() {
@@ -151,6 +159,9 @@ function initActions() {
         dotMenuButton = document.querySelector('#dotMenuSpan')
         solverMenu = document.querySelector('#solverMenu')
         solverStartButton = document.querySelector('#solverStart')
+        solverWatchButton = document.querySelector('#solverWatchCbox')
+        solverStopButton = document.querySelector('#solverStop')
+        speedRangeButton = document.querySelector('#speedRange')
 
         emptyItems.forEach(x => x.addEventListener('click', emptyItemHandler))
         keyPadItems.forEach(x => x.addEventListener('click', keyPadHandler))

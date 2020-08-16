@@ -155,11 +155,12 @@ html {
                         height: 100%;
                         padding: 0.2rem 0;
 
-                        &:after{
+                        &:after {
                             content: "Solver ▷";
                         }
 
-                        &:hover , &:focus{
+                        &:hover,
+                        &:focus {
                             background-color: #a4b0be;
                             color: white;
 
@@ -191,6 +192,57 @@ html {
                                 background-color: #a4b0be;
                                 color: white;
                             }
+
+                            // check box Start
+                            input[type=checkbox]+label {
+                                display: block;
+                                margin: 0.1rem;
+                                cursor: pointer;
+                                padding: 0.1rem;
+                            }
+
+                            input[type=checkbox] {
+                                display: none;
+                            }
+
+                            input[type=checkbox]+label:before {
+                                content: "\2714";
+                                border: 0.1em solid #000;
+                                border-radius: 0.2rem;
+                                display: inline-block;
+                                width: 0.7rem;
+                                height: 0.7em;
+                                padding-left: 0.3rem;
+                                padding-bottom: 0.6rem;
+                                padding-right: 0.2rem;
+                                margin-right: 0.5rem;
+                                vertical-align: bottom;
+                                color: transparent;
+                                transition: .2s;
+                            }
+
+                            input[type=checkbox]+label:active:before {
+                                transform: scale(0);
+                            }
+
+                            input[type=checkbox]:checked+label:before {
+                                background-color: MediumSeaGreen;
+                                border-color: MediumSeaGreen;
+                                color: #fff;
+                            }
+
+                            input[type=checkbox]:disabled+label:before {
+                                transform: scale(1);
+                                border-color: #aaa;
+                            }
+
+                            input[type=checkbox]:checked:disabled+label:before {
+                                transform: scale(1);
+                                background-color: #bfb;
+                                border-color: #bfb;
+                            }
+
+                            // check box End
                         }
 
                     }

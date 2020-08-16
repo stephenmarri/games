@@ -223,6 +223,58 @@ html body #main__container #dotMenu #solver #solverMenu div:hover {
   color: white;
 }
 
+html body #main__container #dotMenu #solver #solverMenu div input[type=checkbox] + label {
+  display: block;
+  margin: 0.1rem;
+  cursor: pointer;
+  padding: 0.1rem;
+}
+
+html body #main__container #dotMenu #solver #solverMenu div input[type=checkbox] {
+  display: none;
+}
+
+html body #main__container #dotMenu #solver #solverMenu div input[type=checkbox] + label:before {
+  content: "\2714";
+  border: 0.1em solid #000;
+  border-radius: 0.2rem;
+  display: inline-block;
+  width: 0.7rem;
+  height: 0.7em;
+  padding-left: 0.3rem;
+  padding-bottom: 0.6rem;
+  padding-right: 0.2rem;
+  margin-right: 0.5rem;
+  vertical-align: bottom;
+  color: transparent;
+  -webkit-transition: .2s;
+  transition: .2s;
+}
+
+html body #main__container #dotMenu #solver #solverMenu div input[type=checkbox] + label:active:before {
+  -webkit-transform: scale(0);
+          transform: scale(0);
+}
+
+html body #main__container #dotMenu #solver #solverMenu div input[type=checkbox]:checked + label:before {
+  background-color: MediumSeaGreen;
+  border-color: MediumSeaGreen;
+  color: #fff;
+}
+
+html body #main__container #dotMenu #solver #solverMenu div input[type=checkbox]:disabled + label:before {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  border-color: #aaa;
+}
+
+html body #main__container #dotMenu #solver #solverMenu div input[type=checkbox]:checked:disabled + label:before {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  background-color: #bfb;
+  border-color: #bfb;
+}
+
 html body #main__container #board {
   width: 60vh;
   height: 60vh;
