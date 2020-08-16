@@ -73,8 +73,8 @@ function initActions() {
             //load new game, with same user inputs
             document.querySelector('#newGame').addEventListener('click', (event) => {
                 event.stopPropagation()
-                startHandler()
                 dotMenuDiv.classList.remove('d-block')
+                startHandler()
             })
 
             //hide menu when clicking on div

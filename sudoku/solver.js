@@ -166,16 +166,16 @@ class Solver {
     //################################ Singles Finder END
     
     //################################ back tracking START
-    backTracking(){
+    async backTracking(){
         let bTquestions = this.createBackTrackingObject()
         console.log(`backTrackign: remaining empty items are: ${bTquestions}`);
         let beforeBackTrackBoard = copyBoard(this.board);
 
         let i = 0;
-        while(i < bTquestions){
+        let iterations = 0;
+        while(i < bTquestions){            
             let obj = this.backTrackObject[i]                        
-            let {row, col, box, possibleValues, possibleIdx} = obj;
-            console.log('backtracking: ',row, col, box, possibleIdx, possibleValues);
+            let {row, col, box, possibleValues, possibleIdx} = obj;            
 
             let isFilled = false;
             while(possibleIdx < possibleValues.length){
@@ -203,11 +203,21 @@ class Solver {
             }
             
             this.writeToBoard(this.backTrackObject)
-            view.printBoard(this.board)          
-            i++;
+            view.printBoard(this.board)   
+            await sleep(150 - ( parseInt(iterations/100)*10 ) )        
+            i++; iterations++;
         }
 
-        console.log('backTracking complete');
+
+        // final steps
+        console.log('iteration done: ', iterations);
+        if(this.boardValidation()){
+            console.log('backTracking Complete: board Solved');
+            alert('Yo!!! Board Solved')
+        }else{
+            console.log('backTracking Complete: no solution found');
+        }
+        
     }
 
     checkIfValidValue(row,col,box,value){

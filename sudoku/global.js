@@ -95,8 +95,8 @@ function transposeBoard(board, boardSize, which) {
 
 
 //return copy of a given board
-//!because somehow, iam not able to acheive the same in script.js
-//!everytime i try to copy, its making a reference copy and not value copy
+//?because somehow, iam not able to acheive the same in script.js
+//?everytime i try to copy, its making a reference copy and not value copy
 function copyBoard(board) {
     let copyOfBoard = Array.from(Array(board.length), () => new Array(board.length).fill(0))
     for (let i = 0; i < board.length; i++) {
@@ -105,4 +105,23 @@ function copyBoard(board) {
         }
     }
     return copyOfBoard;
+}
+
+
+//########################## sleep
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function demo() {
+    console.log('Taking a break...');
+    await sleep(2000);
+    console.log('Two seconds later, showing sleep in a loop...');
+
+    // Sleep in loop
+    for (let i = 0; i < 5; i++) {
+        if (i === 3)
+            await sleep(2000);
+        console.log(i);
+    }
 }
