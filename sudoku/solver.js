@@ -33,9 +33,9 @@ class Solver {
         this.solvedCount = 0;
     }
 
-    startSolving() {
+    async startSolving() {
         this.initEmptiesObject()
-        this.singlesFinder()
+        await this.singlesFinder()
         if (!this.isTheBoardSolved("Singles")) this.backTracking()        
     }
 
@@ -102,7 +102,7 @@ class Solver {
 
     }
 
-    singlesFinder() {
+    async singlesFinder() {
         let valuesFilledCounter;
 
         do {
@@ -115,6 +115,18 @@ class Solver {
                     if (isSingleFilled > 0) {
                         this.singlesObject[valuesFilledCounter] = obj;
                         valuesFilledCounter++;
+
+                        this.writeToBoard(this.singlesObject)
+                        view.printBoard(this.board)
+                        //if user requests to stop then abort
+                        if (this.requestStop) return;
+
+                        // all things related to speeed and watch
+                        if (this.watch) {
+                            let reduction = parseInt(valuesFilledCounter / 100) * 10
+                            reduction = reduction >= this.speed ? 0 : reduction;
+                            await sleep(this.speed - reduction)
+                        }
                     }
                 }
             }
