@@ -36,7 +36,8 @@ class Solver {
     async startSolving() {
         this.initEmptiesObject()
         await this.singlesFinder()
-        if (!this.isTheBoardSolved("Singles")) this.backTracking()        
+        if (!this.isTheBoardSolved("Singles")) await this.backTracking()  
+        view.solverStartMenuOptionsToggler()      
     }
 
     initEmptiesObject() {
@@ -321,7 +322,7 @@ class Solver {
             console.log('Solver process complete. But could not solve the board.😣');
             alert(`Process complete, but couldn't solve the board. Sorry 😣`)
         }
-
+        
         return this.isBoardSolved
     }
 

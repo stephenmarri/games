@@ -467,8 +467,9 @@ html body #home #start:active {
   color: purple;
 }
 
-.solverHover {
-  background-color: #a4b0be;
-  color: white;
+.solverDisable {
+  cursor: not-allowed;
+  pointer-events: none;
+  color: rgba(0, 0, 0, 0.4);
 }
 /*# sourceMappingURL=style.css.map */

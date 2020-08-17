@@ -54,4 +54,13 @@ class View{
         boardElement.style.gridTemplateRows = temp
         boardElement.style.fontSize = size == 4 ? "2.25rem" : "1rem";
     }
+
+    solverStartMenuOptionsToggler(){
+        let except = ["solver","solvermenu", "solverstop"]
+        let allMenuItems = document.querySelectorAll('#dotMenu div')
+        allMenuItems.forEach(item => {
+            if(except.includes(item.id.toString().toLowerCase())) return;
+            item.classList.toggle('solverDisable');
+        })
+    }
 }

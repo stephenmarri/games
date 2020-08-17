@@ -60,7 +60,7 @@ function initActions() {
             //solver handlers
             solverStartButton.addEventListener('click', () => solverStartHandler())
             speedRangeButton.addEventListener('click', (event) => speedRangeHandler(event))
-            solverStopButton.addEventListener('click', ()=> {
+            solverStopButton.addEventListener('click', ()=> {                
                 dotMenuDiv.classList.remove('d-block');
                 solver.requestStop = true;
             })
@@ -145,7 +145,10 @@ function initActions() {
         }
     }
 
+
+    //############################# all things solver START
     function solverStartHandler() {     
+        view.solverStartMenuOptionsToggler()
         dotMenuDiv.classList.remove('d-block')   
         solver = new Solver(board.board)
         solver.watch = solverWatchButton.checked;
@@ -153,11 +156,12 @@ function initActions() {
         solver.speed = 250 - parseInt(speedRangeButton.value) + 50;
         solver.startSolving()
     }
-
+    
     function speedRangeHandler(event){
-        event.stopPropagation();
-        
+        event.stopPropagation();        
     }
+    
+    //############################# all things solver END
 
     function declareBoardElements() {
         emptyItems = document.querySelectorAll('.emptyItem')
