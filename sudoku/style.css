@@ -430,6 +430,9 @@ html body #home #start:active {
     width: 100vw;
     padding: 0 2vw;
   }
+  html body #main__container #dotMenu {
+    left: 2vh;
+  }
   html body #main__container #board {
     margin-left: auto;
     margin-right: auto;
