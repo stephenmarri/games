@@ -19,8 +19,6 @@ function newGame(_boardSize, _level) {
 
     initActions()
 
-    //solver
-    //solver = new Solver(board.board)
 }
 
 function clearUserInput(){

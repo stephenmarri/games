@@ -37,7 +37,8 @@ class View{
         for(let i=0;i<size;i++){
             for(let j=0; j<size;j++){
                 let element = document.getElementById(`${i}${j}`);
-                
+                //element.classList.remove('emptyItem')
+                //element.classList.remove('given')
                 element.textContent = board[i][j] > 0 ? board[i][j] : " ";
                 let given = board[i][j] > 0 ? "given " : "emptyItem ";
                 

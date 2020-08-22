@@ -26,7 +26,14 @@
     border-right: 2.5px solid black !important;
 }
 
-.emptyItem,.given {
+.given {
+    font-weight: 800;
+    background-color: whitesmoke;
+    color: black;
+    cursor: pointer;
+}
+
+.emptyItem {
     font-weight: 600;
     color: blue;
     background-color: #d1d8e0;
@@ -38,11 +45,7 @@
     color: whitesmoke;
 }
 
-.given {
-    font-weight: 800;
-    background-color: whitesmoke;
-    color: black;
-}
+
 
 html {
     width: 100%;

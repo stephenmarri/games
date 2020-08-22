@@ -46,9 +46,9 @@ function initActions() {
         let validater = new Validate(board.board, boardSize)
         let isValid = validater.runTests();
         if (isValid) {
-            alert("You've Solved this. Awesome!!!")
+            alert("The Board's Solved. Awesome !!!")
         } else {
-            alert("That's not correct. Keep trying.")
+            alert("Oops! The board seems to be invalid.")
         }
     }
 
