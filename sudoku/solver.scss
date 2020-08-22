@@ -302,8 +302,8 @@ html {
         }
 
         #home {
-            display: block;         
-            position: relative;   
+            display: block;
+            position: relative;
             width: 60vh;
             height: 60vh;
             border-radius: 0.25rem;
@@ -372,17 +372,16 @@ html {
             }
 
             #start {
-                font-family: 'Nunito';
+                font-family: 'Raleway';
                 width: 40%;
                 font-size: 2.25rem;
                 position: absolute;
-                letter-spacing: 3px;
                 bottom: 10%;
                 left: 0;
                 right: 0;
                 margin: 0 auto;
                 cursor: pointer;
-                border: 3px solid #2ed573;
+                border: 1px solid darkcyan;
                 background-color: #44bd32;
 
                 &:hover {
@@ -397,34 +396,27 @@ html {
     }
 }
 
-#solverLinkDiv{
+#solverLink{
     font-size: 1.25rem;
-    position: absolute;    
-    width: 100%;
-    bottom: -10vh;
+    position: absolute;
+    bottom: 10vh;
     margin: 0 auto;
     font-family: 'Poppins';
-    
-    
-    #solverLink{
-        text-decoration: none;
-        color: #2c3e50;
-        font-weight: 500;
-        padding: 0.3rem 1rem;
-        border: 1px solid gold;
-        background: rgba(238, 232, 170, 0.6);
+    text-decoration: none;
+    color: #2c3e50;
+    font-weight: 500;
+    padding: 0.3rem 0.6rem;
+    border: 1px solid gold;
+    background: rgba(238, 232, 170, 0.6);
 
-        &:hover{
-            font-weight: 600;
-            transform: scale(1.04);
-        }
-    
-        &:active{
-            transform: scale(0.98);
-        }
+    &:hover{
+        font-weight: 600;
+        transform: scale(1.04);
     }
 
-    
+    &:active{
+        transform: scale(0.98);
+    }
 }
 
 
@@ -481,11 +473,6 @@ html {
                     margin-bottom: 1.5rem;
                 }
             }
-        }
-
-        #solverLink{
-            margin-left: 0;
-            left: 19%;
         }
     }
 }

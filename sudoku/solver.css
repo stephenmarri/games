@@ -396,17 +396,16 @@ html body #home #selection__level .options span:last-child {
 }
 
 html body #home #start {
-  font-family: 'Nunito';
+  font-family: 'Raleway';
   width: 40%;
   font-size: 2.25rem;
   position: absolute;
-  letter-spacing: 3px;
   bottom: 10%;
   left: 0;
   right: 0;
   margin: 0 auto;
   cursor: pointer;
-  border: 3px solid #2ed573;
+  border: 1px solid darkcyan;
   background-color: #44bd32;
 }
 
@@ -419,31 +418,27 @@ html body #home #start:active {
           transform: scale(0.96);
 }
 
-#solverLinkDiv {
+#solverLink {
   font-size: 1.25rem;
   position: absolute;
-  width: 100%;
-  bottom: -10vh;
+  bottom: 10vh;
   margin: 0 auto;
   font-family: 'Poppins';
-}
-
-#solverLinkDiv #solverLink {
   text-decoration: none;
   color: #2c3e50;
   font-weight: 500;
-  padding: 0.3rem 1rem;
+  padding: 0.3rem 0.6rem;
   border: 1px solid gold;
   background: rgba(238, 232, 170, 0.6);
 }
 
-#solverLinkDiv #solverLink:hover {
+#solverLink:hover {
   font-weight: 600;
   -webkit-transform: scale(1.04);
           transform: scale(1.04);
 }
 
-#solverLinkDiv #solverLink:active {
+#solverLink:active {
   -webkit-transform: scale(0.98);
           transform: scale(0.98);
 }
@@ -487,10 +482,6 @@ html body #home #start:active {
   html body #home #header #start {
     margin-bottom: 1.5rem;
   }
-  html #solverLink {
-    margin-left: 0;
-    left: 19%;
-  }
 }
 
 .d-block {
@@ -506,4 +497,4 @@ html body #home #start:active {
   pointer-events: none;
   color: rgba(0, 0, 0, 0.4);
 }
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=solver.css.map */
