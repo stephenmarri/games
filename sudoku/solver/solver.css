@@ -1,4 +1,3 @@
-@charset "UTF-8";
 * {
   padding: 0;
   margin: 0;
@@ -55,12 +54,13 @@
 
 .emptyItem {
   font-weight: 600;
-  color: blue;
+  color: #3e21b2;
   background-color: #d1d8e0;
   cursor: pointer;
 }
 
-.emptyItem.selected, .given.selected {
+.emptyItem.selected,
+.given.selected {
   background-color: #45aaf2;
   color: whitesmoke;
 }
@@ -103,11 +103,26 @@ html body #main__container #header__controls #header__menu {
   text-align-last: left;
 }
 
-html body #main__container #header__controls #header__menu img {
+html body #main__container #header__controls #header__menu span {
+  border: 1px solid black;
+  padding: 0.3rem 0.5rem;
   cursor: pointer;
-  height: 0.754rem;
-  vertical-align: middle;
-  margin-left: 0.25rem;
+  height: 1.754rem;
+  vertical-align: bottom;
+  margin-left: 0rem;
+}
+
+html body #main__container #header__controls #header__menu span img {
+  vertical-align: bottom;
+  color: green;
+}
+
+html body #main__container #header__controls #header__menu span:hover {
+  background-color: #27ae60;
+  border-color: #27ae60;
+  color: white;
+  font-weight: 400;
+  cursor: pointer;
 }
 
 html body #main__container #header__controls #header__menu img:active {
@@ -146,7 +161,7 @@ html body #main__container #header__controls #header__submit span:active {
 
 html body #main__container #dotMenu {
   display: none;
-  min-width: 30%;
+  max-width: 40%;
   height: 20%;
   position: absolute;
   left: 0;
@@ -164,7 +179,7 @@ html body #main__container #dotMenu > div {
   cursor: pointer;
 }
 
-html body #main__container #dotMenu > div:not(:last-child):hover {
+html body #main__container #dotMenu > div:hover {
   background-color: #a4b0be;
   color: white;
 }
@@ -172,108 +187,6 @@ html body #main__container #dotMenu > div:not(:last-child):hover {
 html body #main__container #dotMenu > div:active {
   -webkit-transform: scale(0.98);
           transform: scale(0.98);
-}
-
-html body #main__container #dotMenu #solver {
-  position: relative;
-  padding: 0;
-}
-
-html body #main__container #dotMenu #solver span {
-  display: block;
-  width: 100%;
-  height: 100%;
-  padding: 0.2rem 0;
-}
-
-html body #main__container #dotMenu #solver span:after {
-  content: "Solver ▷";
-}
-
-html body #main__container #dotMenu #solver span:hover, html body #main__container #dotMenu #solver span:focus {
-  background-color: #a4b0be;
-  color: white;
-}
-
-html body #main__container #dotMenu #solver span:hover:after, html body #main__container #dotMenu #solver span:focus:after {
-  content: "Solver ▶";
-  color: black;
-}
-
-html body #main__container #dotMenu #solver #solverMenu {
-  display: none;
-  position: absolute;
-  left: 102%;
-  top: -1%;
-  min-width: 100%;
-}
-
-html body #main__container #dotMenu #solver #solverMenu div {
-  background-color: #f1f2f6;
-  border: 1px solid #a4b0be;
-  font-family: 'Poppins';
-  font-size: 1.075rem;
-  margin-bottom: 1px;
-  text-align: center;
-  padding: 0.2rem 0;
-  cursor: pointer;
-}
-
-html body #main__container #dotMenu #solver #solverMenu div:hover {
-  background-color: #a4b0be;
-  color: white;
-}
-
-html body #main__container #dotMenu #solver #solverMenu div input[type=checkbox] + label {
-  display: block;
-  margin: 0.1rem;
-  cursor: pointer;
-  padding: 0.1rem;
-}
-
-html body #main__container #dotMenu #solver #solverMenu div input[type=checkbox] {
-  display: none;
-}
-
-html body #main__container #dotMenu #solver #solverMenu div input[type=checkbox] + label:before {
-  content: "\2714";
-  border: 0.1em solid #000;
-  border-radius: 0.2rem;
-  display: inline-block;
-  width: 0.7rem;
-  height: 0.7em;
-  padding-left: 0.3rem;
-  padding-bottom: 0.6rem;
-  padding-right: 0.2rem;
-  margin-right: 0.5rem;
-  vertical-align: bottom;
-  color: transparent;
-  -webkit-transition: .2s;
-  transition: .2s;
-}
-
-html body #main__container #dotMenu #solver #solverMenu div input[type=checkbox] + label:active:before {
-  -webkit-transform: scale(0);
-          transform: scale(0);
-}
-
-html body #main__container #dotMenu #solver #solverMenu div input[type=checkbox]:checked + label:before {
-  background-color: MediumSeaGreen;
-  border-color: MediumSeaGreen;
-  color: #fff;
-}
-
-html body #main__container #dotMenu #solver #solverMenu div input[type=checkbox]:disabled + label:before {
-  -webkit-transform: scale(1);
-          transform: scale(1);
-  border-color: #aaa;
-}
-
-html body #main__container #dotMenu #solver #solverMenu div input[type=checkbox]:checked:disabled + label:before {
-  -webkit-transform: scale(1);
-          transform: scale(1);
-  background-color: #bfb;
-  border-color: #bfb;
 }
 
 html body #main__container #board {
@@ -339,7 +252,7 @@ html body #main__container #keypad .keypad__item:active {
     padding: 0 2vw;
   }
   html body #main__container #dotMenu {
-    left: 2vh;
+    left: 1vh;
   }
   html body #main__container #board {
     margin-left: auto;
